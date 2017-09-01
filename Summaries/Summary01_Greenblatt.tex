@@ -1,0 +1,76 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	\graphicspath{ {"/Users/mitch/Documents/Cal/2_2017_Spring/COMPSCI 289A - Intro to Machine Learning/HW07/Figures/"} }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }
+\usepackage{tikz} % Allows the creation of diagrams
+	\usetikzlibrary{shapes.geometric, arrows}
+	\tikzstyle{forwardfn} = [rectangle, 
+					  rounded corners,
+					  minimum width=2cm, 
+					  minimum height=1.5cm,
+					  text centered, 
+					  draw=black, 
+					 ]
+	\tikzstyle{backwardfn} = [rectangle, 
+					      rounded corners,
+					      minimum width=2cm, 
+					      minimum height=1.5cm,
+					      text centered, 
+					      draw=white, 
+					     ]
+	\tikzstyle{placeholder} = [rectangle,
+					      minimum width=2cm,
+					      draw=white,
+					      ]
+	\tikzstyle{arrow} = [thick,->,>=stealth]
+		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 9/1/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary {1} \hfill Mitch Negus\\
+		\hspace*{\fill} 9/1/2017\\ }}}
+\section*{\textit{The Future of Low-Carbon Electricity} \\ \normalsize Greenblatt, \textit{et al.}}
+
+\tab Energy is the underpinning of modern society, and so understanding the current and future energy landscapes is essential for those in the energy sector. The article by Greenblatt, \textit{et al.} discusses the world's energy portfolio as it currently stands and hypothesizes how energy generation trends are likely to shift in the next 20 to 25 years. While the article presents a thorough case-by-case analysis of each form of power generation, our focus was primarily on the section covering nuclear fission.\\
+\tab Regarding nuclear fission, the article emphasized how fission energy is a substantial contributor to low-carbon electricity generation both in the U.S. (where it is the largest contributor) and the world (where it is the second largest contributor) as a baseload power source with a high capacity factor. Though nuclear fission power saw a dramatic increase in the late twentieth century, the article covers how very little new nuclear has been added since then, and the vast majority of nuclear power plants are cooled and moderated with traditional (light) water. The article does discuss how the field has recently surged however, looking to develop new technologies that either solve some of the economic challenges facing existing nuclear plants, make the nuclear fuel cycle more sustainable, or develop entirely new reactor technologies that are better suited to a modern energy landscape. Notably, the article mentions that nuclear energy is statistically the safest source of electricity generation; however, it deals with strong criticism due to public perception that nuclear power is dangerous and a few notable accidents in its history. \\
+\tab Though in general I found the article to be incredibly informative, my criticisms of the article stem from what appear to be a lack of consistency between sections. The article begins by discussing energy produced in terms of terrawatt-hours per year (TWh/yr), but then switches to installed power capacity for renewables, then back to energy in TWh when discussing nuclear, and then use carbon emissions as the primary metric for evaluating fossil fuels. While these are all appropriate metrics for each individual technology, I think it would be of great benefit to the audience to maintain cohesivenes?whether each topic discusses each metric, or even if just one metric is referenced throughout in conjunction with more appropriate metrics as desired. This would offer the reader some means of comparison between technologies.
+
+
+\end{document}
+
+
+
+

@@ -60,7 +60,7 @@ $$T_{1/2} = \frac{ln2}{\lambda}$$
 	* JEFF (Europe/NEA)
 	* JENDL (Japan)
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Reactor_Theory/NE250_Git/Negus_Notes/Notes_Figures/Lecture01_U235-Xsec.gif)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture01_U235-Xsec.gif)
 
 * Resonances in X-Sec plots due to excited energy levels that can be reached; nuclei only all excitation to these levels, and so only neutrons with this energy amount will be absorbed
 * Cross sections measured at 300K (room temp); calculated using
@@ -100,13 +100,13 @@ Fission requires collision with high $E$ neutrons.
 
 For $^{235}\text{U}$ this is empirically given by $$\chi(E) = 0.453e^{-1.036E}\sinh(\sqrt{2.29E})$$
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Reactor_Theory/NE250_Git/Negus_Notes/Notes_Figures/Lecture02_FissionEDist.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_FissionEDist.png)
 
 
 
 Also, note that $\bar{\nu}$ depends on the isotope. Below is a plot of $\bar{\nu}$ for $^{239}\text{Pu}$, $^{233}\text{U}$ and $^{235}\text{U}$:
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Reactor_Theory/NE250_Git/Negus_Notes/Notes_Figures/Lecture02_nubarUPu.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_nubarUPu.png)
 
 ##### Fertile Isotopes
 
@@ -158,7 +158,7 @@ $ dE$
 
 $ d\hat{\Omega} = \sin\theta \; d\theta \; d\phi$; $d\hat{\Omega}$ is a scalar, about the original position defined by vector $\hat{\Omega}$.
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Reactor_Theory/NE250_Git/Negus_Notes/Notes_Figures/Lecture02_PhaseSpace.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_PhaseSpace.png)
 
 Altogether, $ n (\vec{r}, E, \hat{\Omega}, t) \; d^3r \; dE \; d\hat{\Omega}$, gives the # of neutrons in the small volume about $\vec{r}$ with energy, $E$, and moving in direction $d\hat{\Omega}$ about $\hat{\Omega}$ at time t.
 
@@ -176,6 +176,27 @@ $$ \frac{\partial}{\partial t}\left[\int_V{ n(\vec{r}, E, \hat{\Omega}, t) \; d^
 
 We also add a streaming term, to quantify neutrons leaking out (and in) to the system.
 
+
+
+## 8/31/2017 
+
+### Library overview
+
+Popular databases/search-tools
+
+* INSPEC 
+	* physics, EE, and CS
+* Web of Science
+	* all science and engineering
+	* searches dating to 1898
+* Scopus
+	* all science and engineering
+	* searches dating to 1960
+* Google Scholar
+	* relevance ranking not public
+	* does not correct for citation errors
+
+Other NE indexes include SciTech Connect, International NuclearInformation System (INIS), National Technical Reports Library (NTRL), SciFinder Scholar
 
 ...
 ---
