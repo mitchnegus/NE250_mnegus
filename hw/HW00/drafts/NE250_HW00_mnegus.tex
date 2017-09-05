@@ -1,0 +1,104 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	\graphicspath{ {} }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 9/5/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Homework {0} \hfill Mitch Negus\\
+		\hspace*{\fill} 9/5/2017\\ }}}
+\section*{RTGs}
+
+
+- First public demonstration of RTG to pres Eisenhower, 1959 (1)\\
+- Largely US produced (Russia has favored reactor based power systems) (3)\\
+- Two components thermoelectric converter and heat source (1,2)\\
+- Seebeck effect --> produces electricity from heat (1)\\
+- Thermoelectric converter (1)\\
+	-  temperature difference/gradient across heat source (1,2)\\
+	-  conductor on hot end, p/n type semiconductors, load on cold end (still several hundred K) (1)\\
+	- load (thermocouples) often connected in series to boost voltage output\\
+	- relatively low conversion efficiency ~5-10\% (2,3)\\
+- Heat source is a radioactive isotope, casing dispells heat into environment (1)\\
+- Ideal for space exploration; high energy density, long lifetime d1,2)\\
+- low power output is a challenge\\
+- other considerations include high melting point, safe and cost effective to produce (2)\\
+- mass considerations due to half-life; looking for reasonably equal power distribution over space mission \\(half-life ~ mission length) (2)\\
+- goal is to keep penetrating emissions low (esp. for manned missions, also to prevent rad damage except locally, or in the event of catastrophic failure) (2)\\
+- two manufacture methods: Used fuel isolation, neutron activation of target\\
+
+-Dynamic systems being developed (better efficiencies ~25+\%) (2)\\
+
+-even more benefit if radioactive decay leads to daughter decays (3)\\
+-cerium 144 initially tested (plentiful from defense waste, 290 day half-life suited to military purposes) (2) - SNAP-1\\
+-po210 used in SNAP-3 (demonstrated at WH in 1959-> to Ike) (2); half-life 138 days, still too short for many space missions (2)\\
+-Sr90 used terrestrially, no space missions (requires heavy shielding) (2)\\
+-others include H3 (12y), Am241(433y), Cm242(163d), Cm244(18y) (3)\\
+-alpha emitting Am241 is esp. promising; produced by decay of Pu241 from snf\\
+
+- pu238 is primary isotope used in RTGs (easy to produce stably, easy to encapsulate, emits absorbable radiation) (1)\\
+- half-life of 87.7 yrs; low radiation, useful forms (2)\\
+- domestic production ceased in 1986; availabilty has since been limited (purchasing from Russia) (2)\\
+-1961 Transit 4A Navy nav sat = first nuclear power in space (2,3)\\
+- as of 1991, PbTe and SiGe were primary RTG semiconductor components (1)\\
+- SiGe beneficial for space, can withstand temps to 1000C (sublimation/oxidation effects suppressed by inert gas, vented once in space)\\
+- Notable uses SNAP (systems for nuclear auxilary power) program (Apollo > 12, Pioneer, Viking), Voyager missions (1)\\
+- SNAP 27 designed to be loaded modularly, plutonium microspheres (1)\\
+- GPHS (gen purpose heat source used for Space shuttle ) (1)\\
+- Used for all NASA missions after 1989 (2)\\
+- GPHS module designed to deliver 250 W\_t (2); mass = 1.43 kg (2)\\
+
+As nuclear batteries (4)\\
+- RTGs inefficient and large due to thermoelectric conversion\\
+- for batteries in general, scale lengths of system ought to be matched --- transport scale length of radiation, phyiscal dimension of energy conversion volume (not applicable to RTGs)\\
+- electron--hole recombination for alpha/betavoltaics\\
+- solid state recombination\\
+
+Radioactive Heat Sources (RHS) (5)\\
+- used in radioactive heater units (RHUs) or RTGs (5)\\
+
+
+(1) DM Rowe
+(2) DOE Germantown
+(3) Europe
+(4) Nuclear batteries
+(5) modern RHS
+
+\end{document}
+
+
+
+

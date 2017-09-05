@@ -13,7 +13,7 @@ Two types
 
 * $\alpha$: $^A_ZX \rightarrow ^{A-4}_{Z-2}X + ^4_2\alpha$
 * $\beta$: $^A_ZX \rightarrow ^A_{Z+1}X + \beta + \bar{\nu}$
-* $\gamma$ $X^* \rightarrow X +![]() \gamma$
+* $\gamma$ $X^* \rightarrow X +() \gamma$
 
 ##### Decay Equations
 $ t \rightarrow N(t) $  
@@ -60,7 +60,7 @@ $$T_{1/2} = \frac{ln2}{\lambda}$$
 	* JEFF (Europe/NEA)
 	* JENDL (Japan)
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture01_U235-Xsec.gif)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/fig/Lecture01_U235-Xsec.gif)
 
 * Resonances in X-Sec plots due to excited energy levels that can be reached; nuclei only all excitation to these levels, and so only neutrons with this energy amount will be absorbed
 * Cross sections measured at 300K (room temp); calculated using
@@ -100,13 +100,13 @@ Fission requires collision with high $E$ neutrons.
 
 For $^{235}\text{U}$ this is empirically given by $$\chi(E) = 0.453e^{-1.036E}\sinh(\sqrt{2.29E})$$
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_FissionEDist.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/fig/Lecture02_FissionEDist.png)
 
 
 
 Also, note that $\bar{\nu}$ depends on the isotope. Below is a plot of $\bar{\nu}$ for $^{239}\text{Pu}$, $^{233}\text{U}$ and $^{235}\text{U}$:
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_nubarUPu.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/fig/Lecture02_nubarUPu.png)
 
 ##### Fertile Isotopes
 
