@@ -125,9 +125,9 @@ Isotopes which either undergo neutron capture (and subsequent decay) to become f
 The energy from all outputs can be captured except for neutrinos.
 
 
-## Criticality
+### Criticality
 
-### Multiplication Factor, $k$
+#### Multiplication Factor, $k$
 
 $$ k = \frac{\text{# neutrons generated}}{\text{# neutrons lost}} $$
 
@@ -138,7 +138,9 @@ $k=1$: the reaction is critical; the chain reaction is controlled (reactor)
 $k<1$: the reactor is subcritcal; boring  
 $k>1$: the reaction is supercritical; this is a bomb  
 
-Need to know: 
+### Derivation of the Neutron Transport Equation
+
+Solving for the multiplication factor requires that we know: 
 
 1. $n$: neutron density $[n/\text{cm}^3]$
 2. $N$: atom/nuclide density $[\text{nuclei}/\text{cm}^3]$
@@ -158,7 +160,7 @@ $ dE$
 
 $ d\hat{\Omega} = \sin\theta \; d\theta \; d\phi$; $d\hat{\Omega}$ is a scalar, about the original position defined by vector $\hat{\Omega}$.
 
-![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/Notes/Notes_Figures/Lecture02_PhaseSpace.png)
+![](/Users/mitch/Documents/Cal/3_2017_Fall/NUCENG250–Nuclear_Reactor_Theory/mnegus/notes/fig/Lecture02_PhaseSpace.png)
 
 Altogether, $ n (\vec{r}, E, \hat{\Omega}, t) \; d^3r \; dE \; d\hat{\Omega}$, gives the # of neutrons in the small volume about $\vec{r}$ with energy, $E$, and moving in direction $d\hat{\Omega}$ about $\hat{\Omega}$ at time t.
 
@@ -176,34 +178,21 @@ $$ \frac{\partial}{\partial t}\left[\int_V{ n(\vec{r}, E, \hat{\Omega}, t) \; d^
 
 We also add a streaming term, to quantify neutrons leaking out (and in) to the system.
 
-
-
-## 8/31/2017 
-
-### Library overview
-
-Popular databases/search-tools
-
-* INSPEC 
-	* physics, EE, and CS
-* Web of Science
-	* all science and engineering
-	* searches dating to 1898
-* Scopus
-	* all science and engineering
-	* searches dating to 1960
-* Google Scholar
-	* relevance ranking not public
-	* does not correct for citation errors
-
-Other NE indexes include SciTech Connect, International NuclearInformation System (INIS), National Technical Reports Library (NTRL), SciFinder Scholar
-
-
+---
 
 ## 9/1/2017
 
+### Derivation of the Neutron Transport Equation (cont.)
+
+The chance of a collision in the system is given by 
+$$ \left[ \int_V{ \Sigma_{\text{tot}}(\vec{r},E) v n(\vec{r},E,\hat{\Omega},t) \; d^3r} \right] dE \; d\hat{\Omega} $$
+
 ...
 ---
+
+## 8/31/2017
+
+Library review: [Notes](https://hackmd.io/IYZhBMA4AYCME4C0BWALPATI1tkkbAIxGKEBmhIsAxocuNeMEA==?both#)
 
 
 
