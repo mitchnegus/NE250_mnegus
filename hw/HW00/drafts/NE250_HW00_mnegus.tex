@@ -40,64 +40,48 @@
 
 {\bf {\large {NE250 Homework {0} \hfill Mitch Negus\\
 		\hspace*{\fill} 9/5/2017\\ }}}
-\section*{RTGs}
+\section*{RTGs\\\textit{\normalsize Celebrating the deep-space power source on the 40th anniversary of Voyager 1's launch}}
 
+\begin{multicols}{2}
 
-- First public demonstration of RTG to pres Eisenhower, 1959 (1)\\
-- Largely US produced (Russia has favored reactor based power systems) (3)\\
-- Two components thermoelectric converter and heat source (1,2)\\
-- Seebeck effect --> produces electricity from heat (1)\\
-- Thermoelectric converter (1)\\
-	-  temperature difference/gradient across heat source (1,2)\\
-	-  conductor on hot end, p/n type semiconductors, load on cold end (still several hundred K) (1)\\
-	- load (thermocouples) often connected in series to boost voltage output\\
-	- relatively low conversion efficiency ~5-10\% (2,3)\\
-- Heat source is a radioactive isotope, casing dispells heat into environment (1)\\
-- Ideal for space exploration; high energy density, long lifetime d1,2)\\
-- low power output is a challenge\\
-- other considerations include high melting point, safe and cost effective to produce (2)\\
-- mass considerations due to half-life; looking for reasonably equal power distribution over space mission \\(half-life ~ mission length) (2)\\
-- goal is to keep penetrating emissions low (esp. for manned missions, also to prevent rad damage except locally, or in the event of catastrophic failure) (2)\\
-- two manufacture methods: Used fuel isolation, neutron activation of target\\
+\tab Nuclear reactors are undoubtedly the most abundant and publicly recognized source of nuclear energy, but they are not the only source. Radioisotope thermoelectric generators (RTGs) are subcritical apparatuses which harness the energy released by radioactive decay, rather than sustained fission chain reactions. First demonstrated publicly to President Dwight Eisenhower in 1959 [1], RTGs have been used to supply power in remote environments--most notably as the power source of choice for deep-space missions, but also for remote terrestrial applications [2]. 
 
--Dynamic systems being developed (better efficiencies ~25+\%) (2)\\
+\tab In general, traditional RTGs require two primary subsystems: a heat source and a thermoelectric converter [1,2]. Heat is provided to the RTG using a radioactive sample, and this sample emits ionizing radiation in the form of $\alpha$-particles, $\beta$-particles, $\gamma$-rays, or fission fragments. When these particles are stopped before exiting the system, they deposit their kinetic energy in the system and the temperature rises. Due to the physics of radioactive decay, the production of heat in the system is quite predictable. Selection of isotopes with sufficiently long half-lives can ensure that the heat source produces sufficient temperatures for the desired lifetime of the RTG. Still, a balance must be struck between mass and power requirements. Radioisotopes with very long half-lives may produce power for centuries, however the mass of such an isotope needed to generate an appreciable increase in heat may be impractical for a given application [2].
 
--even more benefit if radioactive decay leads to daughter decays (3)\\
--cerium 144 initially tested (plentiful from defense waste, 290 day half-life suited to military purposes) (2) - SNAP-1\\
--po210 used in SNAP-3 (demonstrated at WH in 1959-> to Ike) (2); half-life 138 days, still too short for many space missions (2)\\
--Sr90 used terrestrially, no space missions (requires heavy shielding) (2)\\
--others include H3 (12y), Am241(433y), Cm242(163d), Cm244(18y) (3)\\
--alpha emitting Am241 is esp. promising; produced by decay of Pu241 from snf\\
+\tab The second component of an RTG, the thermoelectric converter, allows the energy supplied by the heat source to be converted into a voltage. This process is accomplished by exploiting the Seebeck effect. Two doped semiconductors (one p-type, one n-type) are joined by a conductor at one end and a resistive load at the other. The this circuit is connected to the heat source such that a temperature gradient is applied across the semiconductors. The heat source and hot temperature is located near the conducting link, while the load is kept away. The temperature gradient induces a voltage across the load and electrical currents may be generated [1,2]. Here, hot and cold are relative terms. For many RTGs, the cold region can still be nearly 600K, and the hot region may reach temperatures as high as 1000K [1]. At present, the low efficiencies of thermoelectric converters are the limiting factor in traditional RTGs. Only 5-10\% of the heat source's energy is converted into electricity [2,3].
 
-- pu238 is primary isotope used in RTGs (easy to produce stably, easy to encapsulate, emits absorbable radiation) (1)\\
-- half-life of 87.7 yrs; low radiation, useful forms (2)\\
-- domestic production ceased in 1986; availabilty has since been limited (purchasing from Russia) (2)\\
--1961 Transit 4A Navy nav sat = first nuclear power in space (2,3)\\
-- as of 1991, PbTe and SiGe were primary RTG semiconductor components (1)\\
-- SiGe beneficial for space, can withstand temps to 1000C (sublimation/oxidation effects suppressed by inert gas, vented once in space)\\
-- Notable uses SNAP (systems for nuclear auxilary power) program (Apollo > 12, Pioneer, Viking), Voyager missions (1)\\
-- SNAP 27 designed to be loaded modularly, plutonium microspheres (1)\\
-- GPHS (gen purpose heat source used for Space shuttle ) (1)\\
-- Used for all NASA missions after 1989 (2)\\
-- GPHS module designed to deliver 250 W\_t (2); mass = 1.43 kg (2)\\
+\tab When designing an RTG, perhaps the most critical aspect is the selection of a radioisotope heat source. As mentioned, mass and power requirements must be considered. The exponential behavior of radioactive decay has direct consequences on the performance of an RTG. Long lived radioisotopes yield low power per mass, while short-lived isotopes offer more immediate power while sacrificing power uniformity over the duration of RTG lifetime. Complicating the process further are considerations regarding the safety, melting point, and production costs of the isotope. An isotope that emits significant penetrating radiation is much more likely to cause a failure of the heat source's containment due to radiation damage. Furthermore, penetrating radiation presents a health-hazard to humans. These could be astronauts on an RTG powered mission, or those in the vicinity of a catastrophic RTG-powered satellite launch failure [2]. To date, the most commonly used radioisotope for space mission RTGs is plutonium-238. With a half-life of 87.7 years it is well suited to long, multi-year expeditions deep into the solar system and beyond [2]. While United States production of plutonium-238 from defense nuclear waste ceased in 1986, the U.S. is still a worldwide leader in RTG manufacturing. To compensate for dwindling domestic plutonium-238 resources, most current RTGs are developed with Russian plutonium [2]. Other radioisotopes have been explored, including cerium-144, strontium-90 (only for terrestrial applications due to substantial shielding requirements), and polonium-210 [2].
 
-As nuclear batteries (4)\\
-- RTGs inefficient and large due to thermoelectric conversion\\
-- for batteries in general, scale lengths of system ought to be matched --- transport scale length of radiation, phyiscal dimension of energy conversion volume (not applicable to RTGs)\\
-- electron--hole recombination for alpha/betavoltaics\\
-- solid state recombination\\
+\tab In the past 25 years, RTGs have seen a dramatic reduction in use. As solar photovoltaic efficiency has increased, RTGs have become far less frequently utilized for missions and satellites in Earth's orbit. Instead, RTGs are now almost exclusively used for deep space missions [3].  Expeditions to the outer reaches of the solar system still require more power than can be harvested from solar radiation, and so RTGs have powered all deep space probes such as Cassini, New Horizons, and the Voyager missions [2]. Even with less space-based RTG missions, other similar nuclear battery technologies have advanced considerably. Where RTGs are often inefficient, developments have taken place to find novel ways of performing the thermoelectrical conversion (such as with a Stirling engine [2]), increase heat output from the radioisotope heat source [4], or to avoid the process altogether. In the latter, engineers have looked to scintillators and other semiconductor electronics for inspiration, devising methods for generating currents from electron--hole recombination to construct alpha- and beta-voltaics [5].
 
-Radioactive Heat Sources (RHS) (5)\\
-- used in radioactive heater units (RHUs) or RTGs (5)\\
+\end{multicols}
+\subsection*{References}
+Arias FJ and Parks GT. 2015. Self-induced electrostatic-boosted radioisotope heat sources. Prog Nuclear Energy 85:291-6.
 
+Lange RG and Carroll WP. 2008. Review of recent advances of radioisotope power systems. Energy Conversion and Management 49(3):393-401.
 
-(1) DM Rowe
-(2) DOE Germantown
-(3) Europe
-(4) Nuclear batteries
-(5) modern RHS
+Prelas MA, et al. 2014. A review of nuclear batteries. Progress in Nuclear Energy 75:117-48.
+
+Rowe D. 1991. Applications of nuclear-powered thermoelectric generators in space. Appl Energy 40(4):241-71.
+
+Summerer L and Stephenson K. 2011. Nuclear power sources: A key enabling technology for planetary exploration. Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering 225(2):129-43.
+%\begin{thebibliography}{99}
+%	\bibitem{Rowe}
+%	Rowe, D.
+%	Applications of nuclear-powered thermoelectric generators in space.
+%	\textit{Appl Energy}
+%	2015.
+	
+%	\bibitem{MCNP}
+%	Booth, T.E. \textit{et al.}
+%	MCNP Overview
+%	Los Alamos National Laboratory.
+%	2008.
+%\end{thebibliography}
 
 \end{document}
+
+
 
 
 
