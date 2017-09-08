@@ -1,5 +1,5 @@
 # NE250 – Reactor Theory
-
+---
 
 
 ## 8/24/2017 
@@ -71,6 +71,7 @@ $$T_{1/2} = \frac{ln2}{\lambda}$$
 $1 \text{ barn} = 10^{24} \text{ cm}^2$  
 $1 \text{ eV} = 1.602 \times 10^{-19} \text{ J}$
 
+---
 
 
 ## 8/25/2017
@@ -143,8 +144,8 @@ $k>1$: the reaction is supercritical; this is a bomb
 Solving for the multiplication factor requires that we know: 
 
 1. $n$: neutron density $[n/\text{cm}^3]$
-2. $N$: atom/nuclide density $[\text{nuclei}/\text{cm}^3]$
-3. $\sigma$: microscopic cross section $[\text{cm}^2]$
+1. $N$: atom/nuclide density $[\text{nuclei}/\text{cm}^3]$
+1. $\sigma$: microscopic cross section $[\text{cm}^2]$
 
 **Reaction rate:** $ \; R = n N \sigma$
 
@@ -180,6 +181,8 @@ We also add a streaming term, to quantify neutrons leaking out (and in) to the s
 
 ---
 
+
+
 ## 9/1/2017
 
 ### Derivation of the Neutron Transport Equation (cont.)
@@ -187,12 +190,178 @@ We also add a streaming term, to quantify neutrons leaking out (and in) to the s
 The chance of a collision in the system is given by 
 $$ \left[ \int_V{ \Sigma_{\text{tot}}(\vec{r},E) v n(\vec{r},E,\hat{\Omega},t) \; d^3r} \right] dE \; d\hat{\Omega} $$
 
+The chance of fission in system... (See paper notes...)
+
+---
+
+
+
+## 9/7/2017
+
+### The Transport Equation
+
+$$ \frac{1}{v} \frac{\partial\psi}{\partial t} + \hat{\Omega} \cdot \nabla\psi + \Sigma_t\psi = \int_{4\pi}{d\hat{\psi}'\int_0^{\infty}{dE' \Sigma_s(E',\hat{\Omega}'\rightarrow E,\hat{\Omega})\psi(E',\hat{\Omega}')}}$$ + $$\frac{\chi(E)}{4\pi}\int_0^{\infty}{dE'\nu(E')\Sigma_f(E')} \int_{4\pi}{d\hat{\Omega}'\phi(\vec{r},E',\hat{\Omega}',t) + s(\vec{r},E,\hat{\Omega},t)}$$
+
+**Initial condition:**  
+$\psi(\vec{r},E,\hat{\Omega},0) = \psi_0(\vec{r},E,\hat{\Omega})$
+
+**Interface condition:**  
+angular flux must be continuous at all points
+
+
+##### Other conditions 
+**Fixed condition:** incoming flux is specified  
+	$\psi(\vec{r}_s,E,\hat{\Omega},t) = \psi_{\text{in}}(\vec{r},E,\hat{\Omega},t)$
+
+Vacuum or black if $\psi_\text{in}(\vec{r},E,\hat{\Omega},t)$
+
+**Reflective conditions:** mirror symmetry at some surface  
+	$\psi(\hat{\Omega}_{\text{in}}) = \psi(\hat{\Omega}_{\text{out}},t)$
+
+**Periodic conditions:**  
+$\psi(\vec{r}_s) = \psi(\vec{r}_s + \vec{p})$
+
+**Finiteness conditions:** (can't have infinite flux)   
+$0 \leq \psi(\vec{r},E,\hat{\Omega},t) < \infty$
+
+**Source condition:** localized (pt.) sources introduce mathemetaical singularities
+$S(\vec{r},E,\hat{\Omega},t) = \lim_{\vec{r}\rightarrow\vec{r_0}}\int{dS \; \hat{e} \cdot \hat{\Omega}}$
+
+
+### Approximations to the Transport Equation
+
+#### One-speed Transport Equation
+
+Assume all particles are the same speed
+
+$\vec{v} = v_0 \cdot \hat{\Omega}$
+
+The equation becomes
+$$ \frac{1}{v} \frac{\partial \psi(\vec{r},\hat{\Omega},t)}{\partial t} + \hat{\Omega} \nabla \psi (\vec{r},\hat{\Omega},t) + \Sigma_t(r)\psi (\vec{r},\hat{\Omega},t) = \int_{4\pi}{d\hat{\Omega}' \Sigma_s(\hat{\Omega}'\rightarrow\hat{\Omega}) \psi(\vec{r},\hat{\Omega}',t) + \frac{\nu\Sigma_f}{4\pi}\int_{4\pi}d\hat{\Omega}'{\psi(\vec{r},\hat{\Omega}',t) + S(\vec{r},\hat{\Omega},t)}}$$
+
+#### One-dimensional
+
+$\vec{r} = (x,y,z)$  
+$d\hat{\Omega} = sin\theta \; d\theta \; d\varphi = d\mu \; d\varphi$, where $\mu = cos\theta$
+
+$$ \frac{1}{v} \frac{\partial \psi(x,\hat{\Omega},t)}{\partial t} + \Omega_x \frac{\partial}{\partial x} \psi (x,\hat{\Omega},t) + \Sigma_t(x)\psi (x,\hat{\Omega},t) = \int_{4\pi}{d\hat{\Omega}' \Sigma_s(\hat{\Omega}'\rightarrow\hat{\Omega}) \psi(x,\hat{\Omega}',t) + \frac{v\Sigma_f}{4\pi}\int_{4\pi}d\hat{\Omega}'{\psi(x,\hat{\Omega}',t) + S(x,\hat{\Omega},t)}}$$
+
+
+
+### The Diffusion Equation
+
+Usually the scalar flux is all that is needed to get a fairly accurate picture of our system. Reaction rates usually only depend on the neutron flux, not the direction of neutron motion.
+
+**Assume** that the angular flux depends only weakly on direction.
+
+*Recall:*  
+$\phi(\vec{r},t) = \int_{4\pi}{d\hat{\Omega} \psi(\vec{r},\hat{\Omega},t)}$
+$J(\vec{r},t) = \int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \;\psi(\vec{r},\hat{\Omega},t)}$
+
+Integrate transport equation over all angles
+
+1. **Time:** No approximations in time
+$$ \frac{1}{v}\frac{\partial}{\partial t}\int_{4\pi}{d\hat{\Omega} \; \psi(\vec{r},\hat{\Omega},t)} = \frac{1}{v}\frac{\partial}{\partial t} \phi(\vec{r},t) $$
+
+1. **Absorption:** No approximations in absorption
+$$\Sigma_t \int_{4\pi}{d\hat{\Omega} \; \psi(\vec{r},\hat{\Omega},t)} = \Sigma_t \; \phi(\vec{r},t)$$
+
+1. **Fission:** No approximations in fission
+$$ \int_{4\pi}{d\hat{\Omega}} = \int_0^{\pi}{\sin\theta \; d\theta} \int_0^{2\pi}{d\varphi} = 4\pi$$
+$$\int_{4\pi}{d\hat{\Omega} \frac{\nu \Sigma_f}{4\pi}\int_{4\pi}{d\hat{\Omega}'\psi(\vec{r},\hat{\Omega},t)}} = \nu \Sigma_f \phi(\vec{r},t)$$
+
+1. **Source:** No approximations in source 
+$$\int_{4\pi}{d\hat{\Omega} \; s(\vec{r},\hat{\Omega},t)} \equiv S(\vec{r},t)$$
+
+1. **Scattering:** For scattering, interchange the order of integration
+$$ \int_{4\pi}{d\hat{\Omega} \int_{4\pi}{d\hat{\Omega}' \Sigma_s(\hat{\Omega}'\rightarrow \hat{\Omega}) \; \psi}(\vec{r},\hat{\Omega}',t}) = \int_{4\pi}{d\hat{\Omega}' \int_{4\pi}{d\hat{\Omega} \Sigma_s(\hat{\Omega}'\rightarrow\hat{\Omega}) \; \psi}(\vec{r},\hat{\Omega}',t)}$$
+
+	Now we assume that scattering is azimuthally symmetric (scattering depends only on cosine). The particle is as likely to scatter at angle $\theta$ in any direction off $ \hat{\Omega}$.
+$$\int_{4\pi}{d\hat{\Omega} \;\Sigma_s(\hat{\Omega}'\cdot\hat{\Omega})} = 2\pi \int_{-1}^1{d\mu \; \Sigma_s(\mu)} = \Sigma_s$$
+	Then, if we substitute this in above
+$$\Sigma_s\int_{4\pi}{d\hat{\Omega} \; \psi(\vec{r},\hat{\Omega}',t)} =  \Sigma_s \phi(\vec{r},t)$$
+
+1. **Streaming:** To adjust streaming, we first manipulate the order
+$$ \int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \cdot \nabla \; \psi(\vec{r},\hat{\Omega},t)} = \nabla \cdot \int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \; \psi(\vec{r},\hat{\Omega},t)} = \nabla \cdot \vec{J}(\vec{r},t)$$
+
+#### Neutron Continuity Equation (NCE)
+Put all the above integrations together to get the "Zeroth Angular moment"; notice that we have three equations (each $\vec{r}$ has $x,y,z$ components) and 4 unknown quantities.
+
+$$ \frac{1}{v} \frac{\partial \phi(\vec{r},t)}{\partial t} + \nabla \hat{J}(\vec{r},t) + \Sigma_t \phi(\vec{r},t) = \Sigma_s \phi(\vec{r},t) + \nu \Sigma_f \phi(\vec{r},t) + S(\vec{r},t) $$
+
+#### First angular moment 
+Multiply the TE by $\hat{\Omega}$ and integrate.  We will drop the fission term (technically we will assume it is part of the source), though the procedure is nearly the same when it is included.
+
+Note:  
+$\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega}} = 0$  
+$\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \; \hat{\Omega}} = \frac{4\pi}{3}\bar{\bar{I}} $ 
+
+$\bar{\bar{I}}$ is the identity tensor:  
+	$$\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega}_i \; \hat{\Omega}}_j = 
+	\begin{cases}
+	0, & i \neq j  \\
+	\frac{4\pi}{3},&  i = j
+	\end{cases}$$
+
+$\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \; \hat{\Omega}} = 0 $ 
+
+
+When multiplied out, we have
+
+$$ \int_{4\pi}{d\hat{\Omega}} \; \text{[TE]} $$
+
+1. **Time:**
+1. **Absorption:**
+1. **Source (fission now absent):**
+1. **Scattering:** Expand scattering cross section in Legendre Polynomials (a sequence of orthogonal polynomials)
+
+	$$P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right]$$
+
+	Expand $\Sigma_s(\hat{\Omega}' \cdot \hat{\Omega})$ in Legendre polynomials
+
+	$$ \Sigma_s(\hat{\Omega}' \cdot \hat{\Omega}) = \sum_0^{\infty}{\frac{2\ell + 1}{4\pi}\Sigma_{s\ell}P_{\ell}(\hat{\Omega}')P_{\ell}(\hat{\Omega})} $$
+
+	* $\ell = 0$ is isotropic  
+$P_0(\hat{\Omega}) = 1$  
+$\Sigma_s(\hat{\Omega}',\hat{\Omega}) \approx \frac{1}{4\pi}\Sigma_{s0}$
+
+	* $\ell = 1$ is linearly anisotropic  
+$P_1(\hat{\Omega}) = \hat{\Omega})$  
+$\Sigma_s(\hat{\Omega}',\hat{\Omega}) \approx \frac{1}{4\pi}(\Sigma_{s0} + 3 \hat{\Omega}' \cdot \hat{\Omega}\Sigma_{s1})$
+
+	Assume scattering is at most linearly anisotropic (if its not, there's some "weird" stuff going on")
+
+	$$\frac{1}{4\pi}\int_{4\pi}{d\hat{\Omega} \hat{\Omega}  \int_{4\pi}{d\hat{\Omega}(\Sigma_{s0} + 3 \hat{\Omega}' \cdot \hat{\Omega}\Sigma_{s1}) \; \psi(\vec{r},\hat{\Omega},t)}} = \frac{1}{4\pi}\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega}}\int_{4\pi}{d\hat{\Omega}'\Sigma_{s} \; \psi(\vec{r},\hat{\Omega}',t)} + \frac{1}{4\pi}\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega}\hat{\Omega}}\int_{4\pi}{d\hat{\Omega}' \; \hat{\Omega}' 3 \Sigma_{s1} \; \psi(\vec{r},\hat{\Omega}',t)}$$
+	
+	Using the defined identities, we find 
+	
+	$$\frac{1}{4\pi}\int_{4\pi}{d\hat{\Omega} \hat{\Omega}  \int_{4\pi}{d\hat{\Omega}(\Sigma_{s0} + 3 \hat{\Omega}' \cdot \hat{\Omega}\Sigma_{s1}) \; \psi(\vec{r},\hat{\Omega},t)}} = \Sigma_{s1} \; J(\vec{r},t)$$
+
+1. **Streaming:**
+	$$\int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \; \hat{\Omega} \cdot \nabla \psi(\vec{r},\hat{\Omega},t)} = \nabla \cdot \int_{4\pi}{d\hat{\Omega} \; \hat{\Omega} \;\hat{\Omega} \; \psi(\vec{r},\hat{\Omega},t)} $$
+
+Putting each of these 5 components back together the **current continuity equation** is
+$$\frac{1}{v}{\partial J}{\partial t} + \nabla \cdot \int_{4\pi}{d\hat{\Omega} \;\hat{\Omega}\hat{\Omega} \; \psi(\vec{r},\hat{\Omega},t)} + \Sigma_t \vec{J}(\vec{r},t) = \Sigma_{s1}\vec{J}(\vec{r},t) + S_1(\vec{r},t)$$
+
+Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns–$\phi$ (1), $\vec{J}$ (3), and the new tensor term (6).
+
+
 ...
 ---
 
 ## 8/31/2017
 
 Library review: [Notes](https://hackmd.io/IYZhBMA4AYCME4C0BWALPATI1tkkbAIxGKEBmhIsAxocuNeMEA==?both#)
+
+
+
+
+
+
+
+
+
+
 
 
 
