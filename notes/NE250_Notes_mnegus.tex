@@ -1,0 +1,118 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	\graphicspath{{fig/}}
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; NE250 - Nuclear Reactor Theory}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {Nuclear Engineering 250 -- Nuclear Reactor Theory \hfill Mitch Negus}}}
+
+\section*{Nuclear Reactions}
+
+Two types
+
+\subsection*{1. Spontaneous \textit{(decay)}}
+
+* $\alpha$: $^A_ZX \rightarrow ^{A-4}_{Z-2}X + ^4_2\alpha$
+* $\beta$: $^A_ZX \rightarrow ^A_{Z+1}X + \beta + \bar{\nu}$
+* $\gamma$ $X^* \rightarrow X +() \gamma$
+
+\subsubsection*{Decay Equations}
+$ t \rightarrow N(t) $  
+$ t+dt \rightarrow N(t+dt) $
+
+$dN(t) = N(t+dt) - N(t) $  
+$dN(t) = -\lambda N(t) dt$ where $\lambda$ is the decay constant.
+
+... working through, with B.C. $N(t=0) = N_0$ ...
+
+$$N(t) = N_0 e^{-\lambda t}$$
+
+**Mean Lifetime:** 
+
+$\frac{dN(t)}{N_0} = \lambda e^{-\lambda t} dt = p_d(t)$ where $p_d(t) dt$ is the probability of decay in time $dt$
+
+$$\bar{t} = \int_0^{\infty} t p(t) dt = \frac{1}{\lambda}$$
+
+**Half Life:**
+
+$T_{1/2}$ is defined as the time s.t. $N(T_{1/2}) = \frac{N_0}{2}$; 
+$$T_{1/2} = \frac{ln2}{\lambda}$$
+
+\subsection*{2. Induced \textit{(projectile/target)}}
+
+*this will be the emphasis of NE 250*
+
+\subsubsection*{ Neutron-Nucleus}
+
+* elastic scattering
+* inelastic scattering/compound nuclear reaction  
+	$$n + ^A_ZX \rightarrow ^{A+1}_ZX^*$$
+	(could result in production of a $\gamma$ or $\alpha$, emission of a $n$, or fission)
+	
+	\textbf{Capture is a subset of absorption!}
+	Absorption: $(n,\alpha), (n,\gamma), (n,f)$  
+	Capture: $(n,\gamma)$
+	
+\textbf{Cross Sections ($\sigma$)}
+* A property of the isotope and reaction
+* A function of the isotope temperature (vibrational motion) and neutron speed (linear motion)
+* Tabulated in XSec libraries *(3 common formats)*
+	* ENDF (USA)
+	* JEFF (Europe/NEA)
+	* JENDL (Japan)
+
+\includegraphics[width=10cm]{Lecture01\_U235-Xsec.gif}
+
+* Resonances in X-Sec plots due to excited energy levels that can be reached; nuclei only all excitation to these levels, and so only neutrons with this energy amount will be absorbed
+* Cross sections measured at 300K (room temp); calculated using
+	$$ E = k_BT $$ where $k_B$ is Boltzmann's constant and $T=300 \text{ K} \Rightarrow E = 0.0253 \text{ eV}$
+* Higher temperatures cause resonant peak widths to broaden (less time spent near center of vibrational trajectory) $\rightarrow$ **Doppler Broadening**
+
+\textbf{Units}
+$1 \text{ barn} = 10^{24} \text{ cm}^2$  
+$1 \text{ eV} = 1.602 \times 10^{-19} \text{ J}$
+
+
+
+
+
+
+\end{document}
+
+
+
+
