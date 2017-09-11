@@ -10,6 +10,7 @@
 	\DeclareMathOperator{\sech}{sech} % Include sech
 \usepackage{amssymb} % AMS symbols package
 \usepackage{mathrsfs}% More math symbols
+\usepackage{breqn} % Allows splitting of long math lines
 \usepackage{bm} % Allows you to use \bm{} to make any symbol bold
 \usepackage{bbold} % Allows more bold characters
 \usepackage{verbatim} % Allows you to include code snippets
@@ -29,7 +30,41 @@
         	  	  stringstyle=\color{red}\ttfamily,
           	  commentstyle=\color{gray}\ttfamily,
           	 }		
+
+% Shortcuts for common numbers
 \newcommand{\tab}{\-\hspace{1cm}}
+\newcommand{\h}[1]{\section*{#1}}
+\newcommand{\hh}[1]{\subsection*{#1}}
+\newcommand{\hhh}[1]{\subsubsection*{#1}}
+
+\newcommand{\p}{\partial}
+\newcommand{\ppt}{\frac{\p}{\p t}}
+\newcommand{\grad}{\vec{\nabla}}
+
+\newcommand{\Xs}{\Sigma}
+\newcommand{\xs}{\sigma}
+
+\newcommand{\Oov}{\frac{1}{v}}
+
+\newcommand{\pos}{\vec{r}}
+\newcommand{\cur}{\vec{J}}
+\newcommand{\Oh}{\hat{\Omega}}
+
+\newcommand{\intfp}{\int_{4\pi}}
+
+\newcommand{\rt}{(\pos,t)}
+\newcommand{\rEO}{(\pos,E,\Oh)}
+\newcommand{\rOt}{(\pos,\Oh,t)}
+\newcommand{\rOtprime}{(\pos,\Oh',t)}
+\newcommand{\rEOt}{(\pos,E,\Oh,t)}
+\newcommand{\rEOtprime}{(\pos,E',\Oh',t)}
+
+\newcommand{\uthree}{^{233}\text{U}}
+\newcommand{\ufive}{^{235}\text{U}}
+\newcommand{\ueight}{^{238}\text{U}}
+\newcommand{\punine}{^{239}\text{Pu}}
+\newcommand{\puone}{^{241}\text{Pu}}
+
 
 % Create a header w/ Name & Date
 \pagestyle{fancy}
@@ -40,71 +75,453 @@
 
 {\bf {\large {Nuclear Engineering 250 -- Nuclear Reactor Theory \hfill Mitch Negus}}}
 
-\section*{Nuclear Reactions}
+
+\h{Nuclear Reactions}
 
 Two types
 
-\subsection*{1. Spontaneous \textit{(decay)}}
 
-* $\alpha$: $^A_ZX \rightarrow ^{A-4}_{Z-2}X + ^4_2\alpha$
-* $\beta$: $^A_ZX \rightarrow ^A_{Z+1}X + \beta + \bar{\nu}$
-* $\gamma$ $X^* \rightarrow X +() \gamma$
+\hh{1. Spontaneous \textsl{(decay)}}
 
-\subsubsection*{Decay Equations}
-$ t \rightarrow N(t) $  
-$ t+dt \rightarrow N(t+dt) $
+\begin{itemize}
+    \item $\alpha$: $^A_ZX \rightarrow ^{A-4}_{Z-2}X + ^4_2\alpha$
+    \item $\beta$: $^A_ZX \rightarrow ^A_{Z+1}X + \beta + \bar{\nu}$
+    \item $\gamma$: $X^* \rightarrow X + \gamma$
+\end{itemize}
 
-$dN(t) = N(t+dt) - N(t) $  
+\hhh{Decay Equations}
+\begin{multicols}{2}
+$ t \rightarrow N(t) $\\
+$ t+dt \rightarrow N(t+dt) $\\
+$dN(t) = N(t+dt) - N(t) $\\
 $dN(t) = -\lambda N(t) dt$ where $\lambda$ is the decay constant.
-
+\end{multicols}
 ... working through, with B.C. $N(t=0) = N_0$ ...
-
 $$N(t) = N_0 e^{-\lambda t}$$
 
-**Mean Lifetime:** 
-
+\hhh{Mean Lifetime:}
 $\frac{dN(t)}{N_0} = \lambda e^{-\lambda t} dt = p_d(t)$ where $p_d(t) dt$ is the probability of decay in time $dt$
-
 $$\bar{t} = \int_0^{\infty} t p(t) dt = \frac{1}{\lambda}$$
 
-**Half Life:**
-
-$T_{1/2}$ is defined as the time s.t. $N(T_{1/2}) = \frac{N_0}{2}$; 
+\hhh{Half-Life:}
+$T_{1/2}$ is defined as the time s.t. $N(T_{1/2}) = \frac{N_0}{2}$
 $$T_{1/2} = \frac{ln2}{\lambda}$$
 
-\subsection*{2. Induced \textit{(projectile/target)}}
 
-*this will be the emphasis of NE 250*
+\hh{2. Induced \textsl{(projectile/target)}}
+\textsl{This will be the emphasis of NE 250}
 
-\subsubsection*{ Neutron-Nucleus}
+\hhh{ Neutron-Nucleus}
 
-* elastic scattering
-* inelastic scattering/compound nuclear reaction  
-	$$n + ^A_ZX \rightarrow ^{A+1}_ZX^*$$
+\begin{itemize}
+    \item elastic scattering
+    \item inelastic scattering/compound nuclear reaction  
+    $$n + ^A_ZX \rightarrow ^{A+1}_ZX^*$$
 	(could result in production of a $\gamma$ or $\alpha$, emission of a $n$, or fission)
 	
-	\textbf{Capture is a subset of absorption!}
-	Absorption: $(n,\alpha), (n,\gamma), (n,f)$  
+	\textbf{Capture is a subset of absorption!}\\
+	Absorption: $(n,\alpha), (n,\gamma), (n,f)$\\
 	Capture: $(n,\gamma)$
+\end{itemize}
 	
-\textbf{Cross Sections ($\sigma$)}
-* A property of the isotope and reaction
-* A function of the isotope temperature (vibrational motion) and neutron speed (linear motion)
-* Tabulated in XSec libraries *(3 common formats)*
-	* ENDF (USA)
-	* JEFF (Europe/NEA)
-	* JENDL (Japan)
+\textbf{Cross Sections ($\xs$)}\\
+- A property of the isotope and reaction\\
+- A function of the isotope temperature (vibrational motion) and neutron speed (linear motion)\\
+- Tabulated in XSec libraries \textbf{(3 common formats)}
+\begin{itemize}
+    \item ENDF (USA)
+    \item JEFF (Europe/NEA)
+    \item JENDL (Japan)
+\end{itemize}
 
-\includegraphics[width=10cm]{Lecture01\_U235-Xsec.gif}
+\-\\
+\includegraphics[width=10cm]{Lecture01_U235-Xsec}
+\-\\
 
-* Resonances in X-Sec plots due to excited energy levels that can be reached; nuclei only all excitation to these levels, and so only neutrons with this energy amount will be absorbed
-* Cross sections measured at 300K (room temp); calculated using
+\begin{itemize}
+    \item Resonances in X-Sec plots due to excited energy levels that can be reached; nuclei only all excitation to these levels, and so only neutrons with this energy amount will be absorbed
+    \item Cross sections measured at 300K (room temp); calculated using
 	$$ E = k_BT $$ where $k_B$ is Boltzmann's constant and $T=300 \text{ K} \Rightarrow E = 0.0253 \text{ eV}$
-* Higher temperatures cause resonant peak widths to broaden (less time spent near center of vibrational trajectory) $\rightarrow$ **Doppler Broadening**
+    \item Higher temperatures cause resonant peak widths to broaden (less time spent near center of vibrational trajectory) $\rightarrow$ \textbf{Doppler Broadening}
+\end{itemize}
+\-\\
+\textbf{Units}\\
+\tab $1 \text{ barn} = 10^{24} \text{ cm}^2$ \\ 
+\tab $1 \text{ eV} = 1.602 \times 10^{-19} \text{ J}$
 
-\textbf{Units}
-$1 \text{ barn} = 10^{24} \text{ cm}^2$  
-$1 \text{ eV} = 1.602 \times 10^{-19} \text{ J}$
+
+\hh{Fission}
+
+Can be spontaneous or induced\\
+$$ n + \ufive \rightarrow X + Y + \bar{\nu} n + E $$
+$\bar{\nu}$ is the average number of neutrons produced in a given fission event.\\
+$ E_f \approx 200 \text{ MeV} $ (this is much higher than chemical reactions which are on the order of eV!)
+
+\hhh{Fissile Isotopes}
+$ E_b > E_{\text{threshold}}$\\
+
+These neutrons could (almost) be considered as "able to fission from 0 KE neutrons."
+
+Includes $\ufive$, $\uthree$, $\punine$, $\puone$
+
+\hhh{Fissionable Isotopes}
+
+Fission requires collision with high $E$ neutrons.
+
+For $\ufive$ this is empirically given by $$\chi(E) = 0.453e^{-1.036E}\sinh(\sqrt{2.29E})$$
+
+\includegraphics[width=10cm]{Lecture02_FissionEDist}
+
+
+Also, note that $\bar{\nu}$ depends on the isotope. Below is a plot of $\bar{\nu}$ for $\punine$, $\uthree$ and $\ufive$:
+
+\includegraphics[width=10cm]{Lecture02_nubarUPu}
+
+\hhh{Fertile Isotopes}
+
+Isotopes which either undergo neutron capture (and subsequent decay) to become fissile isotopes.
+
+
+\hh{Energy breakdown of fission outputs}
+
+\begin{itemize}
+    \item ~ 180 MeV in the KE of fission products
+    \item ~ 5 MeV in the kinetic energy of neutrons
+    \item ~ 7 MeV in prompt $\gamma$s
+    \item ~ 8 MeV in $\beta^{-}$ decay of fission products
+    \item ~ 7 MeV in delayed $\gamma$s
+    \item ~ 12 MeV in neutrinos
+\end{itemize}
+
+The energy from all outputs can be captured except for neutrinos.
+
+
+
+\h{Criticality}
+
+
+\hh{Multiplication Factor, $k$}
+
+$$ k = \frac{\text{\# neutrons generated}}{\text{\# neutrons lost}} $$
+
+$\text{\# neutrons generated = neutrons fission}$\\ 
+$\text{\# neutrons lost = \# neutrons absorbed + \# neutrons leaked}$
+
+\begin{itemize}
+    \item $k=1$: the reaction is critical; the chain reaction is controlled (reactor)  
+    \item $k<1$: the reactor is subcritcal; boring  
+    \item $k>1$: the reaction is supercritical; this is a bomb  
+\end{itemize}
+
+
+\hh{Derivation of the Neutron Transport Equation}
+
+Solving for the multiplication factor requires that we know: 
+
+\begin{enumerate}
+    \item $n$: neutron density $[n/\text{cm}^3]$
+    \item $N$: atom/nuclide density $[\text{nuclei}/\text{cm}^3]$
+    \item $\xs$: microscopic cross section $[\text{cm}^2]$
+\end{enumerate}
+
+\textbf{Reaction rate:} $ \; R = n N \xs$\\
+\textbf{Macroscopic cross section $[1/\text{cm}]$:} $ \; \Xs = N \xs $\\
+\textbf{Angular neutron density $[\frac{n}{\text{cm}^3 \cdot \text{sr}}]$:} $\; n\rEOt$\\
+
+$\vec{v} = v \,\Oh, \; |\Oh| = 1$ (describes a sphere, formed by $\theta$ and $\phi$)\\
+$ dr^3 = dx \; dy \; dz$\\
+$ dE$\\
+$ d\Oh = \sin\theta \; d\theta \; d\phi$; $d\Oh$ is a scalar, about the original position defined by vector $\Oh$.\\
+
+\includegraphics[width=10cm]{Lecture02_PhaseSpace.png}
+
+Altogether, $ n\rEOt \; d^3r \; dE \; d\Oh$, gives the \# of neutrons in the small volume about $\pos$ with energy $E$, and moving in direction $d\Oh$ about $\Oh$ at time t.
+
+\textbf{Angular neutron flux (scalar):} $\phi\rEOt = v \; n\rEOt$\\
+\textbf{Angular neturon current (vector):} $\cur\rEOt = \Oh \; \phi\rEOt$\\
+
+We can find the number of neutrons in a volume $V$ using
+$$ \int_V{ n\rEOt \; d^3r }$$
+
+Change with time is then 
+$$ \ppt\left[\int_V{ n\rEOt \; d^3r }\right] dE \; d\Oh = \text{ \# neutrons gained - \# neutrons lost}$$
+
+\# neutrons gained: source (fission), in-scattering ($E', \Oh' \rightarrow E, \Oh$)\\
+\# neutrons lost: absorption, scattering ($E, \Oh \rightarrow E', \Oh'$)\\
+
+We also add a streaming term, to quantify neutrons leaking out (and in) to the system.
+
+The chance of a collision in the system is given by 
+$$ \left[ \int_V{ \Xs_{\text{tot}}(\pos,E) v n\rEOt \; d^3r} \right] dE \; d\Oh $$
+
+The chance of fission in system... 
+\-\\
+\-\\
+\-\\
+\-\\
+$$\text{(See paper notes...)}$$
+
+
+
+\h{The Transport Equation}
+
+\begin{dmath*}
+\Oov \frac{\p\psi}{\p t} + \Oh \cdot \nabla\psi + \Xs_t\psi = \intfp d\Oh'\int_0^{\infty}dE' \Xs_s(E',\Oh'\rightarrow E,\Oh)\psi(E',\Oh') + \frac{\chi(E)}{4\pi}\int_0^{\infty}dE'\nu(E')\Xs_f(E') \intfp d\Oh'\phi\rEOtprime + s\rEOt
+\end{dmath*}
+
+\textbf{Initial condition:}
+$\psi(\pos,E,\Oh,0) = \psi_0\rEO$
+
+\textbf{Interface condition:}
+angular flux must be continuous at all points
+
+\hhh{Other conditions}
+\tab \textbf{Fixed condition:} incoming flux is specified  
+	$\psi(\pos_s,E,\Oh,t) = \psi_{\text{in}}\rEOt$\\
+\tab\tab (Vacuum or black if $\psi_{\text{in}}\rEOt = 0$)\\
+\tab \textbf{Reflective conditions:} mirror symmetry at some surface, $\psi(\Oh_{\text{in}},t) = \psi(\Oh_{\text{out}},t)$\\
+\tab \textbf{Periodic conditions:} $\psi(\pos_s) = \psi(\pos_s + \vec{p})$\\
+\tab \textbf{Finiteness conditions:} (can't have infinite flux)   
+$0 \leq \psi\rEOt < \infty$\\
+\tab \textbf{Source condition:} localized (pt.) sources introduce mathemetaical singularities\\
+\tab\tab\tab\tab $S\rEOt = \lim_{\pos\rightarrow\vec{r_0}}\int dS \; \hat{e} \cdot \Oh$
+
+
+
+\h{Approximations to the Transport Equation}
+
+
+\hh{One-speed Transport Equation}
+
+Assume all particles are the same speed: $\vec{v} = v_0 \cdot \Oh$
+
+The equation becomes
+$$ \Oov \frac{\p \psi\rOt}{\p t} + \Oh \nabla \psi \rOt + \Xs_t\psi \rOt = \intfp d\Oh' \Xs_s(\Oh'\rightarrow\Oh) \psi(\pos,\Oh',t) + \frac{\nu\Xs_f}{4\pi}\intfp d\Oh'\psi\rOtprime + S\rOt$$
+
+
+\hh{One-dimensional}
+
+$\pos = (x,y,z)$\\
+$d\Oh = sin\theta \; d\theta \; d\varphi = d\mu \; d\varphi$, where $\mu = cos\theta$
+
+$$ \Oov \frac{\p \psi(x,\Oh,t)}{\p t} + \Omega_x \frac{\p}{\p x} \psi (x,\Oh,t) + \Xs_t(x)\psi (x,\Oh,t) = \intfp d\Oh' \Xs_s(\Oh'\rightarrow\Oh) \psi(x,\Oh',t) + \frac{v\Xs_f}{4\pi}\intfp d\Oh' \psi(x,\Oh',t) + S(x,\Oh,t)$$
+
+
+
+\h{The Diffusion Equation}
+
+Usually the scalar flux is all that is needed to get a fairly accurate picture of our system. Reaction rates usually only depend on the neutron flux, not the direction of neutron motion.
+
+\textbf{Assume} that the angular flux depends only weakly on direction.
+
+\tab \textsl{Recall:}\\
+\tab\tab\tab $\phi\rt = \intfp d\Oh \psi\rOt$\\
+\tab\tab\tab $\cur\rt = \intfp d\Oh \; \Oh \;\psi\rOt$
+
+
+\hh{The Neutron Continuity Equation}
+
+\textbf{``The Zeroth Moment of the Transport Equation'':}\\
+Integrate transport equation over all angles
+\begin{dmath*}
+\intfp d\Oh \left[\underbrace{\Oov\frac{\p \psi\rOt}{\p t}}_1 + \underbrace{\Oh \cdot \nabla \psi\rOt}_6 + \underbrace{\Xs_t \psi\rOt}_2 \right] = \intfp d\Oh \left[ \underbrace{\intfp d\Oh'\: \Xs_s(\Oh' \rightarrow \Oh) \psi\rOt}_5 + \underbrace{\frac{\nu \Xs_f}{4\pi} \intfp d\Oh'\: \psi\rOtprime}_3 + \underbrace{s\rOt}_4 \right]
+\end{dmath*}
+
+\begin{enumerate}
+    \item \textbf{Time:} No approximations in time
+$$ \Oov \ppt \intfp d\Oh \; \psi\rOt = \Oov \ppt \phi\rt $$
+
+    \item \textbf{Absorption:} No approximations in absorption
+$$\Xs_t \intfp d\Oh \; \psi\rOt = \Xs_t \; \phi\rt$$
+
+    \item \textbf{Fission:} No approximations in fission
+$$ \intfp d\Oh = \int_0^{\pi}\sin\theta \; d\theta \int_0^{2\pi} d\varphi = 4\pi$$
+$$\intfp d\Oh \frac{\nu \Xs_f}{4\pi} \intfp d\Oh'\psi\rOtprime = \nu \Xs_f \phi\rt$$
+
+    \item \textbf{Source:} No approximations in source 
+$$\intfp d\Oh \; s\rOt \equiv S\rt$$
+
+    \item \textbf{Scattering:} For scattering, interchange the order of integration
+    $$ \intfp d\Oh \intfp d\Oh' \; \Xs_s(\Oh'\rightarrow \Oh) \; \psi\rOtprime = \intfp d\Oh' \intfp d\Oh \; \Xs_s(\Oh'\rightarrow\Oh) \; \psi\rOtprime$$
+
+Now we assume that scattering is azimuthally symmetric (scattering depends only on cosine). The particle is as likely to scatter at angle $\theta$ in any direction off $ \Oh$.
+    $$\intfp d\Oh \;\Xs_s(\Oh'\cdot\Oh) = 2\pi \int_{-1}^1 d\mu \; \Xs_s(\mu) = \Xs_s$$
+Then, if we substitute this in above
+    $$\Xs_s \intfp d\Oh' \; \psi\rOtprime =  \Xs_s \phi\rt$$
+
+    \item \textbf{Streaming:} To adjust streaming, we first manipulate the order
+$$ \intfp d\Oh \; \Oh \cdot \nabla \; \psi\rOt = \nabla \cdot \intfp d\Oh \; \Oh \; \psi\rOt = \nabla \cdot \cur\rt$$
+\end{enumerate}
+
+Put all the above integrations together to get the \textbf{neutron continuity equation (NCE)}. Notice that we have three equations (each $\pos$ has $x,y,z$ components) and 4 unknown quantities.
+
+$$ \Oov \frac{\p \phi\rt}{\p t} + \nabla \cdot \cur\rt + \Xs_t \phi\rt = \Xs_s \phi\rt + \nu \Xs_f \phi\rt + S\rt $$
+
+
+\hh{First angular moment}
+Multiply the TE by $\Oh$ and integrate.  We will drop the fission term (technically we will assume it is part of the source), though the procedure is nearly the same when it is included.
+
+Note:\\
+\tab\tab $\intfp d\Oh \; \Oh = 0$\\
+\tab\tab $\intfp d\Oh \; \Oh\Oh = \frac{4\pi}{3}\bar{\bar{I}}$, \tab $\bar{\bar{I}}$ is the identity tensor:  
+	$$\intfp d\Oh \; \Oh_i\Oh_j = 
+	\begin{cases}
+	0, & i \neq j  \\
+	\frac{4\pi}{3},&  i = j
+	\end{cases}$$
+\tab\tab $\intfp d\Oh \; \Oh\Oh\Oh = 0 $ 
+
+When multiplied out, we have
+$$ \intfp d\Oh \; \Oh\text{[TE]} $$
+\begin{dmath*}
+\underbrace{\intfp d\Oh \; \Oh \Oov \frac{\p \psi\rOt}{\p t}}_1 + \underbrace{\intfp d\Oh \; \Oh \Oh \nabla \psi \rOt}_5 + \underbrace{\intfp d\Oh \; \Oh \Xs_t\psi \rOt}_2 = \underbrace{\intfp d\Oh \; \Oh \intfp d\Oh' Xs_s(\Oh'\rightarrow\Oh) \psi(\pos,\Oh',t)}_4 + \underbrace{\intfp d\Oh \; \Oh \frac{\nu\Xs_f}{4\pi}\intfp d\Oh'\psi\rOtprime + \intfp d\Oh \; \Oh S\rOt}_3
+\end{dmath*}
+
+Like we did to derive the continuity equation, we can break down each term.
+\begin{enumerate}
+    \item \textbf{Time:}
+    $$ \Oov \ppt \intfp d\Oh' \; \Oh\psi\rOt = \Oov \frac{\p\cur}{\p t} $$
+    \item \textbf{Absorption:}
+    $$ \Xs_t \intfp d\Oh \Oh\psi\rOt = \Xs_t \cur\rt $$
+    \item \textbf{Source (fission now absent):}
+    $$ \intfp d\Oh \; \Oh S\rOt \equiv S\rt $$
+    \item \textbf{Scattering:} Expand scattering cross section in Legendre Polynomials (a sequence of orthogonal polynomials)
+	$$P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right]$$
+    Expand $\Xs_s(\Oh' \cdot \Oh)$ in Legendre polynomials
+	$$ \Xs_s(\Oh' \cdot \Oh) = \sum_0^{\infty}{\frac{2\ell + 1}{4\pi}\Xs_{s\ell}P_{\ell}(\Oh')P_{\ell}(\Oh)} $$
+	\begin{itemize}
+	    \item $\ell = 0$ is isotropic\\ 
+            \tab\tab\tab $P_0(\Oh) = 1 \quad\Rightarrow\quad \Xs_s(\Oh',\Oh) \approx \frac{1}{4\pi}\Xs_{s0}$
+        \item $\ell = 1$ is linearly anisotropic\\  
+            \tab\tab\tab $P_1(\Oh) = \Oh \quad\Rightarrow\quad \Xs_s(\Oh',\Oh) \approx \frac{1}{4\pi}(\Xs_{s0} + 3 \Oh' \cdot \Oh\Xs_{s1})$
+            
+            Assume scattering is at most linearly anisotropic (if its not, there's some "weird" stuff going on")
+	\end{itemize}
+
+	Substitute the linearly anistropic approximation into the expression for streaming. We note the prevously defined identities and defintion of neutron current:
+	\begin{dmath*}
+	\frac{1}{4\pi}\intfp d\Oh \Oh  \intfp d\Oh(\Xs_{s0} + 3 \Oh' \cdot \Oh\Xs_{s1}) \; \psi\rOt = \frac{1}{4\pi} \underbrace{\intfp d\Oh \; \Oh}_0 \intfp \Oh'\Xs_{s} \; \psi\rOtprime + \frac{1}{4\pi} \underbrace{\intfp d\Oh \; \Oh\Oh}_{4\pi/3\bar{\bar{I}}} \underbrace{\intfp d\Oh' \; \Oh' 3 \Xs_{s1} \; \psi\rOtprime}_{3\Xs_{s1}\cur\rt}
+	\end{dmath*}
+	
+	Substituting those identities and simplifying, we get
+	$$\left(\frac{1}{4\pi}\right) \left(\frac{4\pi}{3\bar{\bar{I}}}\right) \left(3\Xs_{s1}\cur\rt\right)= \Xs_{s1} \; J\rt$$
+
+
+    \item \textbf{Streaming:}
+	$$\intfp d\Oh \; \Oh \; \Oh \cdot \nabla \psi\rOt = \nabla \cdot \intfp d\Oh \; \Oh \;\Oh \; \psi\rOt $$
+
+\end{enumerate}
+
+Putting each of these 5 components back together the \textbf{current continuity equation (CCE)} is
+$$\Oov \frac{\p \cur}{\p t} + \nabla \cdot \intfp d\Oh \;\Oh\Oh \; \psi\rOt + \Xs_t \cur\rt = \Xs_{s1}\cur\rt + S_1\rt$$
+
+Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns–$\phi$ (1), $\cur$ (3), and the new tensor term (6). There is little point to continuing with this technique any longer.
+
+
+\hh{Angular Flux Approximation}
+
+Assume now that the flux is at most linearly anisotropic (for the current continuity equation we assumed that \textit{scattering} was linearly anisotropic).
+$$ \psi(\Oh) \approx \frac{1}{4\pi}\left(\psi_0 + 3\Oh \cdot \vec{\psi_1}\right)$$
+
+Substitute expansion into the streaming term of the current continuity equation.
+$$\nabla \cdot \intfp d\Oh \;\Oh\Oh \; \psi\rOt = \nabla \cdot \intfp d\Oh \;\Oh\Oh \; \frac{1}{4\pi}\left(\psi_0 + 3\Oh \cdot \vec{\psi_1}\right)$$
+$$ \nabla \cdot \frac{1}{4\pi} \int d\Oh \; \Oh\Oh \left(\psi_0 + 3 \Oh \vec{\psi_1}\right) = \nabla \cdot \frac{1}{4\pi} \left[ \intfp d\Oh \; \Oh\Oh \; \psi_0 + 3 \intfp d\Oh \; \Oh\Oh\Oh \; \vec{\psi}_1 \right] $$
+
+Using the same identities as before, we have
+$$ \nabla \cdot \frac{1}{4\pi} \int d\Oh \; \Oh\Oh \left(\psi_0 + 3 \Oh \vec{\psi_1}\right) = \nabla \cdot \frac{1}{4\pi} \frac{4\pi}{3}\bar{\bar{I}} \; \phi\rt $$
+(Note, that this assumes $\psi_0 = \phi \leftarrow$ figure out where this comes from)
+and
+$$ \nabla \cdot \frac{1}{4\pi} \int d\Oh \; \Oh\Oh \left(\psi_0 + 3 \Oh \vec{\psi_1}\right) = \frac{1}{3} \nabla \phi\rt $$
+
+Now the current continuity equation is 
+$$\Oov \frac{\p \cur}{\p t} + \frac{1}{3} \nabla \phi\rt + \Xs_t \cur\rt = \Xs_{s1}\cur\rt + S_1\rt$$
+
+Define absorption and transport cross sections:\\
+$\Xs_a \equiv \Xs_t - \Xs_{s0}$\\
+$\Xs_{tr} \equiv \Xs_t - \Xs_{s1}$\\
+
+Using these cross sections we can reform both the neutron and current continuity equations.
+
+\textbf{NCE:}
+$$ \Oov \frac{\p \phi\rt}{\p t} + \nabla \cdot \cur\rt + \Xs_a \phi\rt = S\rt $$
+\textbf{CCE:}
+$$\Oov \frac{\p \cur}{\p t} + \frac{1}{3} \nabla \phi\rt + \Xs_{tr} \cur\rt = S_1\rt$$
+
+
+\textbf{Fick's Law}\\
+
+With the following conditions
+\begin{itemize}
+    \item Steady state $(\ppt(X) = 0)$
+    \item Isotropic soure ($S_1 = 0$)
+\end{itemize}
+
+The current continuity equation becomes
+$$\frac{1}{3} \nabla \phi(\pos) + \Xs_{tr} \cur(\pos) = 0$$
+which we can solve for $\cur$:
+$$\cur(\pos) = -\frac{1}{3\Xs_{tr}} \nabla \phi(\pos).$$
+If we let $D = \frac{1}{3\Xs_{tr}} = \frac{1}{3(\Xs_t-\Xs_{s1})}$ be the diffusion coefficient, then this simplifies further to
+$$\cur(\pos) = -D \nabla \phi(\pos)$$
+
+------------------------------------------------------------------\\
+Recall:\\
+$\Xs_{s1} = \int d\Oh \; \Oh \Xs_{s}$\\
+Include azimuthally symmetric assumptions and $\Xs_{s1} = \bar{\mu}_0 \Xs_s$, where $\bar{\mu}_0$ = average scattering cosine = $\frac{2}{3A}$, where $A$ is the atomic mass number.
+
+Then $\Xs_{tr} = \Xs_t - \bar{\mu}_0 \Xs_s$.\\
+------------------------------------------------------------------\\
+
+From this implementation of Fick's law, we can write the diffusion equation as only a function of $\phi$:
+
+$$\Oov \ppt \phi\rt - \nabla \cdot D \nabla \phi\rt + \Xs_a \phi\rt = \nu\Xs_f \phi\rt + S\rt$$
+
+Due to our assumptions, however, the diffusion equation is not valid at 
+\begin{enumerate}
+    \item Boundaries/interfaces
+    \item Sources
+    \item Strong absorbers
+    \item Voids
+\end{enumerate}
+
+The angular flux expansion can then be written as 
+$$\psi\rOt \approx \frac{1}{4\pi}\left( \phi\rt - \frac{1}{\Xs_{tr}} \nabla \phi\rt \right)$$
+
+At equilibrium, $\cur = 0$ (net migration is opposed to gradient, hence negative into Fick's Law)
+
+\textbf{Mean Free Path:} the median distance from the last collision\\
+$\lambda_t = \frac{1}{\Xs_t}$ or $\lambda_{tr} = \frac{1}{\Xs_{tr}}$
+
+If scattering is 
+\begin{itemize}
+    \item isotropic $\rightarrow \bar{\mu}_0 = 0, \lambda_t = \lambda_{tr}$
+    \item forward peaked $\rightarrow \bar{\mu}_0 > 0, \lambda_t > \lambda_{tr}$
+\end{itemize}
+
+\textbf{Initial Conditions:} $\phi(\pos,0) = \phi(\pos) \; \forall \pos \in V$
+
+Basic requirements:\\
+- real and nongegative ($\phi \geq 0$)\\
+- bounded ($\phi > \infty$) \\
+
+\textbf{Interface conditions:} \\
+-Zeroth and First moments must be continuous\\
+\tab$\phi_1\rt = \phi_2\rt$\\
+\tab$\cur_1\rt = \cur_2\rt$\\
+
+\textbf{Vacuum BCs:}\\
+%$\psi\rsOt = \Oh \hat{e}_s < 0$\\
+In the DE use partial current\\
+\tab $J_{-}\rt = \int_{2\pi^{-}} d\Oh \Oh \cdot \hat{e}_s \psi\rOt = 0$\\
+\tab $J_{+}\rt = \int_{2\pi^{+}} d\Oh \Oh \cdot \hat{e}_s \psi\rOt = 0$\\
+
+$J_{\mp} = \int_{2\pi^{-}} d\Oh \Oh \hat{e}_s \left( \frac{1}{4\pi} \left( \phi \pm \frac{1}{\Xs_{tr}} \nabla \phi \right)\right) \approx \frac{1}{4}\phi \pm \frac{D}{2}\hat{e}_s \cdot \nabla \phi = 0$
+
+In 1D problems
+$J_{-}(\pos_s,t) = J_{-}(x_s,t) = \frac{1}{4}\phi(x_s,t) + \frac{D}{2}\frac{d\phi}{dx}|_{x_s} = 0$
+
+The extrapolation distance, where $\phi = 0$ is
+$$\tilde{x}_s = x_s + 2D = x_s + \frac{2}{3}\lambda_{tr}$$
+and so replace $J_{-}(x_s) = 0$ with $ \phi(\tilde{x}_s) = 0$.
 
 
 
