@@ -51,13 +51,20 @@
 \newcommand{\Oh}{\hat{\Omega}}
 
 \newcommand{\intfp}{\int_{4\pi}}
+\newcommand{\intzi}{\int_0^{\infty}}
+
 
 \newcommand{\rt}{(\pos,t)}
+\newcommand{\rE}{(\pos,E)}
 \newcommand{\rEO}{(\pos,E,\Oh)}
+\newcommand{\rEt}{(\pos,E,t)}
+\newcommand{\rEtprime}{(\pos,E',t)}
 \newcommand{\rOt}{(\pos,\Oh,t)}
 \newcommand{\rOtprime}{(\pos,\Oh',t)}
 \newcommand{\rEOt}{(\pos,E,\Oh,t)}
 \newcommand{\rEOtprime}{(\pos,E',\Oh',t)}
+
+\newcommand{\halflife}{T_{1/2}}
 
 \newcommand{\uthree}{^{233}\text{U}}
 \newcommand{\ufive}{^{235}\text{U}}
@@ -101,11 +108,11 @@ $$N(t) = N_0 e^{-\lambda t}$$
 
 \hhh{Mean Lifetime:}
 $\frac{dN(t)}{N_0} = \lambda e^{-\lambda t} dt = p_d(t)$ where $p_d(t) dt$ is the probability of decay in time $dt$
-$$\bar{t} = \int_0^{\infty} t p(t) dt = \frac{1}{\lambda}$$
+$$\bar{t} = \intzi t p(t) dt = \frac{1}{\lambda}$$
 
 \hhh{Half-Life:}
-$T_{1/2}$ is defined as the time s.t. $N(T_{1/2}) = \frac{N_0}{2}$
-$$T_{1/2} = \frac{ln2}{\lambda}$$
+$\halflife $is defined as the time s.t. $N(\halflife) = \frac{N_0}{2}$
+$$\halflife = \frac{ln2}{\lambda}$$
 
 
 \hh{2. Induced \textsl{(projectile/target)}}
@@ -266,7 +273,7 @@ $$\text{(See paper notes...)}$$
 \h{The Transport Equation}
 
 \begin{dmath*}
-\Oov \frac{\p\psi}{\p t} + \Oh \cdot \nabla\psi + \Xs_t\psi = \intfp d\Oh'\int_0^{\infty}dE' \Xs_s(E',\Oh'\rightarrow E,\Oh)\psi(E',\Oh') + \frac{\chi(E)}{4\pi}\int_0^{\infty}dE'\nu(E')\Xs_f(E') \intfp d\Oh'\phi\rEOtprime + s\rEOt
+\Oov \frac{\p\psi}{\p t} + \Oh \cdot \nabla\psi + \Xs_t\psi = \intfp d\Oh'\intzi dE' \Xs_s(E',\Oh'\rightarrow E,\Oh)\psi(E',\Oh') + \frac{\chi(E)}{4\pi}\intzi dE'\nu(E')\Xs_f(E') \intfp d\Oh'\phi\rEOtprime + s\rEOt
 \end{dmath*}
 
 \textbf{Initial condition:}
@@ -522,6 +529,131 @@ $J_{-}(\pos_s,t) = J_{-}(x_s,t) = \frac{1}{4}\phi(x_s,t) + \frac{D}{2}\frac{d\ph
 The extrapolation distance, where $\phi = 0$ is
 $$\tilde{x}_s = x_s + 2D = x_s + \frac{2}{3}\lambda_{tr}$$
 and so replace $J_{-}(x_s) = 0$ with $ \phi(\tilde{x}_s) = 0$.
+
+
+\hh{Helmholtz Form of the Diffusion Equation}
+
+$$\nabla^2 \phi - \frac{1}{L^2}\phi = \frac{-Q}{D}$$
+
+where $L \equiv \sqrt{\frac{D}{\Xs_a}}$
+
+The solution to this equation is $\phi = \phi_H(\pos) + \phi_P(\pos)$, where the homogeneous solution is $\phi_H = Ae^{\frac{-|\pos|}{L}} + Be^{\frac{|\pos|}{L}}$
+
+
+\hh{Criticality}
+
+For the equation
+$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \nu\Xs_f \phi, \phi(\pm\tilde{x}_s) = 0.$$
+There is no general solution unless we get it exactly right.
+
+Introduce $k$. For any $k$, there is always a solution. We use an iterative porcess to find $k$. You might consider $k$ as tuning the neutrons produced per fission.
+
+$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \frac{1}{k}\nu\Xs_f \phi$$
+
+This causes our problem to become an eigenvalue problem. At long times, the non-negative largest, real eigenvalue is the dominant mode (eigenvalue $k$; eigenvector $\phi$).
+
+\h{Prompt and Delayed Neutrons}
+
+Fission produces
+\begin{itemize}
+    \item Prompt $n$'s (within $10^{-10}$ s of fission)
+    \item Fission Products (FPs)
+\end{itemize}
+
+\textit{Delayed neutrons} come from the decay of FPs. For example $^{87}\text{Br}$ has a half-life of 55.9 s.
+
+Use $\halflife$ to bin delayed neutrons into either 6 or 8 groups (generally). Define the group index as $j$.
+
+\textbf{Decay constant of group $j$: } $\lambda_j^d$ \\
+\textbf{Delayed neutron fraction: } $\beta_j$\\
+\textbf{Reactivity: } $\rho = \frac{k-1}{k}$\\
+    \tab $0<\rho<\beta$ : delayed supercritcal\\
+    \tab $\rho=0$ : critical\\
+    \tab $\rho>\beta$ : prompt supercritical\\
+    \tab $\rho=\beta$ : 1\$\\
+
+The total delayed neutron faction ($\beta$) from thermal fission in $\ufive$ is 0.0065, and the average neutron lifetime is ~0.1 s.
+
+\textbf{Critical: } Prompt + Delayed holds criticality\\
+\textbf{Prompt Critical:} Critcal only on prompt $n$'s\\
+\textbf{Prompt Supercritical: } $k>1$ from only prompt $n$'s\\
+
+\hhh{Thought experiment:}
+
+$\ell =$ mean $n$ generation time\\
+$ n(t+\ell) = n(t) + \ell\frac{dn}{dt} = kn(t)$\\
+
+We can solve for the rate of neutron change\\
+$$\frac{dn}{dt} = \left(\frac{k-1}{\ell}\right)n(t),$$
+and then solve the differential equation
+$$n(t) = n_0 e^{\frac{(k-1)t}{\ell}}$$
+
+The reactor period is given by $T \equiv \frac{\ell}{k-1}$.
+
+If a reactor has $k=1.005$, at $t=1$ s, what is the ration of $n(t)$ to $n_0$ for \\
+a.) $\ell = 0.1s$\\
+\tab $n(1s)/n_0 = e^{(1.0005-1)(1s)/0.1s}$\\
+\tab $\boxed{ n(1s)/n_0 = 1.005 }$\\
+b.) $\ell = 1 \times 10^{-4}$s\\
+\tab $n(1s)/n_0 = e^{(1.0005-1)(1\text{ s})/(1\times10^{-4})\text{ s}}$\\
+\tab $\boxed{ n(1s)/n_0 = 148.4 }$
+
+
+
+\h{Diffusion Equation and the $P_N$ equations}
+
+We assumed that the angular flux is linearly anisotropic ($P_1$ expansion), and it is valid away from boundaries, sources, sinks, and voids. Other assumptions included
+\begin{itemize}
+    \item one speed
+    \item isotropic source
+    \item azimuthally symmetric, linearly anisotropic scattering
+    \item $n$ current changes slowly compared to the mean coillision time ($\frac{1}{|\cur\rt|} \frac{\p\cur}{\p t} \ll v \Xs_t$)
+\end{itemize}
+
+Fick's Law and the 1-speed Diffusion Equation gave us
+$$ \Oov \frac{\p \phi}{\p t} = S\rt = \Xs_a(\pos)\phi\rt + \nabla \cdot D(\pos) \nabla\phi\rt $$
+
+Start with the energy depend
+$$ \Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi - \Xs_t(\pos)\phi\rE - \nabla \cdot \cur\rEt$$
+
+We apply asusmptions
+\begin{enumerate}
+    \item Slow currnet change
+    \item Isotropic source, $S=0$
+    \item Isotropic scattering, $\Xs_{s1}(E' \rightarrow E) = 0$
+\end{enumerate}
+
+Condition \#3 is usually too strong, so we introduce a different diffusion coefficient.
+$$ D\rE = \frac{1}{3}\left[\Xs_t\rE - \frac{\intzi \Xs_{s1}(\pos,E' \rightarrow E) J_i}{J_i\rEt }\right]^{-1}$$
+where $J_i$ denotes the current in $i = x,y,z$. This gives
+$$...$$
+This isn't great, so we neglect anisotropic contribution to energy transfer in scattering.\\
+..\\
+$$\intzi dE' \Xs_{s1}\rE \delta(E' \rightarrow E) J_i\rEt = \bar{\mu_0}\Xs_s\rE J_i\rEt$$
+$$..$$
+which, when plugged into the neutron continuity equation gives 
+$$\Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E) \phi\rEt - \Xs_t\rE \phi\rEt + \nabla \cdot D\rE \nabla \phi\rEt$$ 
+
+$\uparrow$ check that
+
+Before, we had just 1 speed. Now we have 1 group (a set of different speeds in 1 bin). To get get the group, we integrate the equation over energy, and we weight based on the flux. 
+
+*Note this requires we solve for the flux, based on the flux. We often make estimations of the flux shape.
+
+The group constants:\\
+The effective group cross section, $\Xs_{t,1}(\pos) = \frac{\intzi dE \Xs_t\rE \phi\rEt}{\intzi dE \phi\rEt}$
+$\phi_1\rt = \intzi dE \phi\rEt$\\
+...
+
+Integrate the source:
+$\intzi dE S\rEt = S\rt$
+
+$\intzi dE \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi\rEtprime = \intzi dE' \Xs()\phi\rEtprime = \Xs_{s,1}\phi_1$
+
+$...$
+
+The one group diffusion equation is then
+$$ \Oov \frac{\p \phi_1}{\p t} = S_1\rt - \Xs_a(\pos)\phi_1\rt + \nabla \cdot D_1(\pos) \nabla \phi_1\rt $$
 
 
 
