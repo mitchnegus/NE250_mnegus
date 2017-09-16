@@ -18,6 +18,7 @@
 \usepackage{multicol} % Allows text division into multiple columns
 \usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
 \usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage[final]{pdfpages} % Allows pdfs to be imported
 \usepackage{hyperref} % Allows hyperlinks in the document
 \usepackage{rotating} % Allows tables to be rotated
 \usepackage{graphicx} % Enhanced package for including graphics/figures
@@ -58,22 +59,22 @@ $$ M(\text{PuO}_2) = w_{\text{P}}M_f. $$
 We are told that the uranium is all $^{238}$U, so 
 $$ M(^{238}\text{UO}_2) = M(\text{UO}_2) = (1-w_{\text{P}})M_f. $$
 
-The weight percents of the plutonium isotopes are also given,
-$$ M(^{239}\text{PuO}_2) = w_{\text{P}9}M(\text{PuO}_2) = w_{\text{P}9}w_{\text{P}}M_f $$
-$$ M(^{240}\text{PuO}_2) = w_{\text{P}0}M(\text{PuO}_2) = w_{\text{P}9}w_{\text{P}}M_f $$
-$$ M(^{241}\text{PuO}_2) = w_{\text{P}1}M(\text{PuO}_2) = w_{\text{P}9}w_{\text{P}}M_f $$
-$$ M(^{242}\text{PuO}_2) = w_{\text{P}2}M(\text{PuO}_2) = w_{\text{P}9}w_{\text{P}}M_f $$
+The weight percents of the plutonium isotope oxides are also given (as a fraction of total plutonium oxide). Using $^{239}\text{PuO}_2$ as an example
+$$ M(^{239}\text{PuO}_2) = w_{\text{P}9}M(\text{PuO}_2) = w_{\text{P}9}w_{\text{P}}M_f. $$
+
 
 Next, we must determine the molar masses of the various oxides. For uranium,
 $$ m(^{238}\text{UO}_2) = m(^{238}\text{U}) + 2m(\text{O}), $$
-and for plutonium,
-$$ m(^{239}\text{PuO}_2) = m(^{239}\text{Pu}) + 2m(\text{O}) $$
-$$ m(^{240}\text{PuO}_2) = m(^{240}\text{Pu}) + 2m(\text{O}) $$
-$$ m(^{241}\text{PuO}_2) = m(^{241}\text{Pu}) + 2m(\text{O}) $$
-$$ m(^{242}\text{PuO}_2) = m(^{242}\text{Pu}) + 2m(\text{O}) $$
+and similarly for plutonium.
 
-Finally, we use both the total mass of a compound with its molar mass in the original formula, using provided or tabulated values ($w_{\text{P}} = 0.3, w_{\text{P}9}=0.697, w_{\text{P}0}=0.218, w_{\text{P}1}=0.058, w_{\text{P}2}=0.027, m(^{238}\text{U})=, m(^{239}\text{Pu})=, m(^{240}\text{Pu})=, m(^{241}\text{Pu})=, m(^{242}\text{Pu})=, m(\text{O})= $)
+When we combine the total and molar masses to determine the total number of atoms for each isotope, we find:\\
+\tab 6.69$\times 10^{20} \text{ atoms of }^{238}$U	\\
+\tab 4.65$\times 10^{20} \text{ atoms of }^{239}$Pu	\\
+\tab 1.45$\times 10^{20} \text{ atoms of }^{240}$Pu	\\
+\tab 3.84$\times 10^{19} \text{ atoms of }^{241}$Pu	\\
+\tab 1.78$\times 10^{19} \text{ atoms of }^{242}$Pu	\\
 
+(for full calculation, see Jupyter notebook, attached)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -85,7 +86,7 @@ We use the
 \subsection*{\textit{a.})}
 
 
-
+\includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
 
 \end{document}
