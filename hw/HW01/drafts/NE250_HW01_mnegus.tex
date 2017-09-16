@@ -23,7 +23,7 @@
 \usepackage{rotating} % Allows tables to be rotated
 \usepackage{graphicx} % Enhanced package for including graphics/figures
 	% Set path to figure image files
-	\graphicspath{ {} }
+	\graphicspath{ {fig/} }
 \usepackage{listings} % for including text files
 	\lstset{basicstyle=\ttfamily\scriptsize,
         		  keywordstyle=\color{blue}\ttfamily,
@@ -81,10 +81,55 @@ When we combine the total and molar masses to determine the total number of atom
 
 \section*{Problem 2}
 
-We use the
 
 
-\subsection*{\textit{a.})}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 3}
+
+Cross sections plotted using ENDF/B-VII.1 from \href{http://atom.kaeri.re.kr/nuchart/}{KAERI}.
+
+\begin{multicols}{2}
+\tab\textbf{Fission Cross Sections}\\
+\includegraphics[width=9cm]{fissionXS}
+
+\tab\textbf{Capture Cross Sections}\\
+\includegraphics[width=9cm]{captureXS}
+\end{multicols}
+
+Capture-to-fission ratios at:
+\begin{multicols}{2}
+\begin{onehalfspace}
+\textbf{0.0253 eV}\\
+$^{238}\text{U}$: \tab $\frac{3\text{ b}}{0.00003\text{ b}} = 100000$\\
+$^{239}\text{Pu}$: \tab $\frac{300\text{ b}}{800\text{ b}} = 0.38$\\
+$^{235}\text{U}$: \tab $\frac{100\text{ b}}{700\text{ b}} = 0.14$\\
+\textbf{0.73 MeV}\\
+$^{238}\text{U}$: \tab $\frac{0.13\text{ b}}{0.004\text{ b}} = 32.5$\\
+$^{235}\text{U}$: \tab $\frac{0.13\text{ b}}{1\text{ b}} = 0.13$\\
+$^{239}\text{Pu}$: \tab $\frac{0.07\text{ b}}{2\text{ b}} = 0.04$
+\end{onehalfspace}
+\end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 9}
+
+\textbf{\textit{a.})} If rapidly compressed to half volume, the reactor's density will dramatically double. Cross sections vary directly with density, and so the reactor's cross sections will increase. Greater cross sections mean more chances for fission to be induced, and the multiplication factor will increase. A critical reactor would then become \underline{supercritical}.
+
+\textbf{\textit{b.})} If squashed, into an ellipsoidal shape, the reactor's surface area would increase, with no change in volume. Greater surface area means that more neutrons would leak from the reactor, and the critical reactor would become \underline{subcritical} (the streaming term in the TE will grow, $k$ must decrease).
+
+\textbf{\textit{c.})} Wrapping a sheet of cadmium around the outside of the reactor will cause neutrons to be reflected back into the reactor volume (assuming it replaces void). This will increase the neutrons able to cause fission, and the reactor will become \underline{supercritcal}  (the streaming term in the TE will diminish, $k$ must increase).
+
+\textbf{\textit{d.})} Again, neutrons will be reflected back into the reactor. A greater neutron density increases the neutron flux and rate of fission. The multiplication factor will increase and the reactor will become \underline{supercritical}  (the streaming term in the TE will diminish, $k$ must increase).
+
+\textbf{\textit{e.})} Adding an external neutron source to the reactor will also trigger an increase in the multiplication factor. There will be more neutrons in the system to cause fission events.
+
+\textbf{\textit{f.})} Placing an identical reactor nearby the original could be considered as if adding another source. As in that case, the multiplication factor will increase.
+
+\textbf{\textit{g.})} Over time, the fissionable nuclei in the reactor will be consumed in the fission reaction. With less fissionable nuclei, the fission cross sections of the reactor fuel material will decrease. The reactor will become \underline{subcritical} and the multiplication factor will decrease.
 
 
 \includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
