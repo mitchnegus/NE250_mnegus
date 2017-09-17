@@ -132,6 +132,24 @@ $^{239}\text{Pu}$: \tab $\frac{0.07\text{ b}}{2\text{ b}} = 0.04$
 \textbf{\textit{g.})} Over time, the fissionable nuclei in the reactor will be consumed in the fission reaction. With less fissionable nuclei, the fission cross sections of the reactor fuel material will decrease. The reactor will become \underline{subcritical} and the multiplication factor will decrease.
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 10}
+
+\textbf{Assumptions of the neutron transport equation:}
+\begin{enumerate}
+	\item \textit{Neutrons are pointlike.} A reasonable assumption because the de Broglie wavelength of a neutron is significantlly less than the diameter of an atom. This assumption allows us to neglect rotation and quantum effects and write the transport equation as a function of energy. We need only being concerned with the particle's translational kinetic energy.
+	\item \textit{Neutral particles travel in straight lines.} Neutron trajectories will not bend between collisions, and we can make the assumption that $\frac{\partial \theta}{\partial t} = 0$ and $\frac{\partial \varphi}{\partial t} = 0$.
+	\item \textit{Particle-particle collisions are negligible.} Neutrons are generally very unlikely to collide/otherwise interact with other neutrons, allowing us to express the transport equation as a linear differential equation.
+	\item \textit{Material properties are isotropic.} Valid when neutrons are moving with an appreciable velocity, this condition allows us to establish cross sections simply as functions of $\vec{r}$ and $E$ (not $\hat{\Omega}$.
+	\item \textit{Material composition is independent of time.} Similar to assumption 5, our cross sections become dependent only on $\vec{r}$ and $E$. Though material does change over long time scales (\textit{i.e.} burnup) this assumption is valid for short term neutronics calculations.
+	\item \textit{Quantities are expected values.} We may be unable to properly predict fluctuations in our results for cases where we are dealing with low density media.
+
+\end{enumerate}
+
+
+
 \includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
 
