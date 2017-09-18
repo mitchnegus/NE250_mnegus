@@ -10,6 +10,7 @@
 	\DeclareMathOperator{\sech}{sech} % Include sech
 \usepackage{amssymb} % AMS symbols package
 \usepackage{mathrsfs}% More math symbols
+\usepackage{breqn} % Allows line breaking in math mode
 \usepackage{bm} % Allows you to use \bm{} to make any symbol bold
 \usepackage{bbold} % Allows more bold characters
 \usepackage{verbatim} % Allows you to include code snippets
@@ -177,6 +178,27 @@ $$ \frac{\chi(E)}{2} \int_L \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(
 \textbf{Source}\\
 Like the neutron population, the source term can be divided into its two components (left and right), rather than a continuous distribution over angle. Integrating over the rod gives
 $$ \int_L \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right]dx\,dE $$
+
+\textbf{Absorption}\\
+Collisions of the neutron may cause it to be absorbed or scattered.
+$$ \int_L \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right]dx\,dE $$
+
+\textbf{Streaming}\\
+Like in the 3D case, we can define $\vec{j}$ as the expected number of particles exiting the 1D rod. Since we only need to account for particles entering or leaving in the single dimension, the integral over surface $S$ becomes unnecessary, and can be replaced by the current at both ends of the rod. We retain the integral (now over $L$) for reasons apparent later, but incorporate this fact through a delta function.
+$$ \int_L \left[\vec{j}(x,E,\hat{\Omega},t)\delta(\frac{L}{2}) + \vec{j}(x,E,\hat{\Omega},t)\delta(-\frac{L}{2})\right]dx\,dE\,d\hat{\Omega} $$
+Also, we can eliminate the $\hat{\Omega}$ dependence since we no longer need to account for particles traveling in 3D. Instead, we can divide our equation up again into the two components, one for particles traveling left and another for particles traveling right at each boundary. The result of these operations is
+$$ \int_L \left[j_{+}(x,E,t)\delta(\frac{L}{2}) + j_{-}(x,E,t)\delta(\frac{L}{2}) + j_{+}(x,E,t)\delta(-\frac{L}{2}) + j_{-}(x,E,t)\delta(-\frac{L}{2})\right]dx\,dE $$
+Noting that $j_{\pm} = vn_{\pm}$,
+$$ \int_L v \left[n_{+}(x,E,t)\delta(\frac{L}{2}) + n_{-}(x,E,t)\delta(\frac{L}{2}) + n_{+}(x,E,t)\delta(-\frac{L}{2}) + n_{-}(x,E,t)\delta(-\frac{L}{2})\right]dx\,dE $$
+
+The full 1D transport equation is then (canceling $dE$ in all terms, and forming one integral over $L$)
+\begin{dmath*}
+\int_L \left[\frac{\partial}{\partial t}\left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] - v \left[n_{+}(x,E,t)\delta(\frac{L}{2}) + n_{-}(x,E,t)\delta(\frac{L}{2}) + n_{+}(x,E,t)\delta(-\frac{L}{2}) + n_{-}(x,E,t)\delta(-\frac{L}{2})\right]\right]dx = 0
+\end{dmath*}
+Now since, for $\int_L f(x)\,dx = 0, f(x) = 0$, we can say that the integrand of the integral over $L$ is equal to zero. Also, the product $f(x)\delta(a) = f(a)$, so then
+\begin{dmath*}
+\frac{\partial}{\partial t}\left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] - v \left[n_{+}(\frac{L}{2},E,t) + n_{-}(\frac{L}{2},E,t) + n_{+}(-\frac{L}{2},E,t) + n_{-}(-\frac{L}{2},E,t)\right] = 0
+\end{dmath*}
 
 
 \includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
