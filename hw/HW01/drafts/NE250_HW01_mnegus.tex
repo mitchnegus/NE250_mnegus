@@ -82,6 +82,41 @@ When we combine the total and molar masses to determine the total number of atom
 
 \section*{Problem 2}
 
+The mean free path of a particle is given by the formula
+$$ \lambda = \frac{1}{\Sigma_t} $$
+
+when scattering is considered to be isotropic. The macroscopic scattering cross section can be reexpressed in terms of the number density of the material, $n$, and the microscopic cross section, $\sigma_t$. For mixtures, the macroscopic cross section is the sum of the macroscopic cross sections of its components.
+$$ \Sigma_{t,\text{mix}} = \sum_i \Sigma_{t,i} = \sum_i n_i \sigma_i $$
+
+Additionally, the number density of the material can be found from the material density, $\rho$, the molar mass of the material, $m$, and Avogadro's number.
+$$ n = \frac{\rho_i N_A}{m_i} $$
+
+Then the mean free path is
+$$ \lambda = \frac{1}{\sum_i \frac{\rho_i N_A \sigma_{t,i}}{m_i}} $$
+
+NIST gives the composition of air as 75.5\% nitrogen, 23.1\% oxygen, and 1.3\% argon by mass. We will assume that the nitrogen is entirely $^{14}$N, oxygen is entirely $^{16}$O, and $^{40}$Ar, which comprise more than 99.5\% of their respective element naturally. Water is 11.2\% hydrogen and 88.8\% oxygen by mass. We are assuming the hydrogen is entirely $^{1}$H and the oxygen is entirely $^{16}$O. According to the World Nuclear Association, natural uranium is 99.3\% U238 and 0.7\% U235 by mass. Using these values in the equation for mean free path, we find the following results:
+
+\subsection*{\textit{a.}) \small 14 MeV neutrons}
+Mean Free Path in\\
+	\tab air --	$\lambda = 12773.78$ cm\\
+	\tab water -- $\lambda = 10.08$ cm\\
+	\tab uranium -- $\lambda = 3.53$ cm\\
+
+\subsection*{\textit{b.}) \small 1 MeV neutrons}
+Mean Free Path in\\
+	\tab air --	$\lambda = 5643.26$ cm\\
+	\tab water -- $\lambda = 1.8$ cm\\
+	\tab uranium -- $\lambda = 2.93$ cm\\
+
+\subsection*{\textit{c.}) \small 0.05 eV neutrons}
+Mean Free Path in\\
+	\tab air --	$\lambda = 2086.21$ cm\\
+	\tab water -- $\lambda = 0.66$ cm\\
+	\tab uranium -- $\lambda = 1.57$ cm\\
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,10 +127,10 @@ Cross sections plotted using ENDF/B-VII.1 from \href{http://atom.kaeri.re.kr/nuc
 
 \begin{multicols}{2}
 \tab\textbf{Fission Cross Sections}\\
-\includegraphics[width=9cm]{fissionXS}
+\includegraphics[width=9cm]{fission_xs}
 
 \tab\textbf{Capture Cross Sections}\\
-\includegraphics[width=9cm]{captureXS}
+\includegraphics[width=9cm]{capture_xs}
 \end{multicols}
 
 Capture-to-fission ratios at:
@@ -111,6 +146,24 @@ $^{235}\text{U}$: \tab $\frac{0.13\text{ b}}{1\text{ b}} = 0.13$\\
 $^{239}\text{Pu}$: \tab $\frac{0.07\text{ b}}{2\text{ b}} = 0.04$
 \end{onehalfspace}
 \end{multicols}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 4}
+
+The most prevalent, stable isotopes of natural boron are $^{10}$B and $^{11}$B. Similarly, natural gadolinium mostly contains the isotopes $^{154}$Gd, $^{155}$Gd, $^{156}$Gd, $^{157}$Gd, $^{158}$Gd, and $^{160}$Gd.
+
+For the isotopes of both boron and gadolinium, neutron absorption occur primarily through $(n,\gamma),(n,\alpha)$, or $(n,p)$ reactions. Cross sections for absorption modes in the most common natural isotopes of boron (left) and gadolinium (right) are shown below.
+
+\begin{multicols}{2}
+\includegraphics[width=8cm]{B_xs_abs}
+\includegraphics[width=8cm]{Gd_xs_abs}
+\end{multicols}
+
+At thermal energies, the following isotopes and reactions are most absorbing:\\
+$^{10}$B, $(n,\alpha)$; $^{155}$Gd, $(n,\gamma)$; $^{157}$$, (n,\gamma)$\\
 
 
 
@@ -213,3 +266,4 @@ Now since, for $\int_L f(x)\,dx = 0, f(x) = 0$, we can say that the integrand of
 
 
 
+ 
