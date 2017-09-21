@@ -187,6 +187,37 @@ $$\boxed{ 1.26 \times 10^{13} \text{ fissions} \cdot \text{s}^{-1} \cdot \text{c
 
 \section*{Problem 6}
 
+A detector with 50\% efficiency measuring 346,573 CPM is analyzing a sample that is emitting at 693,146 CPM. If this sample is $^{116}$In with $T_{1/2} = 54$ min, we can use the definition of activity $\mathcal{A} = \lambda N(t)$ to determine the initial number of $^{116}$In nuclei. 
+$$ \mathcal{A_0} = 693146 \text{ CPM} = \lambda N_0 $$
+Also, $\lambda = \frac{\ln 2}{T_{1/2}}$, so $\lambda = 0.01284$ min$^{-1}$ and
+$$ N_0 = \frac{693146\text{ CPM}}{0.01284\text{ min}^{-1}} $$
+$$ N_0 = 5.4 \times 10^7 \text{ nuclei} $$
+The rule for radioactive decay states that the number of nuclei remaining from an initial sample of $N_0$ nuclei at time $t$ can be approximated by
+$$ N(t) = N_0 e^{-\lambda t} $$
+Taking the derivative of this function, we find that the rate of change is 
+$$ R(t) = -\lambda N_0 e^{-\lambda t} $$
+If we negate the rate of change and multiply by the time $dt$ we arrive at an expression for the number of nuclei decaying in the time period of $t$ to $dt$. Then, if we divide this by the initial count of nuclei, we get the probability that a given nuclei will decay in time $t$ to $t+dt$. 
+$$ p(t)dt = \lambda e^{-\lambda t} dt $$
+If we integrate this equation over a time interval, we can find the total probability that a nucleus will decay in that interval.
+\begin{align*}
+P_d(t) = \int_0^t p(t')dt'	&= \int_0^t \lambda e^{-\lambda t'} dt'\\
+							&= \lambda \int_0^t e^{-\lambda t'} dt'\\
+							&= \lambda \left[ -\frac{1}{\lambda} e^{-\lambda t'} \right]_0^T\\
+							&= 1 - e^{-\lambda t} \\
+\end{align*}
+From 4:00pm Tuesday to 2:00pm Thursday is 46 hours, or 2760 minutes. The probability for a given nucleus to decay in that time is
+\begin{align*}
+P_d(2760\text{ min})	&= 1-e^{-(0.01284 \text{ min}^{-1})(2760\text{ min})} \\ 
+					&= 1-e^{-35.44} \\
+\end{align*}
+This is the probability that one nucleus decays. The probability that all nuclei decay is the product of the probabilities for each nuclei.
+\begin{align*} 
+P_{N_0}(t)					&= (1 - e^{-\lambda t})^{N_0} \\
+P_{N_0}(2760\text{ min})	&= (1- e^{-35.44})^{5.4\times10^7} \\
+\end {align*}
+The probability that no nuclei of the radioactive In sample remain is 0.999999978072...
+%%% ???If we note that $\ln(1-x) \approx -x$ when $x \ll 1$, we find
+%%% $$ \ln\left[P(2760\text{ min})\right] = \ln\left[(1-e^{-35.44})^{5.4\times10^7}\right] \approx e^{-35.44} $$
 
 
 
