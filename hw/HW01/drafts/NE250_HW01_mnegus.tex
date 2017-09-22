@@ -151,7 +151,7 @@ $^{239}\text{Pu}$: \tab $\frac{0.07\text{ b}}{2\text{ b}} = 0.04$
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 4}
 
@@ -218,6 +218,20 @@ P_{N_0}(2760\text{ min})	&= (1- e^{-35.44})^{5.4\times10^7} \\
 The probability that no nuclei of the radioactive In sample remain is 0.999999978072...
 %%% ???If we note that $\ln(1-x) \approx -x$ when $x \ll 1$, we find
 %%% $$ \ln\left[P(2760\text{ min})\right] = \ln\left[(1-e^{-35.44})^{5.4\times10^7}\right] \approx e^{-35.44} $$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 8}
+
+We can calculate a theoretical maximum of the multiplication factor by looking at the definition of the multiplication factor:
+$$ k = \frac{\text{ \# neutrons in generation}i+1}{\text{ \# neutrons in generation} i}. $$
+This equation can be maximized if no losses occur between generations, and every neutron produces a fission event. If this is the case, then each of $N$ neutrons in generation $i$ produces $\nu N$ neutrons in generation $i+1$ through fission (assuming we have sufficiently many fissionable nuclei for the average number of neutrons produced per fission, $\nu$, to be accurate).
+
+Then, it can be determined that the the maximum theoretical multiplication factor is 
+$$ k = \frac{\nu N}{N} $$
+$$\boxed{ k = \nu }$$
 
 
 
@@ -294,19 +308,33 @@ $$ \int_L \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right]dx\,dE $$
 Like in the 3D case, we can define $\vec{j}$ as the expected number of particles exiting the 1D rod. Since we only need to account for particles entering or leaving in the single dimension, the integral over surface $S$ becomes unnecessary, and can be replaced by the current at both ends of the rod. We retain the integral (now over $L$) for reasons apparent later, but incorporate this fact through a delta function.
 $$ \int_L \left[\vec{j}(x,E,\hat{\Omega},t)\delta(\frac{L}{2}) + \vec{j}(x,E,\hat{\Omega},t)\delta(-\frac{L}{2})\right]dx\,dE\,d\hat{\Omega} $$
 Also, we can eliminate the $\hat{\Omega}$ dependence since we no longer need to account for particles traveling in 3D. Instead, we can divide our equation up again into the two components, one for particles traveling left and another for particles traveling right at each boundary. The result of these operations is
-$$ \int_L \left[j_{+}(x,E,t)\delta(\frac{L}{2}) + j_{-}(x,E,t)\delta(\frac{L}{2}) + j_{+}(x,E,t)\delta(-\frac{L}{2}) + j_{-}(x,E,t)\delta(-\frac{L}{2})\right]dx\,dE $$
+$$ \int_L \left[j_{+}(x,E,t)\delta(x-\frac{L}{2}) + j_{-}(x,E,t)\delta(x-\frac{L}{2}) + j_{+}(x,E,t)\delta(x+\frac{L}{2}) + j_{-}(x,E,t)\delta(x+\frac{L}{2})\right]dx\,dE $$
 Noting that $j_{\pm} = vn_{\pm}$,
-$$ \int_L v \left[n_{+}(x,E,t)\delta(\frac{L}{2}) + n_{-}(x,E,t)\delta(\frac{L}{2}) + n_{+}(x,E,t)\delta(-\frac{L}{2}) + n_{-}(x,E,t)\delta(-\frac{L}{2})\right]dx\,dE $$
+$$ \int_L v \left[n_{+}(x,E,t)\delta(x-\frac{L}{2}) + n_{-}(x,E,t)\delta(x-\frac{L}{2}) + n_{+}(x,E,t)\delta(x+\frac{L}{2}) + n_{-}(x,E,t)\delta(x+\frac{L}{2})\right]dx\,dE $$
 
 The full 1D transport equation is then (canceling $dE$ in all terms, and forming one integral over $L$)
 \begin{dmath*}
-\int_L \left[\frac{\partial}{\partial t}\left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] - v \left[n_{+}(x,E,t)\delta(\frac{L}{2}) + n_{-}(x,E,t)\delta(\frac{L}{2}) + n_{+}(x,E,t)\delta(-\frac{L}{2}) + n_{-}(x,E,t)\delta(-\frac{L}{2})\right]\right]dx = 0
+\int_L \Bigg[ \frac{\partial}{\partial t} \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + v \left[n_{+}(x,E,t)\delta(x-\frac{L}{2}) + n_{-}(x,E,t)\delta(x-\frac{L}{2}) + n_{+}(x,E,t)\delta(x+\frac{L}{2}) + n_{-}(x,E,t)\delta(x+\frac{L}{2})\right] - \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' - \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE'  \Bigg]dx = 0
 \end{dmath*}
-Now since, for $\int_L f(x)\,dx = 0, f(x) = 0$, we can say that the integrand of the integral over $L$ is equal to zero. Also, the product $f(x)\delta(a) = f(a)$, so then
+Now since, for $\int_L f(x)\,dx = 0, f(x) = 0$, we can say that the integrand of the integral over $L$ is equal to zero. Also, the product
+$$f(x)\delta(x-a) = \begin{cases} 	f(a) 	& x=a\\
+									0		& \text{otherwise}
+\end{cases}$$
+so then
 \begin{dmath*}
-\frac{\partial}{\partial t}\left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' + \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] - v \left[n_{+}(\frac{L}{2},E,t) + n_{-}(\frac{L}{2},E,t) + n_{+}(-\frac{L}{2},E,t) + n_{-}(-\frac{L}{2},E,t)\right] = 0
+\frac{\partial}{\partial t} \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right] + v \left[n_{+}(\frac{L}{2},E,t) + n_{-}(\frac{L}{2},E,t) + n_{+}(-\frac{L}{2},E,t) + n_{-}(-\frac{L}{2},E,t)\right] - \int_0^{\infty} \left[\Sigma_s^{+}(E'\rightarrow E) + \Sigma_s^{-}(E'\rightarrow E)\right] v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' - \left[s_{+}(x,E,t) + s_{-}(x,E,t)\right] - \frac{\chi(E)}{2} \int_0^{\infty} \nu(E') \Sigma_f(E') v' \left[n_{+}(x,E',t) + n_{-}(x,E',t)\right]dE' = 0
 \end{dmath*}
 
+
+\subsection*{\textit{b.})}
+
+If we make a one speed approximation, we can state that cross sections are generally independent. We can also conclude that $\Sigma_{s}^{\pm}(E' \rightarrow E) = \Sigma_{s}^{\pm}\delta(E' \rightarrow E)$. Our 1D-rod transport equation simplifies to
+\begin{dmath*}
+\frac{\partial}{\partial t} \left[n_{+}(x,t) + n_{-}(x,t)\right] + \Sigma_t v \left[n_{+}(x,t) + n_{-}(x,t)\right] + v \left[n_{+}(\frac{L}{2},t) + n_{-}(\frac{L}{2},t) + n_{+}(-\frac{L}{2},t) + n_{-}(-\frac{L}{2},t)\right] - (\Sigma_s^{+} + \Sigma_s^{-}) v \left[n_{+}(x,t) + n_{-}(x,t)\right] - \left[s_{+}(x,t) + s_{-}(x,t)\right] - \frac{\chi}{2} \nu \Sigma_f v \left[n_{+}(x,t) + n_{-}(x,t)\right] = 0
+\end{dmath*}
+
+\subsection*{\textit{c.})}
+The initial condition for our (one speed) system is simply that $n_+(x,0)=n_{+,0}(x)$ and $n_-(x,0)=n_{-,0}(x)$ and our boundary conditions are that $n_-(\frac{L}{2},t)=0$ and $n_+(-\frac{L}{2},t)=0$ assuming that neutrons do not reenter the system. 
 
 \includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
