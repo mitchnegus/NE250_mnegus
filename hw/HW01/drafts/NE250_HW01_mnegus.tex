@@ -85,6 +85,8 @@ When we combine the total and molar masses to determine the total number of atom
 
 (for full calculation, see Jupyter notebook, attached)
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 2}
@@ -125,6 +127,7 @@ Mean Free Path in\\
 
 \end{multicols}
 
+(for full calculation, see Jupyter notebook, attached)
 
 
 
@@ -222,9 +225,62 @@ This is the probability that one nucleus decays. The probability that all nuclei
 P_{N_0}(t)					&= (1 - e^{-\lambda t})^{N_0} \\
 P_{N_0}(2760\text{ min})	&= (1- e^{-35.44})^{5.4\times10^7} \\
 \end {align*}
-The probability that no nuclei of the radioactive In sample remain is 0.999999978072...
+The probability that no nuclei of the radioactive In sample remain is \underline{0.999999978072...}
 %%% ???If we note that $\ln(1-x) \approx -x$ when $x \ll 1$, we find
 %%% $$ \ln\left[P(2760\text{ min})\right] = \ln\left[(1-e^{-35.44})^{5.4\times10^7}\right] \approx e^{-35.44} $$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 7}
+
+The reproduction factor $\eta$ for reactors is defined as the ratio of neutrons produced to neutrons absorbed,
+
+$$ \eta = \frac{\nu \Sigma_f}{\Sigma_a} $$
+
+For a material with several isotopes, the total macroscopic cross section for a reaction is equal to the sum of the macroscopic cross sections of each component
+
+$$ \Sigma_x = \sum_i \Sigma_{x,i} $$
+
+For a given isotope, the macroscopic cross section, $\Sigma_{x,i}$ can be expressed as the product of the number density and microscopic cross section of the isotope (at the specified energy). Since in this problem we only consider themrmal energies, we will suppress the energy dependence.
+
+$$ \Sigma_{x,i} = n_i \sigma_i $$
+
+Altogether
+$$ \eta = \frac{\nu \sum_i n_i \sigma_{f,i}}{\sum_i n_i \sigma_{a,i}} $$
+
+Considering that uranium has two major isotopic components,$^{235}\text{U}$ and $^{238}\text{U}$, we can simplify this further
+
+$$ \eta = \frac{\nu (n_{\text{U5}} \sigma_{f,\text{U5}} + n_{\text{U8}} \sigma_{f,\text{U8}})}{ n_{\text{U5}} \sigma_{a,\text{U5}} + n_{\text{U8}} \sigma_{a,\text{U8}}} $$
+
+We will use the value of $\nu = 2.432$ when the neutron energy is less than 1 eV provided in the class notes.
+
+Next, we plot $\eta$ for each percent enrichment (by atom percent) from 0-100\%. Note that we can normalize our equation for $\eta$ by an arbitrary total number of atoms in the sample so that we can give $n_i$ as a fractional number density rather than a true number density. In this case, we can write our equation for $\eta$ as
+$$\eta = \frac{\nu (n_{\text{U5}} \sigma_{f,\text{U5}} + (1-n_{\text{U5}}) \sigma_{f,\text{U8}})}{ n_{\text{U5}} \sigma_{a,\text{U5}} + (1-n_{\text{U5}}) \sigma_{a,\text{U8}}} $$
+
+\begin{center}
+\includegraphics[width=10cm]{eta_per_enrich}
+\end{center}
+
+Then, for criticality, the minimum $\eta$ occurs when the neutron production exactly equals the neutron absorption, $\eta = 1$. We can use this fact to solve for the minium enrichment required. First, we solve for $n_{\text{U5}}$.
+
+$$ \eta = \frac{\nu (n_{\text{U5}} \sigma_{f,\text{U5}} + (1-n_{\text{U5}}) \sigma_{f,\text{U8}})}{ n_{\text{U5}} \sigma_{a,\text{U5}} + (1-n_{\text{U5}}) \sigma_{a,\text{U8}}} $$
+$$ \eta n_{\text{U5}} \sigma_{a,\text{U5}} + \eta (1-n_{\text{U5}}) \sigma_{a,\text{U8}} = \nu (n_{\text{U5}} \sigma_{f,\text{U5}} + (1-n_{\text{U5}}) \sigma_{f,\text{U8}}) $$
+$$ \eta n_{\text{U5}} \sigma_{a,\text{U5}} - \eta n_{\text{U5}}\sigma_{a,\text{U8}} + \eta \sigma_{a,\text{U8}} = \nu n_{\text{U5}} \sigma_{f,\text{U5}} -\nu n_{\text{U5}}\sigma_{f,\text{U8}} + \nu\sigma_{f,\text{U8}} $$
+$$ \eta n_{\text{U5}} \sigma_{a,\text{U5}} - \eta n_{\text{U5}}\sigma_{a,\text{U8}} - \nu n_{\text{U5}} \sigma_{f,\text{U5}} + \nu n_{\text{U5}}\sigma_{f,\text{U8}} = \nu\sigma_{f,\text{U8}} - \eta \sigma_{a,\text{U8}}$$
+$$ n_{\text{U5}}(\eta \sigma_{a,\text{U5}} - \eta \sigma_{a,\text{U8}} - \nu \sigma_{f,\text{U5}} + \nu \sigma_{f,\text{U8}}) = \nu\sigma_{f,\text{U8}} - \eta \sigma_{a,\text{U8}}$$
+$$ n_{\text{U5}} = \frac{\nu\sigma_{f,\text{U8}} - \eta \sigma_{a,\text{U8}}}{\eta \sigma_{a,\text{U5}} - \eta \sigma_{a,\text{U8}} - \nu \sigma_{f,\text{U5}} + \nu \sigma_{f,\text{U8}}}$$
+For $\eta=1$,
+$$ n_{\text{U5}} = \frac{\nu\sigma_{f,\text{U8}} - \sigma_{a,\text{U8}}}{\sigma_{a,\text{U5}} - \sigma_{a,\text{U8}} - \nu \sigma_{f,\text{U5}} + \nu \sigma_{f,\text{U8}}}$$
+
+
+This gives us a theoretical miniumum required enrichment of \underline{0.3\%}
+
+For a breeder reactor, $\eta>=2$. If we decide to look for the minimum value of $\eta$, we can use $\eta=2$ in our previous equation for $n_{\text{U5}}$:
+$$ n_{\text{U5}} = \frac{\nu\sigma_{f,\text{U8}} - 2\sigma_{a,\text{U8}}}{2\sigma_{a,\text{U5}} - 2\sigma_{a,\text{U8}} - \nu \sigma_{f,\text{U5}} + \nu \sigma_{f,\text{U8}}}$$
+
+This suggests a theoretical minium required enrichment (for breeding) of \underline{8.8}\%
 
 
 
@@ -433,7 +489,11 @@ $$ J_{\pm} \approx \frac{\phi\rt}{4\pi} \int_{0}^{2\pi}\int_{0}^{\pm\pi/2} \sin\
 The integrals can be solved (the first by substituting: $\int_{0}^{2\pi}d\varphi = 2\pi$ and $\int_{0}^{\pm\pi/2}\sin\theta \, \cos\theta \, d\theta = \frac{1}{2}$; the second with the fact that $\int_{2\pi\pm} d\Oh \, \Omega_i\Omega_j = 0$, unless $i=j$ in which case $\int_{2\pi\pm} d\Oh \, \Omega_i\Omega_i = \pm\frac{2\pi}{3}$),
 $$ J_{\pm} \approx \frac{\phi\rt}{4} \mp \frac{D(r)}{2}\hat{e}_s \cdot \nabla\phi\rt$$
 
-\includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
+
+
+\includepdf[pages=-]{NE250_HW01_mnegus-prob1-ntbk.pdf}
+\includepdf[pages=-]{NE250_HW01_mnegus-prob2-ntbk.pdf}
+\includepdf[pages=-]{NE250_HW01_mnegus-prob7-ntbk.pdf}
 
 
 \end{document}
