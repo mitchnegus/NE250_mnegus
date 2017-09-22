@@ -11,6 +11,7 @@
 \usepackage{amssymb} % AMS symbols package
 \usepackage{mathrsfs}% More math symbols
 \usepackage{breqn} % Allows line breaking in math mode
+\usepackage{cancel} % Allows math strikethroughs to show cancellations
 \usepackage{bm} % Allows you to use \bm{} to make any symbol bold
 \usepackage{bbold} % Allows more bold characters
 \usepackage{verbatim} % Allows you to include code snippets
@@ -336,8 +337,76 @@ If we make a one speed approximation, we can state that cross sections are gener
 \subsection*{\textit{c.})}
 The initial condition for our (one speed) system is simply that $n_+(x,0)=n_{+,0}(x)$ and $n_-(x,0)=n_{-,0}(x)$ and our boundary conditions are that $n_-(\frac{L}{2},t)=0$ and $n_+(-\frac{L}{2},t)=0$ assuming that neutrons do not reenter the system. 
 
-\includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 12}
+
+\subsection*{\textit{a.})}
+
+We can find $\phi(z)$ by integrating the given equation 
+$$ \varphi(z,\mu) = \phi_0 \left[\cos(Bz) + A \mu \sin(Bz)\right] $$
+over all $\mu$
+\begin{align*}
+\phi(z)	&= 2\pi \int_{-1}^{1} \phi(z,\mu) d\mu \\
+		&= 2\pi \int_{-1}^{1} \phi_0\left[\cos(Bz) + A \mu \sin(Bz)\right] d\mu \\
+		&= 2\pi \cos(Bz) \int_{-1}^{1} d\mu + \phi_0 A \sin(Bz) \int_{-1}^{1} \mu d\mu\\
+		&= 2\pi \cos(Bz) (2) + \bcancel{\phi_0 A \sin(Bz) \left[ \frac{\mu^2}{2} \right]_{-1}^{1}}_{\;0}\\
+\phi(z)	&= 4\pi \cos(Bz)
+\end{align*}
+According to diffusion theory, $J(z) = -D \nabla \phi(z)$. In 1D, the gradient takes the form of a single derivative, $\nabla = \frac{d}{dz}$. By definition 
+$$ J(z) = \int_{4\pi} d\hat{\Omega} \, \hat{\Omega} \varphi(z,\mu).$$
+We can substitute 
+\begin{align*}
+J(z)	&= 2\pi \int_{-1}^{1} \mu \, \varphi(z,\mu) \, d\mu \\
+		&= 2\pi \int_{-1}^{1} \mu \, \phi_0 \left[\cos(Bz) + A \mu \sin(Bz)\right] \, d\mu \\
+		&= 2\pi\phi_0 \left( \int_{-1}^{1} \mu \, \cos(Bz) \, d\mu + \int_{-1}^{1} A \mu^2 \sin(Bz) \, d\mu \right) \\
+		&= 2\pi\phi_0 \left( \cos(Bz) \left[\frac{\mu^2}{2} \right]_{-1}^{1} + A \sin(Bz) \left[ \frac{\mu^3}{3} \right]_{-1}^{1} \right) \\
+		&= 2\pi\phi_0 \left( 0 + \frac{2A\sin(Bz)}{3} \right) \\
+J(z)	&= \frac{4\pi\phi_0A\sin(Bz)}{3}
+\end{align*}
+
+
+\subsection*{\textit{b.})}
+
+If we now note that $A = \frac{3J(z)}{4\pi\phi_0\sin(Bz)}$, then we can rewrite our original equation for $\varphi$ in terms of $\phi(z)$ and $J(z)$.
+\begin{align*}
+\varphi(z,\mu)	&= \phi_0 \left[\cos(Bz) + A \mu \sin(Bz)\right] \\
+				&= \phi_0 \left[\cos(Bz) + \left(\frac{3J(z)}{4\pi\phi_0\sin(Bz)}\right) \mu \sin(Bz)\right]\\
+\varphi(z,\mu)	&= \frac{\phi_0}{4\pi} + \frac{3J(z)\mu}{4\pi}
+\end{align*}
+
+
+\subsection*{\textit{c.})}
+
+Next, we must calculate $J_{+}(z)$ and $J_{-}(z)$. Again, by definition
+$$ J_{\pm}(z) = 2\pi \int_0^{\pm1} \mu \, \varphi(z,\mu) \, d\mu .$$
+Solving, we find
+\begin{align*}
+J_{\pm}(z)	&= 2\pi \int_0^{\pm1} \mu \, \varphi(z,\mu) \, d\mu \\
+			&= 2\pi \int_0^{\pm1} \mu \, \phi_0 \left[\cos(Bz) + A \mu \sin(Bz)\right] \, d\mu \\
+			&= 2\pi\phi_0 \left[ \int_0^{\pm1} \mu \, \cos(Bz) \, d\mu + \int_0^{\pm1} A \mu^2 \sin(Bz) \, d\mu \right] \\ 
+			&= 2\pi\phi_0 \left[ \cos(Bz) \int_0^{\pm1} \mu \, d\mu + A \sin(Bz) \int_0^{\pm1} \mu^2 \, d\mu \right] \\ 
+			&= 2\pi\phi_0 \left[ \cos(Bz) \left[ \frac{\mu^2}{2} \right]_0^{\pm1} + A \sin(Bz) \left[ \frac{\mu^3}{3} \right]_0^{\pm1} \right] \\ 
+			&= 2\pi\phi_0 \left[ \frac{\cos(Bz)}{2} \pm \frac{A \sin(Bz)}{3} \right] \\
+J_{\pm}(z)	&= \pi\phi_0\cos(Bz) \pm \frac{2\pi\phi_0 A \sin(Bz)}{3} \\ 
+\end{align*}
+
+
+\subsection*{\textit{d.})}
+
+We can check our results by subtracting $J_{+}(z)$ and $J_{-}(z)$ and showing that their difference is $J(z)$. 
+\begin{align*}
+J_{+}(z) - J_{-}(z)	&= \left(\pi\phi_0\cos(Bz) + \frac{2\pi\phi_0 A \sin(Bz)}{3}\right) - \left(\pi\phi_0\cos(Bz) - \frac{2\pi\phi_0 A \sin(Bz)}{3}\right) \\
+					&= \pi\phi_0\cos(Bz) + \frac{2\pi\phi_0 A \sin(Bz)}{3} - \pi\phi_0\cos(Bz) + \frac{2\pi\phi_0 A \sin(Bz)}{3} \\
+J_{+}(z) - J_{-}(z)	&= \frac{4\pi\phi_0 A \sin(Bz)}{3} = J(z)
+\end{align*}
+
+
+
+
+\includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
 
 \end{document}
