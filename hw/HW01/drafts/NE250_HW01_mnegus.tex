@@ -34,6 +34,12 @@
           	 }		
 \newcommand{\tab}{\-\hspace{1cm}}
 
+\newcommand{\Oh}{\hat{\Omega}}
+\newcommand{\cur}{\bm{J}}
+\newcommand{\rt}{(\bm{r},t)}
+\newcommand{\rOt}{(\bm{r},\Oh,t)}
+
+
 % Create a header w/ Name & Date
 \pagestyle{fancy}
 \rhead{\textbf{Mitch Negus} \; 9/22/2017}
@@ -265,7 +271,7 @@ $$\boxed{ k = \nu }$$
 	\item \textit{Neutrons are pointlike.} A reasonable assumption because the de Broglie wavelength of a neutron is significantlly less than the diameter of an atom. This assumption allows us to neglect rotation and quantum effects and write the transport equation as a function of energy. We need only being concerned with the particle's translational kinetic energy.
 	\item \textit{Neutral particles travel in straight lines.} Neutron trajectories will not bend between collisions, and we can make the assumption that $\frac{\partial \theta}{\partial t} = 0$ and $\frac{\partial \varphi}{\partial t} = 0$.
 	\item \textit{Particle-particle collisions are negligible.} Neutrons are generally very unlikely to collide/otherwise interact with other neutrons, allowing us to express the transport equation as a linear differential equation.
-	\item \textit{Material properties are isotropic.} Valid when neutrons are moving with an appreciable velocity, this condition allows us to establish cross sections simply as functions of $\vec{r}$ and $E$ (not $\hat{\Omega}$).
+	\item \textit{Material properties are isotropic.} Valid when neutrons are moving with an appreciable velocity, this condition allows us to establish cross sections simply as functions of $\vec{r}$ and $E$ (not $\Oh$).
 	\item \textit{Material composition is independent of time.} Similar to assumption 5, our cross sections become dependent only on $\vec{r}$ and $E$. Though material does change over long time scales (\textit{i.e.} burnup) this assumption is valid for short term neutronics calculations.
 	\item \textit{Quantities are expected values.} We may be unable to properly predict fluctuations in our results for cases where we are dealing with low density media.
 
@@ -283,9 +289,9 @@ Before starting, we must replace the volume considered by the 3D case by a 1D le
 
 \textbf{Time-rate-of-change}\\
 First we consider the rate of change of particles in the rod. This is accomplished by taking the derivative of the neutron population with respect to time at a location, and then integrating that over the length of the rod.
-$$ \int_L \frac{\partial}{\partial t}n(x,E,\hat{\Omega},t)dx\,d\hat{\Omega}\,dE $$
-It should be noted here that in one dimension, the direction of the particle ($\hat{\Omega}$) can only be in the positive or negative direction. With this finite domain, it is easy to express the neutron population as
-$$ n(x,E,\hat{\Omega},t)\,d\hat{\Omega} = n_{+}(x,E,t) + n_{-}(x,E,t). $$
+$$ \int_L \frac{\partial}{\partial t}n(x,E,\Oh,t)dx\,d\Oh\,dE $$
+It should be noted here that in one dimension, the direction of the particle ($\Oh$) can only be in the positive or negative direction. With this finite domain, it is easy to express the neutron population as
+$$ n(x,E,\Oh,t)\,d\Oh = n_{+}(x,E,t) + n_{-}(x,E,t). $$
 Then, the time-rate-of-change becomes
 $$ \int_L \frac{\partial}{\partial t}\left[n_{+}(x,E,t) + n_{-}(x,E,t)\right]dx\,dE $$
 
@@ -307,8 +313,8 @@ $$ \int_L \Sigma_t v \left[n_{+}(x,E,t) + n_{-}(x,E,t)\right]dx\,dE $$
 
 \textbf{Streaming}\\
 Like in the 3D case, we can define $\vec{j}$ as the expected number of particles exiting the 1D rod. Since we only need to account for particles entering or leaving in the single dimension, the integral over surface $S$ becomes unnecessary, and can be replaced by the current at both ends of the rod. We retain the integral (now over $L$) for reasons apparent later, but incorporate this fact through a delta function.
-$$ \int_L \left[\vec{j}(x,E,\hat{\Omega},t)\delta(\frac{L}{2}) + \vec{j}(x,E,\hat{\Omega},t)\delta(-\frac{L}{2})\right]dx\,dE\,d\hat{\Omega} $$
-Also, we can eliminate the $\hat{\Omega}$ dependence since we no longer need to account for particles traveling in 3D. Instead, we can divide our equation up again into the two components, one for particles traveling left and another for particles traveling right at each boundary. The result of these operations is
+$$ \int_L \left[\vec{j}(x,E,\Oh,t)\delta(\frac{L}{2}) + \vec{j}(x,E,\Oh,t)\delta(-\frac{L}{2})\right]dx\,dE\,d\Oh $$
+Also, we can eliminate the $\Oh$ dependence since we no longer need to account for particles traveling in 3D. Instead, we can divide our equation up again into the two components, one for particles traveling left and another for particles traveling right at each boundary. The result of these operations is
 $$ \int_L \left[j_{+}(x,E,t)\delta(x-\frac{L}{2}) + j_{-}(x,E,t)\delta(x-\frac{L}{2}) + j_{+}(x,E,t)\delta(x+\frac{L}{2}) + j_{-}(x,E,t)\delta(x+\frac{L}{2})\right]dx\,dE $$
 Noting that $j_{\pm} = vn_{\pm}$,
 $$ \int_L v \left[n_{+}(x,E,t)\delta(x-\frac{L}{2}) + n_{-}(x,E,t)\delta(x-\frac{L}{2}) + n_{+}(x,E,t)\delta(x+\frac{L}{2}) + n_{-}(x,E,t)\delta(x+\frac{L}{2})\right]dx\,dE $$
@@ -356,7 +362,7 @@ over all $\mu$
 \phi(z)	&= 4\pi \cos(Bz)
 \end{align*}
 According to diffusion theory, $J(z) = -D \nabla \phi(z)$. In 1D, the gradient takes the form of a single derivative, $\nabla = \frac{d}{dz}$. By definition 
-$$ J(z) = \int_{4\pi} d\hat{\Omega} \, \hat{\Omega} \varphi(z,\mu).$$
+$$ J(z) = \int_{4\pi} d\Oh \, \Oh \varphi(z,\mu).$$
 We can substitute 
 \begin{align*}
 J(z)	&= 2\pi \int_{-1}^{1} \mu \, \varphi(z,\mu) \, d\mu \\
@@ -405,6 +411,27 @@ J_{+}(z) - J_{-}(z)	&= \frac{4\pi\phi_0 A \sin(Bz)}{3} = J(z)
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Diffusion theory is built upon the assumption that the angular flux can be adequately represented by a linearly anisotropic angular dependence. This assumption can be formulated as
+$$\psi\rOt \approx \frac{\phi\rt}{4\pi} + \frac{3\cur\rt}{4\pi}\cdot \Oh$$
+
+Now, we can start with the definition of partial current,
+$$ J_{\pm} = \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \bm{j}\rOt .$$
+and reduce it to being solely in terms of $\phi$. First, we note that $\bm{j}\rOt = \psi\rOt$, so
+$$ J_{\pm} = \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh \, \psi\rOt $$
+Now, if we substitute the assumption for $\psi$ above, this can be reexpressed as
+$$ J_{\pm} \approx \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh \, \left(\frac{\phi\rt}{4\pi} + \frac{3\cur\rt}{4\pi}\cdot \Oh\right) .$$
+We simplify this equation
+\begin{align*}
+J_{\pm}	&\approx \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh \, \left(\frac{\phi\rt}{4\pi} + \frac{3\cur\rt}{4\pi}\cdot \Oh\right) \\
+		&\approx \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh \, \frac{\phi\rt}{4\pi} + \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh \frac{3\cur\rt}{4\pi}\cdot \Oh \\
+		&\approx \frac{\phi\rt}{4\pi} \int_{2\pi\pm} d\Oh \, \hat{e}_s \cdot \Oh + \frac{3\hat{e}_s \cdot \cur\rt}{4\pi} \int_{2\pi\pm} d\Oh \, \cdot \Oh\Oh \\
+\end{align*}
+Here we note that $\hat{e}_s \cdot \Oh = \cos\theta$ and that $\cur\rt = -D(r)\nabla\phi\rt$. Substituting these values into the equation, and converting the first integral to be over the polar coordinates $\theta$ and $\varphi$ we have the following expression.
+$$ J_{\pm} \approx \frac{\phi\rt}{4\pi} \int_{0}^{2\pi}\int_{0}^{\pm\pi/2} \sin\theta \, \cos\theta \, d\theta \, d\varphi - \frac{3\hat{e}_s\cdot D(r)\nabla\phi\rt}{4\pi} \int_{2\pi\pm} d\Oh \, \cdot \Oh\Oh \\$$
+The integrals can be solved (the first by substituting: $\int_{0}^{2\pi}d\varphi = 2\pi$ and $\int_{0}^{\pm\pi/2}\sin\theta \, \cos\theta \, d\theta = \frac{1}{2}$; the second with the fact that $\int_{2\pi\pm} d\Oh \, \Omega_i\Omega_j = 0$, unless $i=j$ in which case $\int_{2\pi\pm} d\Oh \, \Omega_i\Omega_i = \pm\frac{2\pi}{3}$),
+$$ J_{\pm} \approx \frac{\phi\rt}{4} \mp \frac{D(r)}{2}\hat{e}_s \cdot \nabla\phi\rt$$
 
 \includepdf[pages=-]{NE250_HW01_mnegus-notebook.pdf}
 
