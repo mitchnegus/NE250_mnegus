@@ -664,9 +664,92 @@ $$ \Oov \frac{\p \phi_1}{\p t} = S_1\rt - \Xs_a(\pos)\phi_1\rt + \nabla \cdot D_
 Generally, $\Oh$ is continuous in $4\pi$. Since computation requires discrete values, we can treat the continous distribution as $\{\Oh_1, \Oh_2, .. , \Oh_n\}$. This leads to ray effects, however.
 
 \textbf{Legendre Polynomials: } 
-$$ P
+$$ P $$
+
+\h{...}
+
+When $S_0$ is at $x$,
+$$-D\frac{d\phi}{dx}\bigg|_{+\epsilon} + D\frac{d\phi}{dx}\bigg|_{-\epsilon} = J_x(0^+) - J_x(0^-) = S_0$$
+
+Now we look at boundary conditions:
+\begin{multicols}{2}
+(1) $x<0$, the left half\\
+	\tab $\frac{d^2\phi}{dx^2} - \frac{1}{L^2}\phi(X) = 0$\\
+	\tab $\lim_{x\rightarrow0^+}\cur(x) = \frac{S_0}{2}$\\
+	
+	\tab $\lim_{x\rightarrow0^{-\infty}}|\phi(x)| < \infty$\\
+	\tab $\phi(x) \geq 0$
+	
+(2) $x>0$, the right half\\
+	\tab $\frac{d^2\phi}{dx^2} - \frac{1}{L^2}\phi(X) = 0$\\
+	\tab $\lim_{x\rightarrow0^-}\cur(x) = -\frac{S_0}{2}$\\
+	
+	\tab $\lim_{x\rightarrow0^{+\infty}}|\phi(x)| < \infty$\\
+	\tab $\phi(x) \geq 0$
+\end{multicols}
+
+The generic solution is \\
+$$ \phi(x) = C_1e^{-x/L} + C_2e^{x/L} $$
+Due to the finiteness condition, $C=0$.\\
+Then ...
+
+\hhh{Plane source in a vacuum}
+
+We have an infinite plane source in a slab of thickness $a$, surrounded by vacuum.
+
+\includegraphics[width=5cm]{inf_slab_vacuum}
+
+\begin{multicols}{2}
+(1) $x>0$ \\
+	\tab $\frac{d^2\phi}{dx^2} - \frac{1}{L^2}\phi(X) = 0$ \\
+	\tab $\lim_{x\rightarrow0^+}\cur(x) = \frac{S_0}{2}$ \\
+	\tab $\phi(\frac{\tilde{a}}{2})=0$ \\
+	
+(2) $x<0$ \\
+	\tab $\frac{d^2\phi}{dx^2} - \frac{1}{L^2}\phi(X) = 0$ \\
+	\tab $\lim_{x\rightarrow0^-}\cur(x) = -\frac{S_0}{2}$ \\
+	\tab $\phi(-\frac{\tilde{a}}{2})=0$ \\
+\end{multicols}
+
+Again, $\phi(X) = C_1 e^{-|x|/L} + C_2e^{|x|/L}$.
+
+If instead we had a uniformly distributed source, the diffusion equation would be
+$$\frac{d^2\phi(x)}{dx^2} - \frac{1}{L^2}\phi(x) = \frac{S_0}{D}$$
+Our boundary conditions would then be...
 
 
+Now consider the uniform source in a reflector. For that reflector, assume $Xs_s \approx \Xs_t$ and $\Xs_s > \Xs_a$.
+
+\includegraphics[width=5cm]{unif_slab_reflector}
+
+The diffusion equation then can be written as
+$$\frac{d^2\phi(x)_f}{dx^2} - \frac{1}{L_f^2}\phi(x) = \frac{S_0}{D_f}$$
+
+Boundary conditions are:\\
+\begin{multicols}{2}
+	\tab $\phi_f(-\frac{a}{2}) = \phi_r(-\frac{a}{2})$, or\\
+	\tab $\phi_f(\frac{a}{2}) = \phi_r(\frac{a}{2})$\\
+	
+	\tab $\cur_f(-\frac{a}{2}) = \cur_r(-\frac{a}{2}), or$\\
+	\tab $\cur_f(\frac{a}{2}) = \cur_r(\frac{a}{2})$\\
+\end{multicols}
+... (finiteness)...
+
+$$\frac{d^2\phi(x)_r}{dx^2} - \frac{1}{L_r^2}\phi(x) = 0$$
+
+For more complicated functions,
+$$ D \nabla^2 \phi(\pos) - \Sigma_a\phi(\pos) = -S(\pos) .$$
+Reexpress this as
+$$ M\phi(\pos) = f(\pos), $$
+where $M$ is a differential operator of order $n$, and
+$$ M = a_0\phi^{(n)} + a_1\phi^{(n-1)} + ... + a_n\phi = f(\pos) $$
+
+We've been using $M = \frac{d^2}{dx^2} - \frac{1}{L_r^2}$, where $a_0=1$, $a_1=0$, and $a_2 = \frac{-1}{L}$.
+
+If we use variation of parameters,\\
+\tab $ M\phi_{\text{homogeneous}} = 0 $ \\
+\tab $ M\phi_{\text{part}} = f(\pos) $ \\
+\tab $ \phi = \phi_{\text{homogeneous}} +\phi_{\text{part}}$
 \end{document}
 
 
