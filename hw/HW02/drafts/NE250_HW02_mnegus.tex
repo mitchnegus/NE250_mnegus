@@ -1,0 +1,100 @@
+\documentclass{article}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{breqn} % Allows line breaking in math mode
+\usepackage{cancel} % Allows math strikethroughs to show cancellations
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage[final]{pdfpages} % Allows pdfs to be imported
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	\graphicspath{ {fig/} }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+\newcommand{\Oh}{\hat{\Omega}}
+\newcommand{\cur}{\bm{J}}
+\newcommand{\rt}{(\bm{r},t)}
+\newcommand{\rOt}{(\bm{r},\Oh,t)}
+
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 10/6/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Homework {2} \hfill Mitch Negus\\
+		\hspace*{\fill} 10/6/2017\\ }}}
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 1}
+
+If the energy distribution for fission neutrons from $^{235}\text{U}$ follows the functional approximation (for energy in MeV)
+$$ \chi(E) = 0.453e^{-1.036E}\sinh(\sqrt{2.29E}), $$
+then the most probable energy of a neutron corresponds to the maximum of the function. A maximum value will be found at a critical point of the function, which can be found via differentiation (specifically when $\frac{d\chi}{dE} = 0$):
+\begin{align*}
+\frac{d\chi}{dE}= 0	&= \frac{d}{dE}\left(0.453e^{-1.036E_{\text{max}}}\sinh(\sqrt{2.29E_{\text{max}}})\right) \\
+				  0	&= 0.453\frac{d}{dE}\left(e^{-1.036E_{\text{max}}}\sinh(\sqrt{2.29E_{\text{max}}})\right) \\
+				  0	&= 0.453\left[e^{-1.036E}\frac{d}{dE}\sinh(\sqrt{2.29E_{\text{max}}})+\frac{d}{dE}\left(e^{-1.036E_{\text{max}}}\right)\sinh(\sqrt{2.29E_{\text{max}}})\right] \\
+				  0	&= 0.453\left[e^{-1.036E}\cosh(\sqrt{2.29E})\frac{d}{dE}\left(\sqrt{2.29E_{\text{max}}}\right)-1.036e^{-1.036E}\sinh(\sqrt{2.29E})\right] \\
+				  0	&= 0.453\left[e^{-1.036E}\cosh(\sqrt{2.29E})\frac{\sqrt{2.29}}{2\sqrt{E_{\text{max}}}}-1.036e^{-1.036E}\sinh(\sqrt{2.29E})\right] \\
+				  0	&= \frac{\sqrt{2.29}\cosh(\sqrt{2.29E})}{2\sqrt{E_{\text{max}}}}-1.036\sinh(\sqrt{2.29E}) \\
+				  0	&= 1 - 1.369\sqrt{E_{\text{max}}}\tanh(\sqrt{2.29E_{\text{max}}}) \\
+				  1	&= 1.369\sqrt{E_{\text{max}}}\tanh(\sqrt{2.29E_{\text{max}}}) \\
+\end{align*}
+$$\boxed{ E_{\text{max}}= 0.724\text{ MeV} }$$
+
+The average energy can be found by finding the expected value of the function on the domain $[0,\infty)$.
+\begin{align*}
+E_{\text{ave}}	&= \int_0^{\infty} E\,\chi(E)\,dE \\
+				&= \int_0^{\infty} E\left(0.453e^{-1.036E}\sinh(\sqrt{2.29E})\right)\,dE \\
+				&= 0.453\int_0^{\infty} E\,e^{-1.036E}\sinh(\sqrt{2.29E})\,dE \\
+\end{align*}
+$$\boxed{ E_{\text{ave}} = 1.98\text{ MeV} }$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 2}
+
+A general reaction rate for process $x$ as a function of energy can be defined as 
+$$ R_x(E) = \Sigma_x(E) \phi(E) $$
+where $\Sigma_x(E)$ is the macroscopic cross section for reaction $x$ and $\phi$ is the neutron flux, both at energy $E$. The macroscopic cross section can be further decomposed, so that
+$$ R_x(E) = n \sigma_x(E) \phi(E) .$$
+Comparing neutron-neutron reactions with all neutron-nuclei reactions, the ratio of reaction rates is
+$$ \frac{R_{nn}(E)}{R_{tot}(E)} = \frac{n \sigma_{nn}(E) \phi(E)}{n \sigma_{tot}(E) \phi(E)} .$$
+
+\end{document}
+
+
+
+
+
+
+
+ 
