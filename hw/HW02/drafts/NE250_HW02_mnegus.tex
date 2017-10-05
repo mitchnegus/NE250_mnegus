@@ -130,33 +130,93 @@ $$ \bar{\mu}_0 = \frac{1}{\Sigma_s}  \int_{4\pi} d\Oh \int_{4\pi} d\Oh' \, \Oh \
 
 
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 5}
 
-A critical reactor has a multiplication factor of $k=1$. The multiplication factor can be definied as
-$$ k \equiv \frac{\text{\# neutrons produced}}{\text{\# neutrons absorbed}} $$
-Mathematically, the number of neutrons produced is $\int_0^E \nu \Sigma_f(E)\phi(E)\,dE$ and the number of neutrons absorbed is $\int_0^E \Sigma_a(E)\phi(E)\,dE$. Altogether, we can mathematically describe a critical reactor as 
-$$ 1 = \frac{\int_0^E \nu \Sigma_f(E)\phi(E)\,dE}{\int_0^E \Sigma_a(E)\phi(E)\,dE} $$
+A critical reactor has a multiplication factor of $k=1$. The multiplication factor (for an infinite reactor) can be defined as
+$$ k_{\infty} \equiv \frac{\text{\# neutrons produced}}{\text{\# neutrons absorbed}} $$
+Mathematically, the number of neutrons produced is $\int_0^{\infty} \nu \Sigma_f(E)\phi(E)\,dE$ and the number of neutrons absorbed is $\int_0^{\infty} \Sigma_a(E)\phi(E)\,dE$. Altogether, we can mathematically describe a critical reactor as 
+$$ 1 = \frac{\int_0^{\infty} \nu \Sigma_f(E)\phi(E)\,dE}{\int_0^{\infty} \Sigma_a(E)\phi(E)\,dE} $$
 or equivalently
-$$ \int_0^E \nu \Sigma_f(E)\phi(E)\,dE = \int_0^E \Sigma_a(E)\phi(E)\,dE. $$
+$$ \int_0^{\infty} \nu \Sigma_f(E)\phi(E)\,dE = \int_0^{\infty} \Sigma_a(E)\phi(E)\,dE. $$
 Since we are considering only thermal cross sections, we will let $\Sigma_X(E) = \Sigma_X(0.025\text{ eV}) = \Sigma_{X,T}$ and we find
-$$ \nu \Sigma_{f,T} \int_0^E \phi(E)\,dE = \Sigma_{a,T} \int_0^E \phi(E)\,dE. $$
+$$ \nu \Sigma_{f,T} \int_0^{\infty} \phi(E)\,dE = \Sigma_{a,T} \int_0^{\infty} \phi(E)\,dE. $$
 The integrals over flux cancel, and so
 $$ \nu \Sigma_{f,T} = \Sigma_{a,T} .$$
-The macroscopic cross sections can be rewritten as $\Sigma_{f,T} = \Sigma_{f,T,F}$ and $\Sigma_{a,T} = \Sigma_{a,T,F} + \Sigma_{a,T,M}$ where subscripts $F$ and $M$ denote fuel and moderator, respectively. Furthermore, each macroscopic cross section for each material can be expressed in terms of the material's number density and microscopic cross section, $\Sigma = n\sigma$. In total
-$$ \nu n_F \sigma_{f,T,F} = n_F \sigma_{a,T,F} + n_M \sigma_{a,T,M} .$$
+The macroscopic cross sections can be rewritten as $\Sigma_{f,T} = \Sigma_{f,T,\text{f}}$ and $\Sigma_{a,T} = \Sigma_{a,T,\text{f}} + \Sigma_{a,T,\text{m}}$ where subscripts $\text{f}$ and $\text{m}$ denote fuel and moderator, respectively. Furthermore, each macroscopic cross section for each material can be expressed in terms of the material's number density and microscopic cross section, $\Sigma = n\sigma$. In total
+$$ \nu n_{\text{f}} \sigma_{f,T,\text{f}} = n_{\text{f}} \sigma_{a,T,\text{f}} + n_{\text{m}} \sigma_{a,T,\text{m}} .$$
 The fuel-to-moderator density at criticality can then be expressed as
-$$ \frac{n_F}{n_M} = \frac{\sigma_{a,T,M}}{\nu \sigma_{f,T,F} - \sigma_{a,T,F}} .$$
+$$ \frac{n_{\text{f}}}{n_{\text{m}}} = \frac{\sigma_{a,T,\text{m}}}{\nu \sigma_{f,T,\text{f}} - \sigma_{a,T,\text{f}}} .$$
+\-\\
 
-(see Jupyter notebooks for full calculations)
-
+\begin{multicols}{4}
 \subsection*{\textit{a.}) \normalsize Graphite}
-$$ \frac{n_F}{n_M} = 
+$$ \frac{n_{\text{f}}}{n_{\text{m}}} = 4.55\times10^{-6}$$
+
+\subsection*{\textit{b.}) \normalsize Beryllium}
+$$ \frac{n_{\text{f}}}{n_{\text{m}}} = 1.36\times10^{-5}$$
+
+\subsection*{\textit{c.}) \normalsize Water}
+$$ \frac{n_{\text{f}}}{n_{\text{m}}} = 8.99\times10^{-4}$$
+
+\subsection*{\textit{d.}) \normalsize Graphite}
+$$ \frac{n_{\text{f}}}{n_{\text{m}}} = 1.64\times10^{-6}$$
+\end{multicols}
+
+\-\\
+(see attached Jupyter notebook for full calculations)
 
 
 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 6}
+
+\subsection*{\textit{a.})}
+
+Like in Problem 5, 
+$$k_{\infty} = \frac{\int_0^{\infty} \nu \Sigma_f(E)\phi(E)\,dE}{\int_0^{\infty} \Sigma_a(E)\phi(E)\,dE} .$$
+Again, since we are only considering cross sections averaged over the fast spectrum, we can state that $\Sigma_X(E) = \Sigma_{X,F},$ and then 
+$$ k_{\infty} = \frac{\nu \Sigma_{f,F} \int_0^{\infty} \phi(E)\,dE}{\Sigma_{a,F} \int_0^{\infty} \phi(E)\,dE} = \frac{\nu \Sigma_{f,F}}{\Sigma_{a,F}}.$$
+Next, we repeat our decomposition of the numerator and denominator, leaving 
+$$ k_{\infty} = \frac{\nu_{\text{PuO}_2} n_{\text{PuO}_2} \sigma_{F,\text{PuO}_2} + \nu_{\text{UO}_2} n_{\text{UO}_2} \sigma_{F,\text{UO}_2}}{n_{\text{PuO}_2} \sigma_{a,F,\text{PuO}_2} + n_{\text{UO}_2} \sigma_{a,F,\text{UO}_2} + n_{\text{Fe}} \sigma_{a,F,\text{Fe}} + n_{\text{Na}} \sigma_{a,F,\text{Na}}} $$
+
+After solving this equation with the given values, we find
+$$\boxed{ k_{\infty} = 1.332 }$$
+
+
+\subsection*{\textit{b.})}
+
+We can use the densities and volume fractions to determine the fraction of the core mass that is fuel. 
+$$\boxed{ 61.6\% \text{ is fuel} }$$
+
+
+\subsection*{\textit{c.})}
+
+If $k = 1$ and the non-leakage probability is $P_{NL} = 0.90$, then we can reexpress our earlier equation as
+
+$$ k = 1 = P_{NL}\frac{\nu \Sigma_{f,F} \int_0^{\infty} \phi(E)\,dE}{\Sigma_{a,F} \int_0^{\infty} \phi(E)\,dE} = P_{NL}\frac{\nu \Sigma_{f,F}}{\Sigma_{a,F}},$$
+
+or 
+
+$$ P_{NL}\nu \Sigma_{f,F} = \Sigma_{a,F}. $$
+
+When separated into individual materials, this is 
+
+$$ P_{NL}\sum_i \nu_i n_i \sigma_{f,i} = \sum_j n_j \sigma_{a,j} .$$
+
+or explicitly
+
+$$ P_{NL} \left( \nu_{\text{PuO}_2} n_{\text{PuO}_2} \sigma_{F,\text{PuO}_2} + \nu_{\text{UO}_2} n_{\text{UO}_2} \sigma_{F,\text{UO}_2}\right) = n_{\text{PuO}_2} \sigma_{a,F,\text{PuO}_2} + n_{\text{UO}_2} \sigma_{a,F,\text{UO}_2} + n_{\text{Fe}} \sigma_{a,F,\text{Fe}} + n_{\text{Na}} \sigma_{a,F,\text{Na}} $$
+
+We recall that $n_{\text{PuO}_2} = f_{\text{f,PuO}_2}(0.3)\frac{\rho_{\text{PuO}_2} N_A}{m_{\text{PuO}_2}}$ and $n_{\text{UO}_2} = (1-f_{\text{f,PuO}_2})(0.3)\frac{\rho_{\text{UO}2} N_A}{m_{\text{UO}_2}}$, while $n_{\text{Na}} = (0.5)\frac{\rho_{\text{Na}} N_A}{m_{\text{Na}}}$and $n_{\text{Fe}} = (0.2)\frac{\rho_{\text{Fe}} N_A}{m_{\text{Fe}}}$. We can substitute these expressions into the equation above and solve for $f_{\text{f,PuO}_2}$. 
+
+$$\boxed{ \text{The fuel must be } 10.322\% \text{ PuO}_2 \text{ and } 89.678\% \text{ UO}_2 \text{ for a critical reactor with } P_{NL} = 0.9 }$$
+
+(see attached Jupyter notebook for full calculations)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
