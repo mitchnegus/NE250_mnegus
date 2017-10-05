@@ -72,6 +72,8 @@
 \newcommand{\punine}{^{239}\text{Pu}}
 \newcommand{\puone}{^{241}\text{Pu}}
 
+\newcommand{\greens}{G(\pos,\pos')}
+\newcommand{\oneDgreens}{G(x,x')}
 
 % Create a header w/ Name & Date
 \pagestyle{fancy}
@@ -764,6 +766,128 @@ If we use variation of parameters,\\
 
 -directly placed in reactor (like gumball machine... pebbles move up or down depending on moderator/coolant) \\
 -can also be embedded in graphite compacts, assembled into core configuration
+
+
+
+\h{Diffusion Equation Solution Methods}
+
+\hh{Green's Functions}
+
+Say we have a unit source at $\pos'$. 
+$$ \nabla \cdot D \nabla \phi(\pos) +\Xs_a \phi(\pos) = -S(\pos) \forall \pos \in V$$
+...
+
+$$ \nabla \cdot D \nabla \greens + \Xs_a \greens = \delta(\pos-\pos') \forall \pos \in V $$
+...
+Let $HG = \delta$ and $H\phi = S$
+...
+
+$$ = \int_V dV \left( S(\pos') \greens - \delta(\pos-\pos')\phi(\pos)\right)$$
+
+and using the divergence theorem and our boundary conditions
+$$ \int_{\mathcal{S}} d\mathcal{S} \hat{e}_s \cdot D \left[ \nabla \phi \greens - ... \right] = 0 $$
+
+\begin{align*}
+\int_V dV S(\pos)\greens	&= \int_V dV \delta(\pos-\pos')\phi \\
+							&= \phi(\pos') 
+\end{align*}
+or 
+$$ \phi(\pos) = \int_V dV S(\pos')\greens $$
+Note: $\greens$ is a \textbf{kernel}.
+
+\hhh{Example: Plane source in an infinite medium}
+
+...
+
+$$\frac{d^2 \oneDgreens}{dx^2} - \frac{1}{L^2} \oneDgreens = -S(x)\delta(x), \text{ and} \lim_{x\rightarrow\pm\infty} \oneDgreens = 0$$
+
+Variation of constants: $\oneDgreens = \frac{L}{2D}H(x-x')e^{-|x-x'|/L} + \frac{L}{2D}H(x-x')e^{|x-x'|/L}$, where $H(x-x')$ is the heaviside function.
+
+Then 
+$$ \phi = \int_{}^{}dx' \oneDgreens \delta(x') S $$
+$$ \phi(x) = \frac{SL}{2D}e^{-|x|/L} $$
+
+\hh{Eigenfunction expansion method}
+We use this method to get the DE solution as a functional expansion of eigenvectors.
+
+\hhh{Eigenvalues}
+A special set of scalars associated with a linear system of equations. They are also known as characteristic roots. Each eigenvalue has a corresponding eigenvector. 
+
+$\mathbf{A} \in \mathbb{C}^n \times \mathbb{C}^n$, then $\mathbf{A}$ can be composed into eigenvectors and eigenvalues as long as $\mathbf{A}$ is square.
+
+Let $\mathbf{A} \in \mathbb{R}^{n \times n}.$ If there is a $\vec{x} \in \mathbb{R}^n \text{ s.t. } \mathbf{A}\vec{x} = \lambda\vec{x}$.
+
+...
+
+Solve for $\lambda$s and $\vec{x}$s that go w/ them. There are nontrivial solutions iff $\det(\mathbf{A} - \lambda\mathbb{1}) = 0$. $\mathbf{A}_{n\ times n}$ is guaranteed to have $n$ eigenvalues, some of which ay be repeated. This spectrum of $\mathbf{A}$ is 
+$$ \sigma(A) \equiv \left[ \lambda \in \mathbb{C} : \det(\mathbf{A}-\lambda\mathbb{1}) = 0 \right], \, \lambda \in \sigma(\mathbf{A}) $$
+
+\hhh{...}
+$$ \nabla^2 \phi(\pos) - \Xs_a \phi(\pos) = \frac{-S(\pos)}{D}, \, \forall \, \pos \in V $$
+where our boundary conditions 
+$$ \phi(\pos) = 0, \, \forall \, \pos \in \mathcal{S} $$
+
+Now, let $\psi$ be an eigenvector, and $n$ be the $n^{\text{th}}$ mode.
+
+
+...
+
+where $\nabla^2 = \mathbf{A}$ and $-B_n^2 = \lambda$.
+
+$$ ... - \frac{1}{L^2}\sum_{n=1}^N c_n \psi_n = \frac{-1}{D}\sum_{n=1}^{N} S_n \psi_n $$
+
+
+$$ \sum_{n=1}^N c_n \left(B + \frac{1}{L^2}\right) \psi_n = \frac{1}{D}\sum_{n=1}^N S_n \psi_n .$$
+
+Now we use the orthonormality of eigenvectors,
+$$ \int_V dV \psi_n \psi_m =	\begin{cases}	1, & n=m \\
+												0, & n \neq m
+								\end{cases}$$
+											
+to find $c_n$.
+$$ \int_V dV \sum_{n=1}^N c_n \left(B_n^2 + \frac{1}{L^2} \right) = \frac{1}{D} S_n $$
+$$ c_n \left(B_n^2 + \frac{1}{L^2}\right) = \frac{1}{D} S_n $$
+$$ c_n = \frac{S_n}{D}\left(B_n^2 + \frac{1}{L^2}\right)^{-1} $$
+
+$$ S_n = \int_V dV S(\pos) \psi_n $$
+$$ \phi(\pos) = \int_V dV \sum_{n=1}^N \frac{S(\pos)}{D}\left(B_n^2 + \frac{1}{L^2}\right)\psi_n \psi_n $$
+
+\hhh{1D Slab with a source}
+...
+with boundary conditions $\phi(\pm\tilde{\frac{a}{2}}) = 0$.
+
+$$ \frac{d^2\psi}{dx^2} - B^2\psi = 0, \; -\frac{a}{2} \leq x \leq \frac{a}{2} $$
+...
+and $\psi(\pm\frac{\tilde{a}}{2}) = A_1 \cos(\frac{B\tilde{a}}{2}) + A_2\sin(...) = 0 $.
+...
+
+...
+$$ \psi_n =	\begin{cases}	A_n\cos(\frac{n\pi}{\tilde{a}}x),	& n \text{ is odd} \\
+							A_n\sin(\frac{n\pi}{\tilde{a}}x), 	& n \text{ is even}						\end{cases}$$
+							
+The eigenvalue is $B_n = \frac{n\pi}{\tilde{a}}$ and the eigenvectors (or normal/harmonic modes are $\psi_n = \frac{n\pi}{\tilde{a}}$.
+
+If normalize the power ($A_n = 1$),
+$$ \phi(x) = \sum_{n=1}^N c_n \psi_n $$
+$$ S(x) = \sum_{n=1}^N \psi_n S_n $$
+$$ S_n = ... $$
+
+Altogether,
+$$ \frac{d^2}{dx^2} \sum_{n=1}^N c_n \psi_n - ... = -\frac{1}{D}\sum_{n=1}^N \psi_n S_n $$
+$$ ... $$
+
+$$ c_n = \frac{S_n}{D}\left(\frac{1}{L^2} + B_n^2\right)^{-1} $$
+$$ \phi(x) = \frac{1}{D}\sum_{n=1}^N S_n\left( \frac{1}{L^2} + B_n^2 \right)^{-1} \psi_n $$
+
+Now substitute the source into the flux expression we just found.
+
+$$ \phi(x) = \int_{-\frac{\tilde{a}}{2}}^{\frac{\tilde{a}}{2}} dx \left[ \frac{2}{\tilde{a}D} \sum_{n=1}^N \frac{\psi_n(x)\psi_n(x')}{\frac{1}{L^2} + B_n^2 }\right] S(x') $$
+
+Recall Green's function,
+$$ \phi(x) = \int_{-\frac{\tilde{a}}{2}}^{\frac{\tilde{a}}{2}} dx \,\oneDgreens S(x') $$
+and we see that 
+$$ \oneDgreens = \frac{2}{\tilde{a}D} \sum_{n=1}^N \frac{\psi_n(x)\psi_n(x')}{\frac{1}{L^2} + B_n^2 }$$
+
 \end{document}
 
 
