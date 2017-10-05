@@ -34,10 +34,13 @@
           	 }		
 \newcommand{\tab}{\-\hspace{1cm}}
 
+\newcommand{\p}{\partial}
+
 \newcommand{\Oh}{\hat{\Omega}}
-\newcommand{\cur}{\bm{J}}
-\newcommand{\rt}{(\bm{r},t)}
-\newcommand{\rOt}{(\bm{r},\Oh,t)}
+\newcommand{\cur}{\vec{J}}
+\newcommand{\pos}{\vec{r}}
+\newcommand{\rt}{(\vec{r},t)}
+\newcommand{\rOt}{(\vec{r},\Oh,t)}
 
 
 % Create a header w/ Name & Date
@@ -217,6 +220,35 @@ We recall that $n_{\text{PuO}_2} = f_{\text{f,PuO}_2}(0.3)\frac{\rho_{\text{PuO}
 $$\boxed{ \text{The fuel must be } 10.322\% \text{ PuO}_2 \text{ and } 89.678\% \text{ UO}_2 \text{ for a critical reactor with } P_{NL} = 0.9 }$$
 
 (see attached Jupyter notebook for full calculations)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 7}
+
+The general one-group diffusion equation is 
+$$ \frac{1}{v}\frac{\p \phi\rt}{\p t} = S\rt - \Sigma_{a,1}(\pos) \phi\rt + \nabla \cdot D(\pos) \nabla \phi\rt .$$
+If we assume that our reflected system is steady state, then $\frac{\p \phi\rt}{\p t} = 0$. Also, we assume that our system is homogenous in each region (slab and reflector) so that $\Sigma_{a}(\pos) = \Sigma_{a,\text{X}}$ and $D(\pos) = D_{\text{X}}$ for each region X in the system. Then, we rearrange to find
+$$ -  D_{\text{X}} \nabla^2 \phi(\pos) + \Sigma_{a,\text{X}} \phi(\pos) = S(\pos) .$$
+Where we are considering a slab geometry, the Laplacian of the flux simplifies to a second derivative, and $\pos$ is replaced by $x$.
+$$ \frac{d\phi(\pos)}{dx} - \frac{\Sigma_{a,\text{X}}}{D_{\text{X}}}\phi(\pos)  = -\frac{S(\pos)}{D_{\text{X}} } .$$
+We let $L_{\text{X}} = \sqrt{\frac{\Sigma_{a,\text{X}}}{D_{\text{X}}}}$, and so 
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{X}}^2}\phi(x)  = -\frac{S(x)}{D_{\text{X}} } .$$
+
+Noting the symmetry of our system (a slab of width $2b$ with the midplane at the origin, bounded by a reflector of width $a$ on each side), we can give the one-speed diffusion equation in the slab as
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{S}}^2}\phi(x)  = -\frac{S_0}{D_{\text{S}} } $$
+and in the reflector as
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{R}}^2}\phi(x)  = 0 .$$
+The boundary conditions on our system are that 
+\begin{multicols}{2}
+$$ \phi_S(b) = \phi_R(b) $$
+$$ \cur_S(b) = \cur_R(b) $$
+
+$$ \phi_S(a+\tilde{b}) = 0 $$
+$$ \cur_S(a+b) = 0 $$
+\end{multicols}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
