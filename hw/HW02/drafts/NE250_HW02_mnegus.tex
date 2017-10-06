@@ -273,6 +273,40 @@ Since hyperbolic cotangent is an odd function, we can simplify this to
 $$\boxed{\alpha = \frac{1 - \frac{2D}{L}\coth\left(\frac{\tilde{a}}{L}\right)}{1 + \frac{2D}{L}\coth\left(\frac{\tilde{a}}{L}\right)} }$$ 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 8}
+
+From the previous problem, $\alpha \equiv \frac{J_{\text{out}}}{J_{\text{in}}}$. If we further define $\beta \equiv \frac{J_+(a)-J_-(a)}{J_+(a)}$, we can express $\beta$ in terms of $\alpha$ through algebraic maniupulation. First, we let $J_+(a) = J_{\text{in}}$ and $J_-(a) = J_{\text{out}}$ for the right handed boundary.
+\begin{align*}
+\beta	&= \frac{J_{\text{in}}-J_{\text{out}}}{J_{\text{in}}} \\
+		&= 1 - \frac{J_{\text{out}}}{J_{\text{in}}} \\
+\boxed{ \beta = 1 - \alpha }
+\end{align*}
+We can also define $\gamma \equiv \frac{J(a)}{\phi(a)}$ and then express it in terms of $\alpha$ as well. Again we let $J_+(a) = J_{\text{in}}$ and $J_-(a) = J_{\text{out}}$ for the right handed boundary, but we also now note that $J_+(x) = \frac{\phi(x)}{4} - \frac{D}{2}\frac{d\phi(x)}{dx} = \frac{\phi(x)}{4} + \frac{J(x)}{2}$. From here, $\phi(x)$ can be found as $\phi(x) = 4J_-(x) - 2J(x)$. 
+\begin{align*}
+\gamma	&= \frac{J_+(a)-J_-(a)}{4J_+(a) - 2J(a)} \\
+		&= \frac{J_+(a)-J_-(a)}{4J_+(a) - 2J_+(a) + 2J_-(a)} \\
+		&= \frac{J_{\text{in}}-J_{\text{out}}}{4J_{\text{in}} - 2J_{\text{in}} + 2J_{\text{out}}} \\
+				&= \frac{J_{\text{in}}-J_{\text{out}}}{2(J_{\text{in}} + J_{\text{out}})} \\				
+				&= \frac{1-\frac{J_{\text{out}}}{J_{\text{in}}}}{2(1 + \frac{J_{\text{out}}}{J_{\text{in}}})} \\
+\boxed{ \gamma = \frac{1 - \alpha}{2(1 + \alpha)} }
+\end{align*}
+
+With these values we can then solve for $\alpha$ in terms of each $\beta$ and $\gamma$. Very simply
+$$\boxed{ \alpha = 1 - \beta }$$
+but also
+$$ \gamma = \frac{1 - \alpha}{2(1 + \alpha)} $$
+$$ 2\gamma = \frac{1 - \alpha}{1 + \alpha} $$
+$$ 2\gamma(1+\alpha) = 1 - \alpha $$
+$$ 2\gamma + 2\alpha\gamma = 1 - \alpha $$
+$$ 2\gamma - 1 = -\alpha - 2\alpha\gamma $$
+$$ 2\gamma - 1 = \alpha(-1 - 2\gamma) $$
+$$ \alpha = \frac{2\gamma - 1}{-1 - 2\gamma} $$
+$$\boxed{ \alpha = \frac{1-2\gamma}{1+2\gamma} }$$
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 10}
