@@ -307,6 +307,56 @@ $$ \alpha = \frac{2\gamma - 1}{-1 - 2\gamma} $$
 $$\boxed{ \alpha = \frac{1-2\gamma}{1+2\gamma} }$$
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Problem 9}
+
+The one-speed diffusion equation for a finite slab containing a uniformly distributed neutron source is 
+$$ -D\frac{d^2\phi(x)}{dx^2} + \Sigma_a\phi(x) = s $$
+or equivalently (when $L = \sqrt{\frac{D}{\Sigma_a}}$),
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L^2}\phi(x) = -\frac{s}{D} $$
+We know that the homogeneous solution to this equation (solving for $\phi(x)$ when $\frac{d\phi(x)}{dx} - \frac{1}{L^2}\phi(x) = 0$) is of the form
+$$ \phi(x) = C_1e^{x/L} + C_2e^{-x/L} $$
+Next we vary the parameters to solve for the particular solution,
+$$ \phi_p(x) = c_1(x)e^{x/L} + c_2(x)e^{-x/L} .$$
+Then,
+$$ \frac{d\phi_p(x)}{dx} = c_1'(x)e^{x/L} + c_2'(x)e^{-x/L} + \frac{c_1(x)}{L}e^{x/L} - \frac{c_2(x)}{L}e^{-x/L}, $$
+however we note that $c_1'(x)e^{x/L} + c_2'(x)e^{-x/L} = 0$ and 
+$$ \frac{d\phi_p(x)}{dx} = \frac{c_1(x)}{L}e^{x/L} - \frac{c_2(x)}{L}e^{-x/L}. $$
+Taking the second derivative of $\phi(x)$, we have
+$$ \frac{d^2\phi_p(x)}{dx^2} = \frac{c_1'(x)}{L}e^{x/L} - \frac{c_2'(x)}{L}e^{-x/L} + \frac{c_1(x)}{L^2}e^{x/L} + \frac{c_2(x)}{L^2}e^{-x/L}. $$
+If we plug $\phi_p(x)$ and its second derivative into our original equation, we find
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L^2}\phi(x) = -\frac{s}{D} $$
+$$ \frac{c_1'(x)}{L}e^{x/L} - \frac{c_2'(x)}{L}e^{-x/L} + \frac{c_1(x)}{L^2}e^{x/L} + \frac{c_2(x)}{L^2}e^{-x/L} - \frac{1}{L^2}\left(c_1(x)e^{x/L} + c_2(x)e^{-x/L}\right) = -\frac{s}{D} $$
+$$ \left(\frac{c_1'(x)}{L}e^{x/L} - \frac{c_2'(x)}{L}e^{-x/L}\right) + \cancel{c_1(x) \left( \frac{e^{x/L}}{L^2} - \frac{e^{x/L}}{L^2}\right)} + \cancel{c_2(x) \left( \frac{e^{-x/L}}{L^2} - \frac{e^{-x/L}}{L^2}\right)} = -\frac{s}{D} $$
+Now we solve for $c_1'(x)$. From earlier, we assumed $c_1'(x)e^{x/L} + c_2'(x)e^{-x/L} = 0$, and so
+$$ c_1'(x) = -c_2'(x)e^{-2x/L} .$$
+We plug this into our original equation where we substituted the particular solutions and find
+$$ \frac{c_1'(x)}{L}e^{x/L} - \frac{c_2'(x)}{L}e^{-x/L} = -\frac{s}{D} $$
+$$ \frac{-c_2'(x)e^{-2x/L}}{L}e^{x/L} - \frac{c_2'(x)}{L}e^{-x/L} = -\frac{s}{D} $$
+$$ c_2'(x)\left(\frac{-e^{-x/L}}{L} - \frac{e^{-x/L}}{L}\right) = -\frac{s}{D} $$
+$$ c_2'(x)\left(\frac{-2e^{-x/L}}{L}\right) = -\frac{s}{D} $$
+$$ c_2'(x) = \frac{sLe^{x/L}}{2D} $$
+We plug this back into our equation for $c_1'(x)$ and get
+$$ c_1'(x) = -\left(\frac{sLe^{x/L}}{2D}\right)e^{-2x/L} .$$
+$$ c_1'(x) = -\frac{sLe^{-x/L}}{2D} .$$
+Finally, we integrate:
+$$ c_1(x) = \int -\frac{sLe^{-x/L}}{2D}\, dx $$
+$$ c_1(x) = -\frac{sL}{2D}\int e^{-x/L}\, dx $$
+$$ c_1(x) = \frac{sL^2}{2D}e^{-x/L}$$
+and
+$$ c_2(x) = \int \frac{sLe^{x/L}}{2D}\, dx $$
+$$ c_2(x) = \frac{sL}{2D}\int e^{x/L}\, dx $$
+$$ c_2(x) = \frac{sL^2}{2D}e^{x/L}$$
+We finally return these to our original particular solution for $\phi(x)$,
+$$ \phi_p(x) = \left(\frac{sL^2}{2D}e^{-x/L}\right)e^{x/L} + \left(\frac{sL^2}{2D}e^{x/L}\right)e^{-x/L} $$
+$$ \phi_p(x) = \frac{sL^2}{2D} + \frac{sL^2}{2D} $$
+$$ \phi_p(x) = \frac{sL^2}{D} $$
+We combine this particular solution with the general solution, to get
+$$\boxed{ \phi(x) = C_1e^{x/L} + C_2e^{-x/L} + \frac{sL^2}{D} }$$
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 10}
