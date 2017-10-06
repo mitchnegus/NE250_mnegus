@@ -227,28 +227,50 @@ $$\boxed{ \text{The fuel must be } 10.322\% \text{ PuO}_2 \text{ and } 89.678\% 
 
 \section*{Problem 7}
 
-The general one-group diffusion equation is 
-$$ \frac{1}{v}\frac{\p \phi\rt}{\p t} = S\rt - \Sigma_{a,1}(\pos) \phi\rt + \nabla \cdot D(\pos) \nabla \phi\rt .$$
-If we assume that our reflected system is steady state, then $\frac{\p \phi\rt}{\p t} = 0$. Also, we assume that our system is homogenous in each region (slab and reflector) so that $\Sigma_{a}(\pos) = \Sigma_{a,\text{X}}$ and $D(\pos) = D_{\text{X}}$ for each region X in the system. Then, we rearrange to find
-$$ -  D_{\text{X}} \nabla^2 \phi(\pos) + \Sigma_{a,\text{X}} \phi(\pos) = S(\pos) .$$
-Where we are considering a slab geometry, the Laplacian of the flux simplifies to a second derivative, and $\pos$ is replaced by $x$.
-$$ \frac{d\phi(\pos)}{dx} - \frac{\Sigma_{a,\text{X}}}{D_{\text{X}}}\phi(\pos)  = -\frac{S(\pos)}{D_{\text{X}} } .$$
-We let $L_{\text{X}} = \sqrt{\frac{\Sigma_{a,\text{X}}}{D_{\text{X}}}}$, and so 
-$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{X}}^2}\phi(x)  = -\frac{S(x)}{D_{\text{X}} } .$$
+We are told that the albedo is defined as the ratio of current out of a reflecting surface and into a reflecting surface, $\alpha \equiv \frac{J_{\text{out}}}{J_{\text{in}}}$. We also note that without an internal source, the one-speed, one-dimensional diffusion equation in the reflector is given by
+$$ \frac{d^2\phi(x)}{dx} - \frac{1}{L^2}\phi(x) = 0 $$
+where $L = \sqrt{\frac{D}{\Sigma_a}}$ is the diffusion length in the reflector and $D$ is the diffusion coefficient of the reflector (both constant).
 
-Noting the symmetry of our system (a slab of width $2b$ with the midplane at the origin, bounded by a reflector of width $a$ on each side), we can give the one-speed diffusion equation in the slab as
-$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{S}}^2}\phi(x)  = -\frac{S_0}{D_{\text{S}} } $$
-and in the reflector as
-$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L_{\text{R}}^2}\phi(x)  = 0 .$$
-The boundary conditions on our system are that 
-\begin{multicols}{2}
-$$ \phi_S(b) = \phi_R(b) $$
-$$ \cur_S(b) = \cur_R(b) $$
+This equation is constrained by two boundary conditions: 
+$$ \phi(\tilde{a}) = 0 $$
+$$ J_+(0) = J_{\text{in}} .$$
+The first of these states that the flux must go to zero at the extrapolated distance (no infinite flux over all space), and the second implies that the uniformly distributed slab source can be treated as a uniform plane source at the boundary from the perspective of the reflector.
 
-$$ \phi_S(a+\tilde{b}) = 0 $$
-$$ \cur_S(a+b) = 0 $$
-\end{multicols}
-
+We can now solve the one-speed diffusion equation for the reflector. The solution is of the form
+$$ \phi(x) = C_1 e^{x/L} + C_2 e^{-x/L} .$$
+Applying our first boundary condition,
+$$ \phi(\tilde{a}) = 0 = C_1 e^{\tilde{a}/L} + C_2 e^{-\tilde{a}/L} $$
+$$ C_2 = -C_1 e^{2\tilde{a}/L} $$
+and so
+$$ \phi(x) = C_1 e^{x/L} - C_1 e^{2\tilde{a}/L} e^{-x/L}, $$
+or, when factoring out $C = 2 C_1 e^{\tilde{a}/L}$
+$$ \phi(x) = C \frac{e^{(x-\tilde{a})/L} -  e^{(\tilde{a}-x)/L}}{2} = C \sinh\left(\frac{x-\tilde{a}}{L}\right). $$
+We can then apply our second boundary condition if we note that 
+$$ J_+(x) = \frac{\phi(x)}{4} - \frac{D}{2}\frac{d\phi(x)}{dx} $$
+which means
+$$ J_{\text{in}} = \frac{C \sinh\left(\frac{-\tilde{a}}{L}\right)}{4} - \frac{D}{2} \frac{d}{dx}\left[ C \sinh\left(\frac{x-\tilde{a}}{L}\right) \right]_{x=0} $$
+or more simply
+$$ J_{\text{in}} = \frac{C\sinh\left(\frac{-\tilde{a}}{L}\right)}{4} - \frac{CD}{2L}\cosh\left(\frac{-\tilde{a}}{L}\right) $$
+We also know that $J(x) = -D\frac{d\phi(x)}{dx}$, so
+\begin{align*}
+ J(x)	&= -D \frac{d}{dx} \left[ C \sinh\left(\frac{x-\tilde{a}}{L}\right) \right]\\
+ 		&= -\frac{CD}{L} \cosh\left(\frac{x-\tilde{a}}{L}\right)
+\end{align*}
+Finally,  since $J(x) = J_+(x) - J_-(x)$,
+$$ J(0) = J_+(0) - J_-(0) = J_{\text{in}}-J_{\text{out}} $$
+or equivalently,
+\begin{align*}
+J_{\text{out}}	&= J_{\text{in}} - J(0) \\
+				&= \frac{C\sinh\left(\frac{-\tilde{a}}{L}\right)}{4} - \frac{CD}{2L}\cosh\left(\frac{-\tilde{a}}{L}\right) +\frac{CD}{L} \cosh\left(\frac{-\tilde{a}}{L}\right) \\
+				&= \frac{C\sinh\left(\frac{-\tilde{a}}{L}\right)}{4} + \frac{CD}{2L}\cosh\left(\frac{-\tilde{a}}{L}\right) 
+\end{align*}
+Altogether, we have
+\begin{align*}
+\frac{J_{\text{out}}}{J_{\text{in}}}	&= \frac{\frac{C\sinh\left(\frac{-\tilde{a}}{L}\right)}{4} + \frac{CD}{2L}\cosh\left(\frac{-\tilde{a}}{L}\right)}{\frac{C\sinh\left(\frac{-\tilde{a}}{L}\right)}{4} - \frac{CD}{2L}\cosh\left(\frac{-\tilde{a}}{L}\right)} \\
+										&= \frac{1 + \frac{2D}{L}\coth\left(\frac{-\tilde{a}}{L}\right)}{1 - \frac{2D}{L}\coth\left(\frac{-\tilde{a}}{L}\right)} 
+\end{align*}
+Since hyperbolic cotangent is an odd function, we can simplify this to
+$$\boxed{\alpha = \frac{1 - \frac{2D}{L}\coth\left(\frac{\tilde{a}}{L}\right)}{1 + \frac{2D}{L}\coth\left(\frac{\tilde{a}}{L}\right)} }$$ 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
