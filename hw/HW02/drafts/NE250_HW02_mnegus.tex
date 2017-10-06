@@ -119,6 +119,28 @@ The rate of neutron-neutron collisions is \underline{13 orders of magnitudes les
 
 \section*{Problem 3}
 
+\subsection*{\textit{a.})}
+
+The slight (negative) change in neutron intensity at some distance $x$ into a material, $dI(x)$, is equivalent to the product of the neutron intensity at that point, the number density of the material, the total cross section of the material (giving the macroscopic cross section as the chance of a collision per some distance $dx$), multiplied by the small distance $dx$.
+$$ -dI(x) = I(x)\Sigma_t \,dx $$
+We can solve this differential equation to find the intensity at $x$,
+$$ -\frac{dI(x)}{I(x)} = \Sigma_t \, dx $$
+$$ -\int\frac{dI(x)}{I(x)} = \int\Sigma_t \, dx $$
+$$ - \ln(I(x)) + C= \Sigma_t x $$
+or
+$$ I(x) = e^{-\Sigma_t x + C} = Ce^{-\Sigma_t x}.$$
+Using the fact that $I(0) = I_0$, we find $C=I_0$. In total
+$$ I(x) = I_0 e^{-\Sigma_t x} $$
+The fraction of neutrons remaining (uncollided) at distance $x$ is then
+$$ \frac{I(x)}{I_0} = e^{-\Sigma_t x} .$$
+This fraction is the probability that a neutron travels a distance $x$ through a material without a collision:
+$$ P(x) = e^{-\Sigma_t x} $$
+We can now use the cross sections for concrete to solve for $P(1\text{ m}$.
+
+$$\boxed{ P(1\text{ m}) = ... }$$
+
+(see attached Jupyter notebook for full calculations)
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -371,6 +393,7 @@ $$\boxed{ \phi(x) = C_1e^{x/L} + C_2e^{-x/L} + \frac{sL^2}{D} }$$
 \end{enumerate}
 
 
+%\includepdf[pages=-]{NE250_HW02_mnegus-prob3.pdf}
 \includepdf[pages=-]{NE250_HW02_mnegus-prob5.pdf}
 \includepdf[pages=-]{NE250_HW02_mnegus-prob6.pdf}
 
