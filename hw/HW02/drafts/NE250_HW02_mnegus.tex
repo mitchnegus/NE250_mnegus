@@ -141,6 +141,82 @@ $$\boxed{ P(1\text{ m}) = 3.8\times10^{-21} }$$
 
 (see attached Jupyter notebook for full calculations)
 
+\subsection*{\textit{b.})}
+
+We can use the neutron diffusion equation to determine the probability that a neutron will diffuse through the concrete shield of thickness $\ell = 100\text{ cm}$. Where we are only considering thermal neutrons, we can use the one-speed, one-dimensional neutron diffusion equation. This is
+$$ \frac{d^2\phi(x)}{dx} - \frac{1}{L^2}\phi(x) = 0 $$
+where $L = \sqrt{\frac{D}{\Sigma_a}}$ is the diffusion length in the concrete and $D$ is the diffusion coefficient of the concrete (both constant).
+$$ \phi(x) = C_1e^{x/L} + C_2e^{-x/L} $$
+and our boundary conditions are
+$$ J_+(0) = J_{\text{in}} $$
+$$ J_-(\ell) = 0, \, J_+(\ell) = J(\ell) $$
+Ultimately, we need to find $J_+(\ell) = J_{\text{out}}$ since
+$$ P(\text{diffuse}) = \frac{J_{\text{out}}}{J_{\text{in}}} $$
+
+To start, we note the relationship between the scalar flux and partial currents,
+$$ J_{\pm}(x) = \frac{\phi(x)}{4} \mp \frac{D}{2}\frac{d\phi(x)}{dx} $$
+At $x = \ell$
+\begin{align*}
+J_-(\ell) =	0	&= \frac{C_1e^{\ell/L} + C_2e^{-\ell/L}}{4} - \frac{D}{2}\frac{d}{dx}\left[C_1e^{x/L} + C_2e^{-x/L}\right]_{x=\ell} \\
+			0	&= \frac{C_1e^{\ell/L} + C_2e^{-\ell/L}}{4} - \frac{D}{2}\left[\frac{C_1e^{\ell/L}}{L} - \frac{C_2e^{-\ell/L}}{L}\right] \\
+C_2e^{-\ell/L}\left(\frac{1}{4} + \frac{D}{2L}  \right) &= -C_1e^{\ell/L}\left(\frac{1}{4} - \frac{D}{2L}  \right) \\
+C_2 &= -C_1e^{2\ell/L}\frac{\left(\frac{1}{4} - \frac{D}{2L}\right)}{\left(\frac{1}{4} + \frac{D}{2L}\right)}
+\end{align*}
+At $x = 0$, 
+\begin{align*}
+J_+(0) =	J_{\text{in}}	&= \frac{C_1 + C_2}{4} - \frac{D}{2}\frac{d}{dx}\left[C_1e^{x/L} + C_2e^{-x/L}\right]_{x=0} \\
+						&= \frac{C_1 + C_2}{4} - \frac{D}{2}\left[\frac{C_1}{L} - \frac{C_2}{L}\right] \\
+			J_{\text{in}}	&= C_1\left(\frac{1}{4} - \frac{D}{2L}\right) + C_2\left(\frac{1}{4} + \frac{D}{2L}\right)
+\end{align*}
+Substituting in our earlier value for $C_2$,
+$$ J_{\text{in}} = C_1\left(\frac{1}{4} - \frac{D}{2L}\right) -C_1e^{2\ell/L}\frac{\left(\frac{1}{4} - \frac{D}{2L}\right)}{\left(\frac{1}{4} + \frac{D}{2L}\right)}\left(\frac{1}{4} + \frac{D}{2L}\right)$$
+$$ J_{\text{in}} = C_1\left(\frac{1}{4} - \frac{D}{2L}\right) -C_1e^{2\ell/L}\left(\frac{1}{4} - \frac{D}{2L}\right)$$
+$$ J_{\text{in}} = C_1\left(\frac{1}{4} - \frac{D}{2L}\right)\left(1 -e^{2\ell/L}\right)$$
+$$ C_1 = \frac{J_{\text{in}}}{\left(\frac{1}{4} - \frac{D}{2L}\right)\left(1 -e^{2\ell/L}\right)} $$
+And in total,
+$$ \phi(x) = \frac{J_{\text{in}}}{\left(\frac{1}{4} - \frac{D}{2L}\right)\left(1 -e^{2\ell/L}\right)}e^{x/L} -\frac{J_{\text{in}}}{\left(\frac{1}{4} + \frac{D}{2L}\right)\left(1 -e^{2\ell/L}\right)}e^{2\ell/L}e^{-x/L} $$
+$$ \phi(x) = \frac{J_{\text{in}}}{\left(1 -e^{2\ell/L}\right)}\left(\frac{e^{x/L}}{\frac{1}{4} - \frac{D}{2L}} -\frac{e^{-x/L}}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right) $$
+
+Also, we can use the approximation
+$$ \frac{\phi(x)}{4} = J_{\pm}(x) \pm \frac{D}{2}\frac{d\phi(x)}{dx} $$
+and since $J(x) = -D\frac{d\phi(x)}{dx}$
+$$ \frac{\phi(x)}{4} = J_{\pm}(x) \mp \frac{J(x)}{2} $$
+$$ \phi(x) = 4J_{\pm}(x) \mp 2J(x) $$
+At $\ell$,
+$$ \phi(\ell) = 4J_{\pm}(\ell) \mp 2J(\ell) $$
+$$ \phi(\ell) = 4J_+(\ell) - 2J_+(\ell) $$
+$$ \phi(\ell) = 2J_+(\ell) = 2J_{\text{out}} $$
+$$ 2J_{\text{out}} = \frac{J_{\text{in}}}{\left(1 -e^{2\ell/L}\right)}\left(\frac{e^{\ell/L}}{\frac{1}{4} - \frac{D}{2L}} -\frac{e^{-\ell/L}}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right)$$
+$$ 2J_{\text{out}} = \frac{J_{\text{in}}}{\left(1 -e^{2\ell/L}\right)}\left(\frac{e^{\ell/L}}{\frac{1}{4} - \frac{D}{2L}} -\frac{e^{\ell/L}}{\frac{1}{4} + \frac{D}{2L}}\right)$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \frac{e^{\ell/L}}{2\left(1 -e^{2\ell/L}\right)}\left(\frac{\frac{D}{2L}}{\frac{1}{16} + \frac{D^2}{4L^2}} + \frac{\frac{D}{2L}}{\frac{1}{16} + \frac{D^2}{4L^2}}\right)$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \frac{2}{\left(e^{-\ell/L} -e^{\ell/L}\right)}\left(\frac{1}{\frac{L}{4D} + \frac{D}{L}}\right)$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \frac{-\text{csch}\left(\frac{\ell}{L}\right)}{\frac{L}{4D} + \frac{D}{L}}$$
+
+\subsection*{\textit{c.})}
+We repeat a similar process as in part (b) to obtain the probability that a neutron is reflected. The diffusion equation and boundary conditions remain the same, however now we define $J_-(0) = J_{\text{out}}$.
+
+We have the flux already solved as a function of $x$
+$$ \phi(x) = \frac{J_{\text{in}}}{\left(1 -e^{2\ell/L}\right)}\left(\frac{e^{x/L}}{\frac{1}{4} - \frac{D}{2L}} -\frac{e^{-x/L}}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right) $$
+And again, we can use the approximation
+$$ \frac{\phi(x)}{4} = J_{\pm}(x) \pm \frac{D}{2}\frac{d\phi(x)}{dx} $$
+or
+$$ \phi(x) = 4J_{\pm}(x) \mp 2J(x) $$
+$$ \phi(x) = 4J_{\pm}(x) \mp 2J(x) $$
+Then,
+$$ \phi(0) = 4J_-(0) + 2J(0) $$
+$$ \phi(0) = 4J_-(0) + 2J_+(0) - 2J_-(0) $$
+$$ \phi(0) = 4J_{\text{out}} + 2J_{\text{in}} - 2J_{\text{out}} $$
+$$ \phi(0) = 2J_{\text{out}} + 2J_{\text{in}} $$
+$$ 2J_{\text{out}} + 2J_{\text{in}} = \frac{J_{\text{in}}}{\left(1 -e^{2\ell/L}\right)}\left(\frac{1}{\frac{1}{4} - \frac{D}{2L}} -\frac{1}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right)$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} + 1 = \frac{1}{2\left(1 -e^{2\ell/L}\right)}\left(\frac{1}{\frac{1}{4} - \frac{D}{2L}} -\frac{1}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right)$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \frac{1}{2\left(1 -e^{2\ell/L}\right)}\left(\frac{1}{\frac{1}{4} - \frac{D}{2L}} -\frac{1}{\frac{1}{4} + \frac{D}{2L}}e^{2\ell/L}\right) - 1$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = -\frac{2}{e^{\ell/L}\left(e^{\ell/L} -e^{-\ell/L}\right)}\left(\frac{1}{\frac{1}{4} - \frac{2D}{L}} -\frac{1}{\frac{1}{4} + \frac{2D}{L}}e^{2\ell/L}\right) - 1$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \frac{2}{\left(e^{\ell/L} -e^{-\ell/L}\right)}\left(\frac{e^{\ell/L}}{\frac{1}{4} + \frac{2D}{L}} - \frac{e^{-\ell/L}}{\frac{1}{4} - \frac{2D}{L}} \right) - 1$$
+$$ \frac{J_{\text{out}}}{J_{\text{in}}} = \text{csch}\left(\frac{\ell}{L}\right)\left(\frac{e^{\ell/L}}{\frac{1}{4} + \frac{2D}{L}} - \frac{e^{-\ell/L}}{\frac{1}{4} - \frac{2D}{L}} \right) - 1$$
+
+
+*Note, this doesn't seem to match the answer from problem 7, however that problem was solved using extrapolation distances. 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
