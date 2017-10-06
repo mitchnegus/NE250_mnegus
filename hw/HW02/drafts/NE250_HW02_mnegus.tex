@@ -223,11 +223,46 @@ $$ \frac{J_{\text{out}}}{J_{\text{in}}} = \text{csch}\left(\frac{\ell}{L}\right)
 
 \section*{Problem 4}
 
-First, we define the average scattering cosine $\bar{\mu}_0$ as the average dot product, $\langle \Oh \cdot \Oh' \rangle$. When normalized by $4\pi\Sigma_s$, the total of cross sections for scattering from any angle $\Oh$ to any other angle $\Oh'$, this is
-$$ \bar{\mu}_0 \equiv \langle \Oh \cdot \Oh' \rangle = \left(\frac{1}{4\pi\Sigma_s}\right)  \int_{4\pi} d\Oh \int_{4\pi} d\Oh' \, \Oh \cdot \Oh' \Sigma_s(\Oh \cdot \Oh') $$
+First, we define the average scattering cosine $\bar{\mu}_0$ as the average dot product, $\langle \Oh \cdot \Oh' \rangle$. More explicitly
+$$ \bar{\mu}_0 \equiv \langle \Oh \cdot \Oh' \rangle = \frac{2\pi}{\Sigma_s}\int_{-1}^{1} d\mu_0 \, d\mu_0 \, \Sigma_s(\mu_0) $$
+Scattering in the center of mass system is isotropic, and the probability that a particle scatters in any direction is roughly uniform, $\Sigma_s = constant$
 
-In the center of mass system, the probability that a particle scatters in any direction is roughly uniform, $\Sigma_{\text{CM}}(\theta_C) = \frac{\Sigma_s}{4\pi}$,
-$$ \bar{\mu}_0 = \frac{1}{\Sigma_s}  \int_{4\pi} d\Oh \int_{4\pi} d\Oh' \, \Oh \cdot \Oh' \Sigma_{\text{CM}}(\theta_C) .$$
+We can also impose a change of variables, with $\mu_0 = \cos\theta_L$ (as it is normally defined), the scattering cosine in the lab frame, and the derivative $d\mu_0 = -\sin\theta_C d\theta_C$, now in the center of mass frame. The equation becomes
+$$ \bar{\mu}_0 = \frac{2\pi}{\Sigma_s}\int_{0}^{\pi} \sin\theta_c \cos\theta_L d\theta_C \Sigma_{\text{CM}}(\theta_C) $$
+or, using our simplification for the scattering cross section
+$$ \bar{\mu}_0 = \frac{1}{2}\int_{0}^{\pi} \sin\theta_c \cos\theta_L d\theta_C $$
+It can be shown that
+$$ \cos\theta_L = \frac{1+A\cos\theta_C}{\sqrt{A^2+2A\cos\theta_C+1}} $$
+so
+\begin{align*}
+\bar{\mu}_0	&= \frac{1}{2}\int_{0}^{\pi} \sin\theta_c \frac{1+A\cos\theta_C}{\sqrt{A^2+2A\cos\theta_C+1}} d\theta_C \\
+			&= \frac{1}{2}\int_{0}^{\pi} \frac{\sin\theta_c+A\sin\theta_C\cos\theta_C}{\sqrt{A^2+2A\cos\theta_C+1}} d\theta_C \\
+			&= \frac{1}{2}\int_{0}^{\pi} \frac{\sin\theta_c \,d\theta_C}{\sqrt{A^2+2A\cos\theta_C+1}} + \frac{1}{2}\int_{0}^{\pi}\frac{A\sin\theta_C\cos\theta_C \,d\theta_C}{\sqrt{A^2+2A\cos\theta_C+1}}  
+\end{align*}
+Let $u = \cos\theta_C$ and $du = -\sin\theta_C d\theta_C$,
+\begin{align*}
+			&= -\frac{1}{2}\int_{1}^{-1} \frac{du}{\sqrt{A^2+2Au+1}} - \frac{1}{2}\int_{1}^{-1}\frac{A \, u \, du}{\sqrt{A^2+2Au+1}} 
+\end{align*}
+Now, let $a = A^2+1$ and $b = 2A$,
+\begin{align*}
+			&= \frac{1}{2}\int_{-1}^{1} \frac{du}{\sqrt{a+bu}} + \frac{A}{2}\int_{-1}^{1}\frac{u \, du}{\sqrt{a+bu}} 
+\end{align*}
+These integrals can be solved (integrals found on the CRC Handbook Integral table)
+\begin{align*}
+			&= \frac{1}{2}\left[ \frac{2\sqrt{a+bu}}{b} \right]_{-1}^{1} + \frac{A}{2}\left[ -\frac{2(2a-bu)}{3b^2}\sqrt{a+bu} \right]_{-1}^{1} \\
+			&= \frac{1}{2}\left[ \frac{2\sqrt{a+b}}{b} - \frac{2\sqrt{a-b}}{b}\right] + \frac{A}{2}\left[ -\frac{2(2a-b)}{3b^2}\sqrt{a+b} - \frac{2(2a+b)}{3b^2}\sqrt{a-b} \right] \\
+			&= \left[ \frac{\sqrt{a+b}}{b} - \frac{\sqrt{a-b}}{b}\right] + A\left[ -\frac{(2a-b)}{3b^2}\sqrt{a+b} - \frac{(2a+b)}{3b^2}\sqrt{a-b} \right] \\ 
+			&= \left[ \frac{\sqrt{A^2+2A+1}}{2A} - \frac{\sqrt{A^2-2A+1}}{2A}\right] + A\left[ -\frac{(2(A^2+1)-2A)}{3(2A)^2}\sqrt{A^2+2A+1} - \frac{(2(A^2+1)+2A)}{3(2A)^2}\sqrt{A^2-2A+1} \right] 
+\end{align*}
+Note: $A^2+2A+1 = (A+1)^2$ and $A^2-2A+1 = (A-1)^2$
+\begin{align*}
+			&= \left[ \frac{A+1}{2A} - \frac{A-1}{2A}\right] + A\left[ -\frac{(2(A^2+1)-2A)}{3(2A)^2}(A+1) - \frac{(2(A^2+1)+2A)}{3(2A)^2}(A-1) \right] \\
+			&= \frac{1}{A} - \left[ \frac{A^2-A+1}{6A}(A+1) - \frac{A^2+A+1}{6A}(A-1) \right] \\
+			&= \frac{1}{A} - \left[ \frac{A^3+1}{6A} - \frac{A^3-1}{6A} \right] \\
+			&= \frac{1}{A} - \frac{1}{3A} \\ 
+			&= \frac{3}{3A} - \frac{1}{3A} = \frac{2}{3A}\\ 
+\end{align*}
+$$\boxed{\mu_0 = \frac{2}{3A} }$$ 
 
 
 
