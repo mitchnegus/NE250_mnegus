@@ -753,6 +753,7 @@ We've been using $M = \frac{d^2}{dx^2} - \frac{1}{L_r^2}$, where $a_0=1$, $a_1=0
 
 If we use variation of parameters,\\
 \tab $ M\phi_{\text{homogeneous}} = 0 $ \\
+<<<<<<< Updated upstream
 \tab $ M\phi_{\text{particular}} = f(\pos) $ \\
 \tab $ \phi = \phi_{\text{homogeneous}} +\phi_{\text{particular}}$
 
@@ -890,6 +891,54 @@ Recall Green's function,
 $$ \phi(x) = \int_{-\frac{\tilde{a}}{2}}^{\frac{\tilde{a}}{2}} dx \,\oneDgreens S(x') $$
 and we see that 
 $$ \oneDgreens = \frac{2}{\tilde{a}D} \sum_{n=1}^N \frac{\psi_n(x)\psi_n(x')}{\frac{1}{L^2} + B_n^2 }$$
+=======
+\tab $ M\phi_{\text{part}} = f(\pos) $ \\
+\tab $ \phi = \phi_{\text{homogeneous}} +\phi_{\text{part}}$
+
+
+\hh{Separation of Variables: Time Dependence in a Uniform Slab}
+
+$$ \Oov \frac{\p\phi(x,t)}{\p t} - D\frac{\p^2\phi(x,t)}{\p x^2} + \Xs_a \phi(x,t) = \nu\Xs_f(x,t)$$
+
+Our boundary conditions are 
+$$ \phi(\pm\frac{\tilde{a}}{2},t) = 0 \text{ (vacuum)}$$
+$$ \phi(x,0) = \phi_0(x) = \phi_0(-x) \text{ (symmetric)}$$
+
+
+...
+
+Now we have 2 ODEs
+$$ \frac{dT}{dt} = -\lambda T(t) $$
+$$ D\frac{d^2\psi}{dx^2} = ... $$
+
+...
+
+Use the eigenvalue approach, solve
+$$ \frac{d^2\psi_n}{dx^2} + B_n^2\psi_n(x)=0 $$
+$$ \psi_n(\pm\frac{\tilde{a}}{2}) = 0 $$
+
+Now, due to symmetry, $\psi_n = \cos(B_n x)$ are the eigenvectors (no odd sine functions).
+$$ B_n^2 = \left( \frac{n\pi}{\tilde{a}} \right)^2, \text{ where }n=\text{odd (the ``space eigenvalue''} $$
+
+$$ \lambda = v \Xs_a + vDB_n^2 - v\nu\Xs_f \equiv \lambda_n $$
+We can solve for $\lambda$, where $\lambda_n$ is the time eigenvalue of the equation.
+
+$$ \phi(x,t) = \sum_{\text{n=odd}} A_n e^{-\lambda_n t}\cos\left(\frac{n \pi x}{\tilde{a}}\right)$$
+
+...
+
+...
+
+$$ \phi(x,t) = \sum_{n=\text{odd}} \left[ ... \right]e^{-\lambda n t}\cos(B_n x)  $$
+
+At long times: \\
+$\lambda_1 > \lambda_2 > \lambda_3 ...$ \\
+$B_1 > B_2 > B_3 ...$ \\
+... this is the geometric buckling (a measure of the curvature of the shape of the dominant mode). 
+
+$$ B_1^2 = -\frac{1}{\psi_1}{d^2\psi_1}{...} $$
+
+>>>>>>> Stashed changes
 
 \end{document}
 
