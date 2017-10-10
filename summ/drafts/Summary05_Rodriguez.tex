@@ -1,0 +1,78 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 9/29/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary {5} \hfill Mitch Negus\\
+		\hspace*{\fill} 9/29/2017\\ }}}
+\section*{\textsl{Deep-Burn: making nuclear waste transmutation practical} \\ \normalsize C. Rodriguez, A. Baxter, D. McEachern, M. Fikani, and F. Venneri}
+
+\tab While last week's article discussed the potential for transmutation in various reactor types, this week's article presents a specific method for transmuting transuranic components of used LWR fuel in an advanced reactor. By using modular helium reactor (MHR) with a deep-burn procedure, the authors believe that they can effectively eliminate at least 90\% of the transuranics present in spent nuclear fuel (SNF). The proposed process uses 2 fuels, a driver and a transmutation fuel, to accomplish the required burnup. Both fuels are encapsulated in TRISO particles, and after a fresh uranium driver is passed through one cycle (where it is expected that nearly 90\% of transuranics will be destroyed), it is processed via a traditional UREX procedure to extract FPs before being mixed with used LWR fuel for transmutation. This transmuted fuel is expected to be a graphite enclosed ceramic, and nearly impervious to water. With this in mind, the final output transmutation fuel is a prime candidate for low-risk geologic disposal.\\
+\tab Though I thought in general the paper was both thorough and fairly readable, I do have two critiques of the authors methods. First, I believe that more transparency ought to have been provided on the results presented. I felt like often the authors would quote improvements that they were expecting for their design over conventional methods, without specifying their methods for making these assumptions. An example of this is on page 310 when the authors claim that after three irradiation periods ``75\% of the LWR waste transuranics and 99\% of the Pu-239 being are destroyed.'' While this is an encouraging result, I don't believe the authors explained where this value came from. I believe that if it was found through simulation they should note the codes used, and if it was a calculation by hand, they should briefly explain their methods. Furthermore, while I appreciated their attempts to include beneficial graphics, I find flowcharts like figure 15 to be both messy and confusing. A simpler and more communicative flowchart is figure 16, which while very heavy on text, is easily comprehended and insightful.
+
+\end{document}
+
+Deep Burn: 
+-use gradually thermalized neutrons in modular helium reactors (MHRs)
+-annular graphite moderated cores
+-low power density; 600 MW capacity
+-passively safe
+-50\% efficient
+Procedure:
+-use (well-proven) UREX process to extract uranium/FPs
+-include 2 fuels: driver and transmutation fuels
+-driver fuel irradiated, 90\% destruction of fissile Pu
+-driver fuel processed, FPs extracted, combined w/ non-fissionable transuranics from LWR waste to make transmutation fuel
+-transmutation fuel reloaded w/ driver fuel (acts as burnable poison/reactivity control)
+-spent transmutation fuel discharged as graphite enclosed ceramic-coated particles (ceramic particles generally impervious to water)
+-2 fuels can be separated into TRISO particle fuel w/ kernels of varying diameter (large for driver; small for transmutation)
+
+US will be able to fill Yucca Mountain twice by 2050
+Plutonium will reach maximum levels in 25,000 years due to half-life chain
+Complete destruction infeasible; instead objectives are now
+-reduce attractiveness by removing weaponizable material
+-reduce source term to minimize doses (i.e. >90\% TRU elmination)
+-improve wasteform (prevents dispersion of nuclides until after decay)
+
+-more transparency needed on calculations
+-while fig 16 flowchart was useful, fig 15 flowchart is confusing and messy
+
+
+
+
+
