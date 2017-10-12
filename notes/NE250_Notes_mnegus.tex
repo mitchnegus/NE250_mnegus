@@ -934,6 +934,37 @@ $B_1 > B_2 > B_3 ...$ \\
 
 $$ B_1^2 = -\frac{1}{\psi_1}{d^2\psi_1}{...} $$
 
+
+
+\h{Criticality}
+
+\textbf{Geometric Buckling:}
+$$ B_g^2 \equiv \left(\frac{\pi}{\tilde{a}}\right)^2 $$
+
+...
+
+$$ \phi(x,t) = \sum_{n=\text{odd}} A_n e^{\lambda_n t} \cos\left(\frac{n\pi x}{\tilde{a}}\right) $$
+
+$$ \phi(x,t) = ... $$
+
+\textbf{Material Buckling}
+$$ B_m^2 \equiv \frac{\nu \Xs_f-\Xs_a}{D} $$
+
+When a reactor is critical, the geometric buckling and material buckling must match.
+\begin{align*}
+& B_m^2 = B_g \Rightarrow \lambda_1 = 0 \hspace{0.5cm} \text{(critical)} \\
+& B_m^2 > B_g \Rightarrow \lambda_1 < 0 \hspace{0.5cm} \text{(supercritical)} \\
+& B_m^2 < B_g \Rightarrow \lambda_1 > 0 \hspace{0.5cm} \text{(subcritical)} 
+\end{align*}
+
+This relates to the multiplication factor, $k$. Recall
+$$ k = \frac{\int_V dV \nu\Xs_f\phi}{...} = 1 \hspace{0.5cm} k_{\infty} \equiv \frac{\nu\Xs_f}{\Xs_a} \hspace{0.5cm} L^2 = \frac{D}{\Xs_a} $$
+...
+
+and so we have criticality when 
+$$ B^2 = \frac{k_{\infty}-1}{L^2} = B_m^2 $$
+
+
 \end{document}
 
 
