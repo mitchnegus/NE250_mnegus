@@ -56,6 +56,7 @@
 
 \newcommand{\rt}{(\pos,t)}
 \newcommand{\rE}{(\pos,E)}
+\newcommand{\rEprime}{(\pos,E')}
 \newcommand{\rEO}{(\pos,E,\Oh)}
 \newcommand{\rEt}{(\pos,E,t)}
 \newcommand{\rEtprime}{(\pos,E',t)}
@@ -1027,6 +1028,68 @@ In the integral form, we are tracking particles from birth to observation; an ac
 Let $\rho' \equiv s - s', d\rho' = -ds'$ and $\rho''=s-s'', d\rho''=-ds''$. Then
 $$\phi\rEO = -\int_{\infty}^0 d\rho' \exp\left[ \Xs_t(\pos_0+\Oh s -\Oh s + \Oh s'',E) \right] q(\pos_0 + \Oh s - \Oh s -\Oh s',E,\Oh) $$
 $$ ... = \int_0^{\infty} ...$$
+
+
+$$\psi\rEO = \intzi d\rho' \exp\left[-\int_0^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,\Oh,E)\right]q(\pos-\rho''\Oh,\Oh,E) $$
+
+Let $Q'$ by the integrated fixed source, and $k$ is the integral operator.
+
+$$ k\psi = \text{n production from scattering and fission} $$
+$$ \psi_{t} = k\psi_{t-1} + Q' $$
+
+The total flux is
+
+$$ \psi = \sum_{j=0}^n \psi_j $$
+
+where  the ``uncollided flux'' is $\psi_0 = Q'$, the ``once collided flux'' is $\psi_1 = k\psi_0$, and the ``twice collided flux'' is $\psi_2 = k\psi_1$.
+
+\hhh{Isotropic Scattering}
+When we have isotropic scattering and sources, we can remove angular dependence.\\
+- Fission: $\frac{\chi(E)}{4\pi}\intzi dE' \nu \Xs_f\rEprime \intfp d\Oh' \psi\rEOprime $\\
+- Fixed Source: $S\rEO = \frac{S\rE}{4\pi}$\\
+- Scattering: $\intzi dE' \intfp d\Oh \frac{\Xs_s}{...}$\\
+
+The integrating factor over angle:\\
+$<$image$>$\\
+
+Note: $d\Oh = \frac{dA}{\rho''}$ and $d\rho \, 'dA = dV$
+
+...
+
+Remember, $\rho' = |\pos - \pos'|$, and $dv = d^3r'$
+
+If we say $\tau$ is the optical path length, 
+$$\int_{0}^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,E) \equiv \tau(\pos - \rho'\Oh \rightarrow \pos,E) .$$
+
+Our scalar flux is
+$$\phi\rE = \int_V d^3r \left[ \frac{\exp \left[ \tau (E,\pos'\rightarrow \pos) \right]}{4\pi|\pos-\pos\,'|^2} \left( S(\pos',E) + \chi(E)\intzi dE' \nu \Xs_f(E')\phi(\pos',E') + \intzi dE' \Xs_s(\pos',E'\rightarrow E)\phi(\pos',E')\right)\right]  $$
+
+The source term is the rate at which neutrons of energy E appear at location $\pos$. Integrating over all $\pos\,'$ gives the total number of neutrons.
+
+This is a Green's function for isotropic source at $\pos\,'$ in an absorbing medium.
+
+\hhh{Anisotropic Scattering}
+
+Use a producition kernel:
+$$ \Pi() \equiv \Xs_s() + \frac{\chi(E)}{4\pi}\nu\Xs_f(\pos,E') $$
+
+The collision source of neutorns is
+$$ k\psi \intfp d\Oh' \intzi dE' \Pi()\psi() $$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
