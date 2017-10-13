@@ -965,6 +965,72 @@ and so we have criticality when
 $$ B^2 = \frac{k_{\infty}-1}{L^2} = B_m^2 $$
 
 
+
+\h{Integral Form of the Transport Equation}
+
+We are going to use the Method of Characteristics (MOC) formalism to derive an integral equation (as opposed to the previous integro-differential equation).
+
+Note: We cannot have a purely differential equation. This arises from the fact that while space and time are continuous,  energy and direction can be discontinuous in time.
+
+The transport eqaution is: linear, $1^{\text{st}}$ order, partial differential, integral
+
+\textbf{Steady State Transport Equation:}
+$$ \Oh\cdot\nabla\psi\rEO + \Xs_t \psi\rEO = q\rEO $$
+
+When ...
+$$ \Oh\cdot\nabla\psi = \mu \frac{\p\psi}{\p x} + \eta \frac{\p\psi}{\p y} + \xi \frac{\p\psi}{\p z} $$
+$$ \mu^2 + \eta^2 + \xi^2 = 1 $$
+where $\mu = \cos(x)$, $\eta = \cos(y)$, and $\xi = \cos(z)$.
+
+(figure)\\
+
+This can be treated like $n$ moving along "characteristic" line along $\Oh$
+$$ \pos = \pos_0 + s(\mu\hat{x} + \eta\hat{y} + \xi\hat{z}) $$
+\begin{align*}
+& x = x_0 + \mu s \\
+& y = y_0 + \mu s \\
+& z = z_0 + \mu s \\
+\end{align*}
+
+Use this to get the Cartesian streaming
+$$ \frac{\p \psi}{\p s} = \frac{\p \psi}{\p x} \frac{\p x}{\p s} + \frac{\p \psi}{\p y} \frac{\p y}{\p s} + \frac{\p \psi}{\p z} \frac{\p z}{\p s} $$
+and so indeed,
+$$ \frac{\p \psi}{\p s} = \Oh\cdot\nabla\psi $$
+
+Look at the Transport 
+$$ \frac{\p}{\p s} \psi(\pos_0 + \Oh_s,\Oh,E) + \Xs_t \psi(\pos_0 + \Oh_s,\Oh,E) = q(\pos_0 + \Oh_s,\Oh,E) $$
+
+This is a derivative along a characteristic curve. It's linear, $1^{\text{st}}$ order and an ODE (we can integrate it). Use an integrating factor.
+
+$$ \text{\# of MFP from }\pos\text{ at distance }s\text{ away} = \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] $$
+Note:
+\begin{align*}
+\frac{d}{ds} \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] = \Xs_t(\pos_0 + \Oh s'',E) \, \frac{d}{ds} \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\frac{d}{ds}\left[\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\psi((\pos_0 + \Oh s'',E)\right] = \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\frac{d\psi}{ds} + \psi\Xs_t\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\frac{d}{ds}\left[\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\psi\right] &= (LHS TE)\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+		&= (RHS TE)\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\end{align*}
+\textbf{LHS:}
+\begin{align*}
+\int_{-\infty}^s ds' \frac{d}{ds'}\left[\exp\left[\int^{s'} ds'' \Xs_t(\pos + ...)\right]\right]\psi(\pos+\Oh s',\Oh,E)
+\end{align*}
+
+... (Repeat this with $\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] = \mathcal{I}$)...
+
+
+And so we finally have:
+$$ \psi(\pos_0+\Oh s,\Oh,E) = \int_{-\infty}^s ds' \exp \left[-\int_{s'}^s ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] q(\pos_0+\Oh s',\Oh,E) $$
+
+The integro-differential form expresses a local balance with local coupling.\\
+In the integral form, we are tracking particles from birth to observation; an accumulation process, so the coupling is global.
+
+Let $\rho' \equiv s - s', d\rho' = -ds'$ and $\rho''=s-s'', d\rho''=-ds''$. Then
+$$\phi\rEO = -\int_{\infty}^0 d\rho' \exp\left[ \Xs_t(\pos_0+\Oh s -\Oh s + \Oh s'',E) \right] q(\pos_0 + \Oh s - \Oh s -\Oh s',E,\Oh) $$
+$$ ... = \int_0^{\infty} ...$$
+
+
+
+
 \end{document}
 
 
