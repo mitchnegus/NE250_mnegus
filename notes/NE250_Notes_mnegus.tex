@@ -281,12 +281,14 @@ $$\text{(See paper notes...)}$$
 \begin{dmath*}
 \Oov \frac{\p\psi}{\p t} + \Oh \cdot \nabla\psi + \Xs_t\psi = \intfp d\Oh'\intzi dE' \Xs_s(E',\Oh'\rightarrow E,\Oh)\psi(E',\Oh') + \frac{\chi(E)}{4\pi}\intzi dE'\nu(E')\Xs_f(E') \intfp d\Oh'\phi\rEOtprime + s\rEOt
 \end{dmath*}
-
+\-\\
+\begin{multicols}{2}
 \textbf{Initial condition:}
 $\psi(\pos,E,\Oh,0) = \psi_0\rEO$
 
 \textbf{Interface condition:}
 angular flux must be continuous at all points
+\end{multicols}
 
 \hhh{Other conditions}
 \tab \textbf{Fixed condition:} incoming flux is specified  
@@ -428,7 +430,7 @@ Like we did to derive the continuity equation, we can break down each term.
 Putting each of these 5 components back together the \textbf{current continuity equation (CCE)} is
 $$\Oov \frac{\p \cur}{\p t} + \nabla \cdot \intfp d\Oh \;\Oh\Oh \; \psi\rOt + \Xs_t \cur\rt = \Xs_{s1}\cur\rt + S_1\rt$$
 
-Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns–$\phi$ (1), $\cur$ (3), and the new tensor term (6). There is little point to continuing with this technique any longer.
+Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns: $\phi$ (1), $\cur$ (3), and the new tensor term (6). There is little point to continuing with this technique any longer.
 
 
 \hh{Angular Flux Approximation}
@@ -466,7 +468,7 @@ $$\Oov \frac{\p \cur}{\p t} + \frac{1}{3} \nabla \phi\rt + \Xs_{tr} \cur\rt = S_
 With the following conditions
 \begin{itemize}
     \item Steady state $(\ppt(X) = 0)$
-    \item Isotropic soure ($S_1 = 0$)
+    \item Isotropic source ($S_1 = 0$)
 \end{itemize}
 
 The current continuity equation becomes
@@ -509,19 +511,23 @@ If scattering is
     \item isotropic $\rightarrow \bar{\mu}_0 = 0, \lambda_t = \lambda_{tr}$
     \item forward peaked $\rightarrow \bar{\mu}_0 > 0, \lambda_t > \lambda_{tr}$
 \end{itemize}
+\-\\
 
-\textbf{Initial Conditions:} $\phi(\pos,0) = \phi(\pos) \; \forall \pos \in V$
+\begin{multicols}{2}
+\hhh{Initial Conditions:} 
+$\phi(\pos,0) = \phi(\pos) \; \forall \pos \in V$
 
 Basic requirements:\\
 - real and nongegative ($\phi \geq 0$)\\
 - bounded ($\phi > \infty$) \\
 
-\textbf{Interface conditions:} \\
--Zeroth and First moments must be continuous\\
+\hhh{Interface conditions:} 
+-Zeroth and first moments must be continuous\\
 \tab$\phi_1\rt = \phi_2\rt$\\
 \tab$\cur_1\rt = \cur_2\rt$\\
 
-\textbf{Vacuum BCs:}\\
+\columnbreak
+\hhh{Vacuum BCs:}
 %$\psi\rsOt = \Oh \hat{e}_s < 0$\\
 In the DE use partial current\\
 \tab $J_{-}\rt = \int_{2\pi^{-}} d\Oh \Oh \cdot \hat{e}_s \psi\rOt = 0$\\
@@ -535,6 +541,7 @@ $J_{-}(\pos_s,t) = J_{-}(x_s,t) = \frac{1}{4}\phi(x_s,t) + \frac{D}{2}\frac{d\ph
 The extrapolation distance, where $\phi = 0$ is
 $$\tilde{x}_s = x_s + 2D = x_s + \frac{2}{3}\lambda_{tr}$$
 and so replace $J_{-}(x_s) = 0$ with $ \phi(\tilde{x}_s) = 0$.
+\end{multicols}
 
 
 \hh{Helmholtz Form of the Diffusion Equation}
@@ -549,7 +556,7 @@ The solution to this equation is $\phi = \phi_H(\pos) + \phi_P(\pos)$, where the
 \hh{Criticality}
 
 For the equation
-$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \nu\Xs_f \phi, \phi(\pm\tilde{x}_s) = 0.$$
+$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \nu\Xs_f \phi, \; \hspace{0.3cm}\phi(\pm\tilde{x}_s) = 0.$$
 There is no general solution unless we get it exactly right.
 
 Introduce $k$. For any $k$, there is always a solution. We use an iterative porcess to find $k$. You might consider $k$ as tuning the neutrons produced per fission.
@@ -603,6 +610,7 @@ a.) $\ell = 0.1s$\\
 b.) $\ell = 1 \times 10^{-4}$s\\
 \tab $n(1s)/n_0 = e^{(1.0005-1)(1\text{ s})/(1\times10^{-4})\text{ s}}$\\
 \tab $\boxed{ n(1s)/n_0 = 148.4 }$
+\newpage
 
 
 
@@ -617,15 +625,17 @@ We assumed that the angular flux is linearly anisotropic ($P_1$ expansion), and 
 \end{itemize}
 
 Fick's Law and the 1-speed Diffusion Equation gave us
-$$ \Oov \frac{\p \phi}{\p t} = S\rt = \Xs_a(\pos)\phi\rt + \nabla \cdot D(\pos) \nabla\phi\rt $$
+$$ \Oov \frac{\p \phi}{\p t} = S\rt - \Xs_a(\pos)\phi\rt + \nabla \cdot D(\pos) \nabla\phi\rt $$
 
-Start with the energy depend
-$$ \Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi - \Xs_t(\pos)\phi\rE - \nabla \cdot \cur\rEt$$
+Start by looking at the energy dependent $P_1$ equations (NCE,CCE but with energy dependence)
+$$ \Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi\rEtprime - \Xs_t\rE\phi\rEt - \nabla \cdot \cur\rEt$$
+and
+$$ \Oov \frac{\p \cur}{\p t} = S_1\rEt + \intzi dE' \bar{\mu}_0\Xs_{s1}(\pos,E' \rightarrow E)\cur\rEtprime - \Xs_t\rE\cur\rEt - \frac{1}{3}\nabla \cdot \phi\rEt$$
 
 We apply asusmptions
 \begin{enumerate}
-    \item Slow currnet change
-    \item Isotropic source, $S=0$
+    \item Slow current change $\left(\frac{1}{|\cur\rt|}\frac{\p \cur\rt}{\p t} \ll v\Xs_t \ \therefore\ \frac{1}{v}\frac{\p \cur\rt}{\p t} = 0 \right)$
+    \item Isotropic source, $S_1\rEt=0$
     \item Isotropic scattering, $\Xs_{s1}(E' \rightarrow E) = 0$
 \end{enumerate}
 
