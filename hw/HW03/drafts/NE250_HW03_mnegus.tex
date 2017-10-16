@@ -264,6 +264,82 @@ We can furthermore use the functions defined in the previous problem to show tha
 
 \section*{Problem 7}
 
+The diffusion equation describing this one-dimensional slab is (assuming constant diffusion coefficients and cross sections in each region)
+
+\text{Fuel:}
+$$ -D_F\frac{d^2}{dx^2}\phi(x) + \Sigma_{a,F}\phi(x) = 0 $$
+
+\text{Moderator:}
+$$ -D_M\frac{d^2}{dx^2}\phi(x) + \Sigma_{a,M}\phi(x) = S_0 $$
+
+\text{Boundary Conditions:}
+\begin{align*}
+\phi_F(a) 	&= \phi_M(a)  & \text{(interface condition)} \\
+\cur_M\left(\pm\frac{a}{2} \pm b\right)	&= 0 \quad (\text{or }\phi\left(\pm \frac{a}{2} \pm \tilde{b}\right)=0) & \text{(effective vacuum boundary condition)}\\
+\frac{d}{dx}\phi_F\bigg|_{x=0}	&= 0 & \text{(symmetry condition)}
+\end{align*}
+
+We can then solve for the flux in each region. In the fuel,
+$$ \frac{d^2}{dx^2}\phi_F(x) - \frac{1}{L_F^2}\phi(x) = 0 $$
+
+where $L_F = \sqrt{\frac{D_F}{\Sigma_{a,F}}}$. The solution to this differential equation is of the form
+$$ \phi_F(x) = A_1 e^{\frac{x}{L_F}} + A_2 e^{-\frac{x}{L_F}} $$
+
+Using our symmetry condition,
+$$ \frac{d\phi_F(x)}{dx} = \frac{A_1}{L_F}e^{\frac{x}{L_F}} - \frac{A_2}{L_F} e^{-\frac{x}{L_F}} $$
+$$ 0 = \frac{A_1}{L_F} - \frac{A_2}{L_F} $$
+$$ A_1 = A_2 = A_F $$
+Then $\phi(x)$ becomes
+$$ \phi_F(x) = A_F \left(e^{\frac{x}{L_F}} + e^{-\frac{x}{L_F}}\right) $$
+$$ \phi_F(x) = A_F \cosh\left(\frac{x}{L_F}\right) $$
+
+
+In the moderator,
+$$ \frac{d^2}{dx^2}\phi(x) - \frac{1}{L_M^2}\phi(x) = -\frac{S_0}{D_M} $$
+where $L_M = \sqrt{\frac{D_M}{\Sigma_{a,M}}}$. Like the solution in the fuel, the homogeneous solution to this differential equation is of the form
+$$ \phi_{\text{h}}(x) = A_3 e^{\frac{x}{L_M}} + A_4 e^{-\frac{x}{L_M}} $$
+while the particular solution is
+$$ \phi_{\text{p}}(x) = \frac{S_0 L_M^2}{D_M} .$$
+The general solution in the moderator is then,
+$$ \phi_M(x) = A_3 e^{\frac{x}{L_M}} + A_4 e^{-\frac{x}{L_M}} + \frac{S_0 L_M^2}{D_M} $$
+Imposing our boundary conditions,
+$$ \phi_M(\frac{a}{2}+\tilde{b}) = A_3 e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + A_4 e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}} + \frac{S_0 L_M^2}{D_M} = 0 $$
+and 
+$$ \phi_M(-\frac{a}{2}-\tilde{b}) = A_3 e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}} + A_4 e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + \frac{S_0 L_M^2}{D_M} = 0 .$$
+Then,
+$$ A_3 e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + A_4 e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}} + \frac{S_0 L_M^2}{D_M} = A_3 e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}} + A_4 e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + \frac{S_0 L_M^2}{D_M} $$
+and
+$$ A_3 = A_4 = A_M$$
+so
+$$ \phi_M(x) = A_M \left( e^{\frac{x}{L_M}} + e^{-\frac{x}{L_M}} \right) + \frac{S_0 L_M^2}{D_M} $$
+Again, 
+$$ \phi_M(\frac{a}{2}+\tilde{b}) = 0 = A_M \left( e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}} \right) + \frac{S_0 L_M^2}{D_M}$$
+$$ A_M = \frac{-S_0 L_M^2}{D_M \left( e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}}\right)} $$
+Then,
+$$ \phi_M(x) = \left(\frac{-S_0 L_M^2}{D_M \left( e^{\frac{\frac{a}{2}+\tilde{b}}{L_M}} + e^{-\frac{\frac{a}{2}+\tilde{b}}{L_M}}\right)}\right) \left( e^{\frac{x}{L_M}} + e^{-\frac{x}{L_M}} \right) + \frac{S_0 L_M^2}{D_M} $$
+$$ \phi_M(x) = \frac{-S_0 L_M^2 \cosh\left(\frac{x}{L_M}\right)}{D_M \cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)} + \frac{S_0 L_M^2}{D_M} $$
+$$\boxed{ \phi_M(x) = \frac{S_0 L_M^2}{D_M}\left( 1 - \frac{\cosh\left(\frac{x}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) }.$$
+
+Taking this back to our equation for $\phi_F(x)$, and using our interface condition,
+$$ \phi_F(a) = \phi_M(a) $$
+$$ A_F \cosh\left(\frac{a}{L_F}\right) = \frac{S_0 L_M^2}{D_M}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) $$
+$$ A_F = \frac{S_0 L_M^2}{D_M \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) $$
+
+$$\boxed{ \phi_F(x) = \frac{S_0 L_M^2 \cosh\left(\frac{x}{L_F}\right)}{D_M \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) }.$$
+
+If we define $f_s$ as the average flux in the fuel to the average flux in the cell, we find
+$$ f_s = \frac{\frac{1}{a}\int_{-a/2}^{a/2} \phi_F(x) \, dx}{\frac{1}{a+2b}\int_{-b}^{b} \phi(x) \, dx} .$$
+We can recognize, due to symmetry, that
+$$ f_s = \frac{\frac{2}{a}\int_{0}^{a/2} \phi_F(x) \, dx}{\frac{2}{a+2b}\int_{0}^{b} \phi(x) \, dx} .$$
+Then, we can write the denominator as
+$$ f_s = \frac{\frac{2}{a}\int_{0}^{a/2} \phi_F(x) \, dx}{\frac{2}{a+2b}\left[\int_{0}^{a/2} \phi_F(x) \, dx + \int_{a/2}^{b} \phi_M(x) \, dx \right]} $$
+Substituting our flux expressions,
+$$ f_s = \frac{\frac{2}{a}\int_{0}^{a/2} \frac{S_0 L_M^2 \cosh\left(\frac{x}{L_F}\right)}{D_M \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) dx}{\frac{2}{a+2b}\left[\int_{0}^{a/2} \frac{S_0 L_M^2 \cosh\left(\frac{x}{L_F}\right)}{D_M \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) dx + \int_{a/2}^{b} \frac{S_0 L_M^2}{D_M}\left( 1 - \frac{\cosh\left(\frac{x}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) dx \right]} $$
+$$ f_s = \frac{\frac{a+2b}{a \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right)\int_{0}^{a/2} \cosh\left(\frac{x}{L_F}\right) dx}{\left[\frac{1}{\cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) \int_{0}^{a/2} \cosh\left(\frac{x}{L_F}\right) dx + \int_{a/2}^{b} dx - \int_{a/2}^{b} \frac{\cosh\left(\frac{x}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)} dx \right]} $$
+$$ f_s = \frac{\frac{a+2b}{a \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right)\left[L_F\sinh\left(\frac{x}{L_F}\right)\right]_{0}^{a/2}}{\left[\frac{1}{\cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) \left[L_F\sinh\left(\frac{x}{L_F}\right)\right]_{0}^{a/2} + \left[x\right]_{a/2}^{b} - \left[\frac{L_M}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\sinh\left(\frac{x}{L_M}\right)\right]_{a/2}^{b} \right]} $$
+$$\boxed{ f_s = \frac{\frac{L_F(a+2b)}{a \cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right)\sinh\left(\frac{a}{2L_F}\right)}{\frac{L_F}{\cosh\left(\frac{a}{L_F}\right)}\left( 1 - \frac{\cosh\left(\frac{a}{L_M}\right)}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\right) \sinh\left(\frac{a}{2L_F}\right) + b - \frac{a}{2} - \frac{L_M}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\sinh\left(\frac{b}{L_M}\right) + \frac{L_M}{\cosh\left(\frac{\frac{a}{2}+\tilde{b}}{L_M}\right)}\sinh\left(\frac{a}{2L_M}\right)} }$$
+
+
 
 
 
