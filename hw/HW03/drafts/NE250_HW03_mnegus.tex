@@ -100,29 +100,156 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Problem 4}
+\section*{Problem 5}
 
-\begin{multicols}{2}
-Matrix:
-$$\begin{pmatrix}
+\subsection*{\textit{a.})}
+
+We are given the matrix:
+
+$$\begin{bmatrix}
 1 	&	1	&	-1	&	3	\\
 1	&	2	&	-4	&	-2	\\
 2	&	1	&	1	&	5	\\
--1	&	0	&	-2	&	-4	\end{pmatrix}$$
+-1	&	0	&	-2	&	-4	\end{bmatrix}$$
 
-Matrix of Minors:
-$$\begin{pmatrix}
-1 	&	1	&	-1	&	3	\\
-1	&	2	&	-4	&	-2	\\
-2	&	1	&	1	&	5	\\
--1	&	0	&	-2	&	-4	\end{pmatrix}$$
+The inverse, $\textbf{A}^{-1}$ of a square matrix, $\textbf{A}$,  is equal to the adjugate of the matrix, $\textbf{A}^{\dagger}$ divided by the determinant of $\textbf{A}$. 
 
-\end{multicols}
+$$ \textbf{A}^{-1} = \frac{\textbf{A}^{\dagger}}{\det{\textbf{A}}} $$
+
+The adjugate of a square matrix, $\textbf{A}^{\dagger}$, is the transpose of the cofactor matrix, $\textbf{C}_{\textbf{A}}$.
+
+$$ \textbf{A}^{\dagger} = \textbf{C}_{\textbf{A}}^T $$
+
+The cofactor of a square matrix, $\textbf{C}_{\textbf{A}}$ is the signed matrix of minors, $\textbf{M}_{\textbf{A}}$.
+
+$$ \textbf{C}_{\textbf{A},ij} = (-1)^{i+j} \ \textbf{M}_{\textbf{A}} $$
+
+The minor of matrix element $\textbf{A}_{ij}$ is the determinant of submatrix formed with the rows and columns other than $i$ and $j$.
+
+We can use this all together to find the inverse of $\textbf{A}$. The matrix given, however, has a determinant of zero, and so is \underline{not invertible}.
+
+(see attached Jupyter notebook for full calculations)
+
+
+\subsection*{\textit{b.})}
+
+We are given the matrix:
+
+$$\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix}$$
+
+and we know that the eigenvalue $\lambda$ and eigenvector $\vec{v}$ obey the rule
+
+$$\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix}\vec{v} = \lambda \vec{v}$$
+
+Equivalently, 
+
+$$\left(\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix} - \lambda\mathbb{1}\right)\vec{v} = 0$$
+
+We want the non-trivial solution to this equation, when $\vec{v} \neq \vec{0}$. $\vec{v} = \vec{0}$ when $\left(\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix} - \lambda\mathbb{1}\right)$ is invertible, so we will instead assert that $\left(\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix} - \lambda\mathbb{1}\right)$ is not invertible. By definition, this means 
+
+$$ \det\left(\begin{bmatrix}
+3 	&	-1	\\
+-1	&	3	\end{bmatrix} - \lambda\mathbb{1}\right) = 0 $$
+
+or 
+
+$$ \det\begin{bmatrix}
+3-\lambda	&	-1	\\
+-1	&	3-\lambda	\end{bmatrix} = 0 $$
+
+We can solve this now for lambda:
+
+
+\begin{align*}
+(3-\lambda)^2 - (-1)^2 &= 0 \\
+9 - 6\lambda + \lambda^2 - 1 &= 0 \\
+8 - 6\lambda + \lambda^2 &= 0 \\
+\end{align*}
+
+and using the quadratic formula we find
+
+$$ \lambda = \frac{-(-6) \pm \sqrt{(-6)^2 - 4(8)}}{2} $$
+$$ \lambda = \frac{6 \pm \sqrt{36 - 32}}{2} $$
+$$ \lambda = \frac{6 \pm 2}{2} $$
+$$ \lambda = 3 \pm 1$$
+
+$$\boxed{ \lambda = 2, 4 }$$
+
+We can use this eigenvalue to solve for $\vec{v}$. 
+
+$$\begin{bmatrix}
+1 	&	-1	\\
+-1	&	1	\end{bmatrix}\vec{v} = 0 \ \text{ and } \ 
+\begin{bmatrix}
+-1 	&	-1	\\
+-1	&	-1	\end{bmatrix}\vec{v} = 0 $$ 
+
+This gives the equations
+
+$$ \lambda = 2: \begin{cases} v_1 - v_2 = 0 \\
+                              v_2 - v_1 = 0 \end{cases}
+\qquad \lambda = 4: \begin{cases}  -v_1 - v_2 = 0 \end{cases} $$
+
+For $\boxed{ \lambda = 2, \ \vec{v} = \begin{bmatrix}v_0 \\ v_0\end{bmatrix} }$, and for $\boxed{ \lambda = 4, \ \vec{v} = \begin{bmatrix}v_0 \\ -v_0\end{bmatrix} }$.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 5}
 
+In problem 4 we stated that the inverse, $\textbf{A}^{-1}$, of a square matrix, $\textbf{A}$,  is equal to the adjugate of the matrix, $\textbf{A}^{\dagger}$ divided by the determinant of $\textbf{A}$.
+
+$$ \textbf{A}^{-1} = \frac{\textbf{A}^{\dagger}}{\det{\textbf{A}}} $$
+
+We can manipulate this expression to find
+
+$$ (\det{\textbf{A}})\mathbb{1} = \textbf{A}^{\dagger}\textbf{A} $$
+
+Since we are looking for a self-adjugate matrix, $\textbf{A}^{\dagger} = \textbf{A}$, and 
+
+$$ (\det{\textbf{A}})\mathbb{1} = \textbf{A}^2 .$$
+
+Then, taking the square root of both sides,
+
+$$ \left(\sqrt{\det{\textbf{A}}}\right)\mathbb{1} = \textbf{A} .$$
+
+$$ \textbf{A} = \begin{bmatrix} a & b & c \\
+                                d & e & f \\
+                                g & h & i \end{bmatrix} =
+                \begin{bmatrix} \sqrt{\det{\textbf{A}}} & 0 & 0 \\
+                                0 & \sqrt{\det{\textbf{A}}} & 0 \\
+                                0 & 0 & \sqrt{\det{\textbf{A}}} \end{bmatrix}. $$
+                
+$$ a = e = i = \sqrt{\det{\textbf{A}}} $$
+$$ \textbf{A} = \begin{bmatrix} a & 0 & 0 \\
+                                0 & a & 0 \\
+                                0 & 0 & a \end{bmatrix} = $$
+and
+
+$$ \det{\textbf{A}} = a \begin{vmatrix} a & 0 \\ 0 & a \end{vmatrix} $$
+$$ \det{\textbf{A}} = a (a^2) $$
+$$ \det{\textbf{A}} = a^3 .$$
+
+We know that $a = \sqrt{\det{\textbf{A}}}$, so
+$$ a = \sqrt{a^3} $$
+$$ a = a^{\frac{3}{2}} $$
+$$ a = 1 $$
+$$\boxed{ \textbf{A} = \mathbb{1} }$$
+
+We can furthermore use the functions defined in the previous problem to show that $\textbf{A}$ and  $\textbf{A}^{\dagger}$ are equal when found through the cofactor method.
+
+(see attached Jupyter notebook for full calculations)
 
 
 
@@ -166,6 +293,10 @@ $$\begin{pmatrix}
 \section*{Problem 11}
 
 
+
+
+\includepdf[pages=-]{NE250_HW03_mnegus-prob4.pdf}
+\includepdf[pages=-]{NE250_HW03_mnegus-prob5.pdf}
 
 
 \end{document}
