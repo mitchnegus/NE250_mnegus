@@ -62,6 +62,7 @@
 \newcommand{\rEOt}{(\pos,E,\Oh,t)}
 \newcommand{\rEOtprime}{(\pos,E',\Oh',t)}
 \newcommand{\EO}{(E,\Oh)}
+\newcommand{\EOprime}{(E',\Oh')}
 \newcommand{\EOt}{(E,\Oh,t)}
 
 
@@ -82,18 +83,62 @@
 
 \section*{Problem 1}
 
+We are given
+\begin{align*}
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi\rEO &= \intfp d\Oh' \intzi dE' \Xs_s(E',\Oh' \rightarrow E,\Oh)\psi\rEOprime \\
+&+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi\rEOprime.
+\end{align*}
+
+If we have isotropic scattering (and no cross section spatial dependence), then $\Xs_s(E',\Oh' \rightarrow E,\Oh) = \Xs_s(E' \rightarrow E)$.
+\begin{align*}
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi\rEO &= \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi\rEOprime \\
+&+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi\rEOprime.
+\end{align*}
+
+Now, we let $\psi\rEO = \psi_0\EO\exp(i \Oh \cdot \vec{B})$. This can be substituted into our equation above to yield
+\begin{align*}
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) &= \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}) \\
+&+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}).
+\end{align*}
+
+Rearranging to solve for $k$,
+\begin{align*}
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) &- \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}) \\
+& = \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}).
+\end{align*}
+$$ k = \frac{\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B})}{\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) - \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B})} $$
+...
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 2}
 
+The one-group diffusion equation can be derived from the neutron transport equation using Fick's Law ($\cur(\pos) = -D(\pos)\nabla \phi$). 
 
+If we have no external source, the one-group transport equation is 
+\begin{align*}
+\Oov \frac{\p \phi\rOt}{\p t} + \Omega \cdot \nabla \phi \rOt + \Xs_t \psi\rOt = \intfp d\Oh' \Xs_s(\Oh' \rightarrow \Oh) \psi\rOtprime + \frac{\nu\Xs_f}{4\pi} \intfp d\Oh' \psi\rOtprime
+\end{align*}
+This would then be integrated over angle, under the assumption that the angular flux is only weakly dependent on angle. Additionally, we assume that the scattering is azimuthally symmetric, and so $\intfp d\Oh \, \Xs_s(\Oh' \rightarrow \Oh) = \intfp d\Oh \, \Xs_s(\Oh' \cdot \Oh) = \Xs_s$.
+\begin{align*}
+\intfp d\Oh \left[ \Oov \frac{\p \psi\rOt}{\p t} + \Oh \cdot \nabla \psi \rOt + \Xs_t \psi\rOt \right] &= \intfp d\Oh \bigg[ \intfp d\Oh' \Xs_s(\Oh' \rightarrow \Oh) \psi\rOtprime \\
+&+ \frac{\nu\Xs_f}{4\pi} \intfp d\Oh' \psi\rOtprime \bigg]
+\end{align*}
+\begin{align*}
+\Oov \frac{\p \phi\rt}{\p t} + \nabla \cdot \cur\rt + \Xs_t \phi\rt &=\Xs_s \phi\rt + \nu\Xs_f \phi\rt
+\end{align*}
+\begin{align*}
+\Oov \frac{\p \phi\rt}{\p t} -D(\pos)\nabla \phi\rt + \Xs_t \phi\rt &=\Xs_s \phi\rt + \nu\Xs_f \phi\rt
+\end{align*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 3}
+
+Define $G$ as 
 
 
 
@@ -267,10 +312,10 @@ We can furthermore use the functions defined in the previous problem to show tha
 The diffusion equation describing this one-dimensional slab is (assuming constant diffusion coefficients and cross sections in each region)
 
 \text{Fuel:}
-$$ -D_F\frac{d^2}{dx^2}\phi(x) + \Sigma_{a,F}\phi(x) = 0 $$
+$$ -D_F\frac{d^2}{dx^2}\phi(x) + \Xs_{a,F}\phi(x) = 0 $$
 
 \text{Moderator:}
-$$ -D_M\frac{d^2}{dx^2}\phi(x) + \Sigma_{a,M}\phi(x) = S_0 $$
+$$ -D_M\frac{d^2}{dx^2}\phi(x) + \Xs_{a,M}\phi(x) = S_0 $$
 
 \text{Boundary Conditions:}
 \begin{align*}
@@ -282,7 +327,7 @@ $$ -D_M\frac{d^2}{dx^2}\phi(x) + \Sigma_{a,M}\phi(x) = S_0 $$
 We can then solve for the flux in each region. In the fuel,
 $$ \frac{d^2}{dx^2}\phi_F(x) - \frac{1}{L_F^2}\phi(x) = 0 $$
 
-where $L_F = \sqrt{\frac{D_F}{\Sigma_{a,F}}}$. The solution to this differential equation is of the form
+where $L_F = \sqrt{\frac{D_F}{\Xs_{a,F}}}$. The solution to this differential equation is of the form
 $$ \phi_F(x) = A_1 e^{\frac{x}{L_F}} + A_2 e^{-\frac{x}{L_F}} $$
 
 Using our symmetry condition,
@@ -296,7 +341,7 @@ $$ \phi_F(x) = A_F \cosh\left(\frac{x}{L_F}\right) $$
 
 In the moderator,
 $$ \frac{d^2}{dx^2}\phi(x) - \frac{1}{L_M^2}\phi(x) = -\frac{S_0}{D_M} $$
-where $L_M = \sqrt{\frac{D_M}{\Sigma_{a,M}}}$. Like the solution in the fuel, the homogeneous solution to this differential equation is of the form
+where $L_M = \sqrt{\frac{D_M}{\Xs_{a,M}}}$. Like the solution in the fuel, the homogeneous solution to this differential equation is of the form
 $$ \phi_{\text{h}}(x) = A_3 e^{\frac{x}{L_M}} + A_4 e^{-\frac{x}{L_M}} $$
 while the particular solution is
 $$ \phi_{\text{p}}(x) = \frac{S_0 L_M^2}{D_M} .$$
