@@ -138,7 +138,31 @@ This would then be integrated over angle, under the assumption that the angular 
 
 \section*{Problem 3}
 
-Define $G$ as 
+Define $G$ as the ratio between total power generated, $P$, to fusion power generated, $P_F$.
+$$ G \equiv \frac{P}{P_F} $$
+As a ratio, this is also equivalent to the ratio between total energy created, $E$, to fusion energy created, $E_F$.
+$$ G  = \frac{E}{E_F} $$
+Since we are told that energy contributions from non-fission reactions are neglible. This suggests that the total energy is simply the sum of the fission energy produced, $E_f$, and fusion energy produced, $E_F$. 
+$$ G = \frac{E_F + E_f}{E_F} = 1 + \frac{E_f}{E_F}$$
+Each DT fusion reaction produces 17.6 MeV of energy and one neutron for triggering fission in the blanket, so $E_F = 17.6\textsl{n}_0$ MeV, where \textsl{n}_0 is the number of neutrons produced from fusion. With an 80\% probability of triggering an $(n,2n)$ reaction in beryllium, the average fusion event results in approximately 1.8 neutrons eventually reaching the blanket. If we again take the fact that even negative energy-contributions from non-fission reactions are neglible, as well as the fact that no fusion neutrons leak from the system, then we can assume that each fusion neutron produces at least one fission event or elastically scatters. Mathematically,
+$$ \Xs_f + \Xs_s = \Xs_t ,$$
+and the probability of a "first strike" fission event is
+$$ \text{P}(F) = \frac{\Xs_f}{\Xs_t}. $$
+From this, we can determine the number of neutrons in the first generation after interaction in the blanket, $\textsl{n}_1$ as the number of neutrons produced in those "first strike" fissions plus the number of neutrons remaining after scattering
+$$ \textsl{n}_1 = 1.8(\nu \text{P}(f) + \text{P}(s))\textsl{n}_0 = 1.8\left(\nu \frac{\Xs_f}{\Xs_t} + \frac{\Xs_s}{\Xs_t}\right)\textsl{n}_0 .$$
+Some of these neutrons may now leak out of the system, however, so in general the number of neutrons in generation $t$, given as $\textsl{n}_t$, will obey the relation
+$$ \textsl{n}_t = k_{\text{eff}}\textsl{n}_{t-1} ,$$
+where $k_{\textit{eff}}$ now also accounts for leakage.
+The total fission energy produced by a single generation of fusion events and the ensuing multiplication and fission (assuming the energy produced in a single fission event to be about 200 MeV) will be
+$$ E_f = 200 \left(\frac{\Xs_f}{\Xs_t}\right)\left(1.8\textsl{n}_0 + \sum_{t=1}^{\infty} n_t \right) \text{MeV} $$
+$$ E_f = 200 \left(\frac{\Xs_f}{\Xs_t}\right)\left(1.8\textsl{n}_0 + \sum_{t=1}^{\infty}k_{\textit{eff}}\textsl{n}_{t-1} \right) \text{MeV} $$
+$$ E_f = 200 \left(\frac{\Xs_f}{\Xs_t}\right)\left(1.8\textsl{n}_0 + 1.8\sum_{t=1}^{\infty}k_{\textit{eff}}^{t-1}\textsl{n}_0 \right) \text{MeV} $$
+$$ E_f = 360 \left(\frac{\Xs_f}{\Xs_t}\right)\textsl{n}_0 \left(1  + \sum_{t=1}^{\infty}k_{\textit{eff}}^{t-1} \right) \text{MeV} $$
+$$ E_f = 360 \left(\frac{\Xs_f}{\Xs_t}\right)\textsl{n}_0 \sum_{t=0}^{\infty}k_{\textit{eff}}^{t-1} \text{ MeV} $$
+Altogether, we find
+$$ G = 1 + \frac{360 \left(\frac{\Xs_f}{\Xs_t}\right)\textsl{n}_0 \sum_{t=0}^{\infty}k_{\textit{eff}}^{t-1} \text{ MeV}}{17.6 \textsl{n}_0 \text{ MeV}} $$
+$$\boxed{ G = 1 + 20.5 \left(\frac{\Xs_f}{\Xs_t}\right) \sum_{t=0}^{\infty}k_{\textit{eff}}^{t-1} }$$
+
 
 
 
@@ -413,7 +437,13 @@ $$\boxed{ f_s = \frac{\frac{L_F(a+2b)}{a \cosh\left(\frac{a}{L_F}\right)}\left( 
 
 \section*{Problem 11}
 
+What is the Kord Smith Challenge? What are the parameters and details of the original challenge? What happened in 2010?
 
+The "Kord Smith Challenge" was a challenge to simulate the local power in each fuel pin within a reactor assembly, using an axial decomposition of 100 regions and a radial decomposition of 10 regions, and where the statistical standard deviation for the power from each cell would be less than 1\%. Simulations must also be able to take into account 100 different nuclides, and must be completed in 1 hour on a single CPU. In 2009, Bill Martin and ______ Hoogenboom proposed a benchmark problem for reference in completing the challenge. 
+
+In 2010, _____ Kelly presented a 
+
+https://www.oecd-nea.org/dbprog/documents/MonteCarlobenchmarkguideline_004.pdf
 
 
 \includepdf[pages=-]{NE250_HW03_mnegus-prob4.pdf}
