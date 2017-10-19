@@ -169,7 +169,7 @@ $$\boxed{ G = 1 + 20.5 \left(\frac{\Xs_f}{\Xs_t}\right) \sum_{t=0}^{\infty}k_{\t
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Problem 5}
+\section*{Problem 4}
 
 \subsection*{\textit{a.})}
 
@@ -275,7 +275,7 @@ For $\boxed{ \lambda = 2, \ \vec{v} = \begin{bmatrix}v_0 \\ v_0\end{bmatrix} }$,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Problem 4}
+\section*{Problem 5}
 
 In problem 4 we stated that the inverse, $\textbf{A}^{-1}$, of a square matrix, $\textbf{A}$,  is equal to the adjugate of the matrix, $\textbf{A}^{\dagger}$ divided by the determinant of $\textbf{A}$.
 
@@ -326,6 +326,36 @@ We can furthermore use the functions defined in the previous problem to show tha
 
 \section*{Problem 6}
 
+From Duderstadt and Hamilton, we can "define the operator $M^{\dagger}$ adjoint to the operator $M$ as that operator $M^{\dagger}$ for which
+$$ (M^{\dagger}f,g) = (f,Mg) ,"$$
+where parentheses denote the inner product such that
+$$ (f,g) \equiv \int_{a_i}^{a_f} f^*(\pos)g(\pos) dx $$
+for the interval $[a_i,a_f]$, and $f^*$ is the complex conjugate of $f$.
+Now, we wish to show that $L \equiv \frac{d^2}{dx^2}$ is self adjoint,
+$$ L = L^{\dagger} ,$$
+when $f$ has a derivative everywhere, is symmetric about the origin, and obeys Dirichlet boundary conditions ($f(\pm a) = 0$), all on the closed interval $[-a,a]$.
+
+If $L = L^{\dagger}$, then
+\begin{align*}
+(Lf,g)	&= (f,Lg) \\
+		&= \int_{-a}^{a} f^*(x) Lg(x) \, dx \\
+		&= \int_{-a}^{a} f^*(x) \frac{d^2g(x)}{dx^2} \, dx \\
+\end{align*}
+Using integration by parts once,
+\begin{align*}
+(Lf,g)	&= \left[f^*(x)\frac{dg(x)}{dx}\right]_{-a}^{a} - \int_{-a}^{a} \frac{dg(x)}{dx}\frac{df^*(x)}{dx} \, dx \\
+\end{align*}
+and again,
+$$ (Lf,g) = \left[f^*(x)\frac{dg(x)}{dx}\right]_{-a}^{a} - \left[\frac{dg(x)}{dx}f^*(x)\right]_{-a}^{a} + \int_{-a}^{a} g(x)\frac{d^2f^*(x)}{dx^2} \, dx $$
+gives us an equation that can be manipulated into the form of our original operator definition.
+$$ (Lf,g) = f^*(a)\frac{dg(x)}{dx}\bigg|_{a} - f^*(-a)\frac{dg(x)}{dx}\bigg|_{-a} - \frac{dg(x)}{dx}\bigg|_{a}f^*(a) + \frac{dg(x)}{dx}\bigg|_{-a}f^*(-a) + \int_{-a}^{a} g(x)\frac{d^2f^*(x)}{dx^2} \, dx $$
+Given our boundary conditions, $f(\pm a) = 0$, we can say that $f^*(\pm a) = 0$. Then,
+\begin{align*}
+(Lf,g)	&= \int_{-a}^{a} g(x)\frac{d^2f^*(x)}{dx^2} \, dx \\
+		&= \int_{-a}^{a} \frac{d^2f^*(x)}{dx^2}g(x) \, dx \\
+		(Lf,g)	&= (Lf,g)
+\end{align*}
+\tab\tab$\square$
 
 
 
