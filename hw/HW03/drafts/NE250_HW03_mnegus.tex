@@ -275,7 +275,7 @@ For $\boxed{ \lambda = 2, \ \vec{v} = \begin{bmatrix}v_0 \\ v_0\end{bmatrix} }$,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Problem 5}
+\section*{Problem 4}
 
 In problem 4 we stated that the inverse, $\textbf{A}^{-1}$, of a square matrix, $\textbf{A}$,  is equal to the adjugate of the matrix, $\textbf{A}^{\dagger}$ divided by the determinant of $\textbf{A}$.
 
@@ -437,14 +437,14 @@ $$\boxed{ f_s = \frac{\frac{L_F(a+2b)}{a \cosh\left(\frac{a}{L_F}\right)}\left( 
 
 \section*{Problem 11}
 
-What is the Kord Smith Challenge? What are the parameters and details of the original challenge? What happened in 2010?
+The "Kord Smith Challenge" was a challenge to simulate the local power in each fuel pin within a reactor assembly, using an axial decomposition of 100 regions and a radial decomposition of 10 regions, and where the statistical standard deviation for the power from each cell would be less than 1\%. Simulations must also be able to take into account 100 different nuclides, and must be completed in 1 hour on a single CPU. In 2009, Bill Martin and Jan Eduard Hoogenboom proposed a benchmark problem for reference in completing the challenge. 
 
-The "Kord Smith Challenge" was a challenge to simulate the local power in each fuel pin within a reactor assembly, using an axial decomposition of 100 regions and a radial decomposition of 10 regions, and where the statistical standard deviation for the power from each cell would be less than 1\%. Simulations must also be able to take into account 100 different nuclides, and must be completed in 1 hour on a single CPU. In 2009, Bill Martin and ______ Hoogenboom proposed a benchmark problem for reference in completing the challenge. 
+In 2010, D.J. Kelly, \textit{et al.} presented a solution to the Martin-Hoogenboom benchmark using the MC21 code. Despite solving the problem in the required granularity, the solution fell short of meeting many of the requirements set forth in the original challenge. Two of the major hurdles remaining at the time were the time scales needed (significantly longer than the single hour requirement) and large uncertainties (confidence intervals were much larger than prescribed). Memory concerns were also an issue.
 
-In 2010, _____ Kelly presented a 
-
-https://www.oecd-nea.org/dbprog/documents/MonteCarlobenchmarkguideline_004.pdf
-
+\textbf{Sources:}\\
+Romano, P. Parallel Algorithms for Monte Carlo Particle Transport Simulation on
+Exascale Computing Architectures. 2013. \\
+Hoogenboom, J. \textit{et al.} Monte Carlo Performance Benchmark for Detailed Power Density Calculation in a Full Size Core. 2011. \\
 
 \includepdf[pages=-]{NE250_HW03_mnegus-prob4.pdf}
 \includepdf[pages=-]{NE250_HW03_mnegus-prob5.pdf}
