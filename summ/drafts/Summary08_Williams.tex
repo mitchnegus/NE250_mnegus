@@ -1,0 +1,63 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 10/20/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary {8} \hfill Mitch Negus\\
+		\hspace*{\fill} 10/20/2017\\ }}}
+\section*{\textsl{Resonance Self-Shielding Methodologies in SCALE6} \\ \normalsize M. Williams}
+
+\tab This week's article discusses the methodology used by SCALE6 to generate self-shielding corrections. The article mentions how most generic cross section libraries are not necessarily sufficient for problems with complex structures. One reason for this is that effects like self-shielding have nontrivial effects on the standard cross sections in various types of problems, and locations in those problems. To account for these effects, SCALE incorporates methods to improve the cross sections. When these corrections are less complicated, such as at higher energies or in fairly uniform geometries, SCALE uses the Bondarenko method (via the BONAMI code) to calcualate the self-shielding. This method is fast, however it is not as accurate as more sophisticated treatments. In regions where this technique is not adequate, SCALE employs CENTRM to generate more accurate neutron spectra. These results are passed to the Prepare Multigroup Cross Sections (PMC) module to replace the BONAMI self-shielding values.\\
+\tab The article addressed a facet of simulation which I think is not as frequently discussed and yet is critical to reactor simulations. Without appropriate nuclear data, simulations of nuclear phenomena are completely ineffective. Moreover, the handling of cross sections on a problem-by-problem basis like this allows generic cross section libraries to be easily tabulated and distributed, with corrections made as they arise, rather than requiring all problem-specific parameters be tabulated as well. I do think this paper might have been better served with a more clear and concise form, perhaps devoting slightly more time to explaining motivation (such as the negative effects of improperly handling self-shielding), and including references to the SCALE manual when appropriate. Instead, \textit{this} article seemed to read like a theory manual.
+
+
+
+\end{document}
+
+Generic cross section libraries are insufficient for many problems with complex structures
+Use BONAMI and Bondarenko method for fast execution of self-shielding modifications
+Bondarenko method does not always perform well for low energies; does not necessarily account for complete effects in non-uniform lattice geometries
+Instead, CENTRM is used to generate more accurate neutron spectra --> eventually CENTRM results are used by the Prepare Multigroup Cross Sections (PMC) module to replace calculated BONAMI self-shielding values
+- CENTRM uses 1-D discrete ordinates method
+- does _not_ calculate eigenvalues
+- CENTRM can also use other methods
+	- CP method for 1-D, non-multigroup problems
+	- 2R method
+	- Nordheim 2R (NITAWL in SCALE)
+
+
