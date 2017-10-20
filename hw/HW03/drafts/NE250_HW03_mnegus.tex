@@ -95,18 +95,18 @@ If we have isotropic scattering (and no cross section spatial dependence), then 
 &+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi\rEOprime.
 \end{align*}
 
-Now, we let $\psi\rEO = \psi_0\EO\exp(i \Oh \cdot \vec{B})$. This can be substituted into our equation above to yield
+Now, we let $\psi\rEO = \psi_0\EO\exp(i \Oh \cdot \vec{B})$. Noting that $\Oh \cdot \vec{B} = \mu|\vec{B}|$, the equation for $\psi$ can be substituted into our equation above to yield
 \begin{align*}
-\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) &= \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}) \\
-&+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}).
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \mu|\vec{B}|) &= \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|) \\
+&+ \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|).
 \end{align*}
 
 Rearranging to solve for $k$,
 \begin{align*}
-\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) &- \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}) \\
-& = \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B}).
+\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \mu|\vec{B}|) &- \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|) \\
+& = \frac{1}{k}\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|).
 \end{align*}
-$$ k = \frac{\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B})}{\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \Oh \cdot \vec{B}) - \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \Oh' \cdot \vec{B})} $$
+$$ k = \frac{\frac{\chi(E)}{4\pi} \intzi dE' \nu(E') \Xs_f(E') \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|)}{\left[\Oh \cdot \nabla + \Xs_t(E) \right] \psi_0\EO\exp(i \mu|\vec{B}|) - \intzi dE' \Xs_s(E' \rightarrow E) \intfp d\Oh' \psi_0\EOprime\exp(i \mu|\vec{B}|)} $$
 ...
 
 
@@ -132,6 +132,12 @@ This would then be integrated over angle, under the assumption that the angular 
 \begin{align*}
 \Oov \frac{\p \phi\rt}{\p t} -D(\pos)\nabla \phi\rt + \Xs_t \phi\rt &=\Xs_s \phi\rt + \nu\Xs_f \phi\rt
 \end{align*}
+Now, we can assume our reactor is approximately steady state, so the time dependence vanishes, and we note that since we have only one group, the only scattering reactions which contribute to our neutron gain are $(n,xn)$ reactions. The equation reduces to
+$$ -D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) =\sum_{n=2}^{\infty}x \Xs_{(n,xn)} \phi(\pos) + \nu\Xs_f \phi(\pos) $$
+$$ -D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) - \sum_{n=2}^{\infty}x \Xs_{(n,xn)} \phi(\pos) = \nu\Xs_f \phi(\pos) $$
+For small deviations of $k_{\textit{eff}}$, this can be
+$$ -D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) - \sum_{n=2}^{\infty}x \Xs_{(n,xn)} \phi(\pos) = \frac{1}{k}\nu\Xs_f \phi(\pos) $$
+$$\boxed{ k = \frac{\nu\Xs_f \phi(\pos)}{-D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) - \sum_{n=2}^{\infty}x \Xs_{(n,xn)} \phi(\pos)} }$$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -453,6 +459,40 @@ $$\boxed{ f_s = \frac{\frac{L_F(a+2b)}{a \cosh\left(\frac{a}{L_F}\right)}\left( 
 
 \section*{Problem 9}
 
+\subsection*{\textit{a.})}
+
+The neutron diffusion equation for a bare slab of nonmultiplying material containing a uniformly distributed neutron source is 
+$$ \frac{d^2}{dx^2}\phi(x) - \frac{1}{L^2}\phi(x) = -\frac{s}{D} $$
+where $L = \sqrt{\frac{D}{\Xs_a}}$, and $s$ is the source per volume at a given location. The homogeneous solutions to this differential equation are of the form
+$$ \phi_h(x) = A_1 e^{\frac{x}{L}} + A_2 e^{\frac{-x}{L}} $$
+and the particular solution is
+$$ \phi_p(x) = \frac{sL^2}{D} $$
+Combining these two solutions into a single general solution gives
+$$ \phi(x) = A_1 e^{\frac{x}{L}} + A_2 e^{\frac{-x}{L}} + \frac{sL^2}{D} $$
+Given a bare slab of width $2a$, the flux boundary conditions are 
+$$ \phi(\pm \tilde{a}) = 0 .$$
+We can use this to simplify our general solution,
+\begin{align*}
+\phi(a)	&= A_1 e^{\frac{a}{L}} + A_2 e^{\frac{-a}{L}} + \frac{sL^2}{D} = 0 \\
+\phi(-a)&= A_1 e^{\frac{-a}{L}} + A_2 e^{\frac{a}{L}} + \frac{sL^2}{D} = 0 
+\end{align*}
+and so we can say that $A_1 = A_2 = A$. Then,
+\begin{align*}
+0 &= A \left(e^{\frac{a}{L}} + e^{\frac{-a}{L}}\right) + \frac{sL^2}{D} \\
+-\frac{sL^2}{D} &= A \left(e^{\frac{a}{L}} + e^{\frac{-a}{L}}\right) \\
+-\frac{sL^2}{D} &= 2A \cosh\left(\frac{a}{L}\right) \\
+A &= -\frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)} 
+\end{align*}
+Substituting this into our equation for the flux,
+\begin{align*}
+\phi(x)	&= \frac{sL^2}{D} - \frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)}e^{x/L} - \frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)}e^{-x/L} \\
+		&= \frac{sL^2}{D}\left(1-\frac{1}{2\cosh\left(\frac{a}{L}\right)} \left(e^{x/L} + e^{-x/L}\right)\right) \\
+\end{align*}
+$$\boxed{ \phi(x) = \frac{sL^2}{D}\left(1-\frac{\cosh\left(\frac{x}{L}\right)}{\cosh\left(\frac{a}{L}\right)}\right) }$$
+
+\subsection*{\textit{b.})}
+
+If we instead use eigenfunction expansions, we can express the flux as follows.
 
 
 
