@@ -140,6 +140,7 @@ $$ -D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) - \sum_{n=2}^{\infty}x \Xs_{(n,x
 $$\boxed{ k = \frac{\nu\Xs_f \phi(\pos)}{-D(\pos)\nabla \phi(\pos) + \Xs_t \phi(\pos) - \sum_{n=2}^{\infty}x \Xs_{(n,xn)} \phi(\pos)} }$$
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 3}
@@ -168,8 +169,6 @@ $$ E_f = 360 \left(\frac{\Xs_f}{\Xs_t}\right)\textsl{n}_0 \sum_{t=0}^{\infty}k_{
 Altogether, we find
 $$ G = 1 + \frac{360 \left(\frac{\Xs_f}{\Xs_t}\right)\textsl{n}_0 \sum_{t=0}^{\infty}k_{\textit{eff}}^{t-1} \text{ MeV}}{17.6 \textsl{n}_0 \text{ MeV}} $$
 $$\boxed{ G = 1 + 20.5 \left(\frac{\Xs_f}{\Xs_t}\right) \sum_{t=0}^{\infty}k_{\textit{eff}}^{t-1} }$$
-
-
 
 
 
@@ -447,11 +446,14 @@ $$\boxed{ f_s = \frac{\frac{L_F(a+2b)}{a \cosh\left(\frac{a}{L_F}\right)}\left( 
 
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 8}
 
+We are given the point source kernel, 
+$$ G_{pt}(\pos,\pos\,') = \frac{\exp\left(-\frac{|\pos-\pos\,'|}{L}\right)}{4\pi D |\pos-\pos\,'|}$$
+and we know that the flux is found using this kernel as
+$$ \phi(\pos) = \int G_{pt}(\pos,\pos\,') S_{pt}(\pos) d^3\pos\,' = \int \frac{\exp\left(-\frac{|\pos-\pos\,'|}{L}\right)}{4\pi D |\pos-\pos\,'|} S_{pt}(\pos\,') d^3\pos\,' $$
 
 
 
@@ -473,26 +475,80 @@ Given a bare slab of width $2a$, the flux boundary conditions are
 $$ \phi(\pm \tilde{a}) = 0 .$$
 We can use this to simplify our general solution,
 \begin{align*}
-\phi(a)	&= A_1 e^{\frac{a}{L}} + A_2 e^{\frac{-a}{L}} + \frac{sL^2}{D} = 0 \\
-\phi(-a)&= A_1 e^{\frac{-a}{L}} + A_2 e^{\frac{a}{L}} + \frac{sL^2}{D} = 0 
+\phi(a)	&= A_1 e^{\frac{\tilde{a}}{L}} + A_2 e^{\frac{-\tilde{a}}{L}} + \frac{sL^2}{D} = 0 \\
+\phi(-a)&= A_1 e^{\frac{-\tilde{a}}{L}} + A_2 e^{\frac{\tilde{a}}{L}} + \frac{sL^2}{D} = 0 
 \end{align*}
 and so we can say that $A_1 = A_2 = A$. Then,
 \begin{align*}
-0 &= A \left(e^{\frac{a}{L}} + e^{\frac{-a}{L}}\right) + \frac{sL^2}{D} \\
--\frac{sL^2}{D} &= A \left(e^{\frac{a}{L}} + e^{\frac{-a}{L}}\right) \\
--\frac{sL^2}{D} &= 2A \cosh\left(\frac{a}{L}\right) \\
-A &= -\frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)} 
+0 &= A \left(e^{\frac{\tilde{a}}{L}} + e^{\frac{-\tilde{a}}{L}}\right) + \frac{sL^2}{D} \\
+-\frac{sL^2}{D} &= A \left(e^{\frac{\tilde{a}}{L}} + e^{\frac{-\tilde{a}}{L}}\right) \\
+-\frac{sL^2}{D} &= 2A \cosh\left(\frac{\tilde{a}}{L}\right) \\
+A &= -\frac{sL^2}{2D\cosh\left(\frac{\tilde{a}}{L}\right)} 
 \end{align*}
 Substituting this into our equation for the flux,
 \begin{align*}
-\phi(x)	&= \frac{sL^2}{D} - \frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)}e^{x/L} - \frac{sL^2}{2D\cosh\left(\frac{a}{L}\right)}e^{-x/L} \\
-		&= \frac{sL^2}{D}\left(1-\frac{1}{2\cosh\left(\frac{a}{L}\right)} \left(e^{x/L} + e^{-x/L}\right)\right) \\
+\phi(x)	&= \frac{sL^2}{D} - \frac{sL^2}{2D\cosh\left(\frac{\tilde{a}}{L}\right)}e^{x/L} - \frac{sL^2}{2D\cosh\left(\frac{\tilde{a}}{L}\right)}e^{-x/L} \\
+		&= \frac{sL^2}{D}\left(1-\frac{1}{2\cosh\left(\frac{\tilde{a}}{L}\right)} \left(e^{x/L} + e^{-x/L}\right)\right) \\
 \end{align*}
-$$\boxed{ \phi(x) = \frac{sL^2}{D}\left(1-\frac{\cosh\left(\frac{x}{L}\right)}{\cosh\left(\frac{a}{L}\right)}\right) }$$
+$$\boxed{ \phi(x) = \frac{sL^2}{D}\left(1-\frac{\cosh\left(\frac{x}{L}\right)}{\cosh\left(\frac{\tilde{a}}{L}\right)}\right) }$$
 
 \subsection*{\textit{b.})}
 
 If we instead use eigenfunction expansions, we can express the flux as follows.
+$$ \phi(x) = \sum_{n=1}^{\infty} c_n \psi_n(x) ,$$
+where each $\psi_n$ is an eigenfunction in the expansion. Similarly, we can expand the source, $s$, in the eigenfunctions as well,
+$$ s = \sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+The complete diffusion equation is then
+$$ \frac{d^2}{dx^2}\left[\sum_{n=1}^{\infty} c_n \psi_n(x)\right] - \frac{1}{L^2}\left[\sum_{n=1}^{\infty} c_n \psi_n(x)\right] = -\frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+This simplifies to 
+$$ \sum_{n=1}^{\infty} c_n \frac{d^2}{dx^2}\psi_n(x) - \sum_{n=1}^{\infty} c_n \frac{1}{L^2}\psi_n(x) = -\frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+$$ \sum_{n=1}^{\infty} c_n \left[\frac{d^2}{dx^2}\psi_n(x) - \frac{1}{L^2}\psi_n(x)\right] = -\frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+We can state that for any function $\psi_n$, the following equation is true for some value $B_n$.
+$$ \frac{d^2}{dx^2}\psi_n(x) + B_n^2\psi_n(x) = 0 $$
+Equivalently,
+$$ \frac{d^2}{dx^2}\psi_n(x) = -B_n^2\psi_n(x) .$$
+Substituting this equation into our simplified diffusion equation gives
+$$ \sum_{n=1}^{\infty} c_n \left[-B_n^2\psi_n(x) - \frac{1}{L^2}\psi_n(x)\right] = -\frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+$$ \sum_{n=1}^{\infty} c_n \left[B_n^2 + \frac{1}{L^2}\right]\psi_n(x) = \frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) .$$
+Now, we multiply this equation by $\psi_m(x)$, an arbitrary specific eigenfunction, and then integrate over $x$. 
+$$ \int_{-\infty}^{\infty} \left[ \sum_{n=1}^{\infty} c_n \left[B_n^2 + \frac{1}{L^2}\right]\psi_n(x) \right] = \int_{-\infty}^{\infty} \left[ \frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x) \right] .$$
+$$ \int_{-\infty}^{\infty} \sum_{n=1}^{\infty} c_n \left[B_n^2 + \frac{1}{L^2}\right]\psi_n(x)\psi_m(x) dx = \int_{-\infty}^{\infty} \frac{1}{D}\sum_{n=1}^{\infty} s_n \psi_n(x)\psi_m(x) dx .$$
+Exploiting the fact that eigenfunctions are orthogonal in these inner products, gives
+$$ \int_{-\infty}^{\infty} \psi_n(x)\psi_m(x) = \begin{cases}	1, & \text{if }n = m \\
+																0, & \text{if } n \neq m \end{cases}$$
+so for each $m \in n$
+$$ c_m \left( B_m^2 + \frac{1}{L^2} \right) = \frac{s_m}{D} $$
+$$ c_m  = \frac{s_m}{D\left( B_m^2 + \frac{1}{L^2} \right)} $$
+or, in general,
+$$ c_n  = \frac{s_n}{D\left( B_n^2 + \frac{1}{L^2} \right)}. $$
+Now we can use this in our flux equation,
+$$ \phi(x) = \sum_{n=1}^{\infty} c_n \psi_n(x) ,$$
+$$ \phi(x) = \sum_{n=1}^{\infty} \frac{s_n}{D\left( B_n^2 + \frac{1}{L^2} \right)} \psi_n(x) .$$
+From our original equation defining $B_n^2$, we can see that
+$$ \psi_n(x) = A_1\cos(B_n x) + A_2\sin(B_n x) $$
+Substituting this into our previous equation for the flux,
+$$ \phi(x) = \sum_{n=1}^{\infty} \frac{s_n}{D\left( B_n^2 + \frac{1}{L^2} \right)} \left(A_1\cos(B_n x) + A_2\sin(B_n x) \right) .$$
+Where the flux must be symmetrical across the origin, we can deduce $A_2 = 0$. Then, if $A_1 = A$
+$$ \phi(x) = \sum_{n=1}^{\infty} \frac{A s_n \cos(B_n x)}{D\left( B_n^2 + \frac{1}{L^2} \right)} .$$
+We can now use our boundary conditions, that
+$$ \phi(\pm \tilde{a}) = 0 $$
+and say
+$$ \phi(\tilde{a}) = \sum_{n=1}^{\infty} \frac{A s_n \cos(B_n \tilde{a})}{D\left( B_n^2 + \frac{1}{L^2} \right)} = 0$$
+$$ \phi(-\tilde{a}) = \sum_{n=1}^{\infty} \frac{A s_n \cos(-B_n \tilde{a})}{D\left( B_n^2 + \frac{1}{L^2} \right)} = 0.$$
+Since $s_n \neq 0$ (trivial), these equations only hold true when the cosine is zero. In other words, when
+$$ B_n \tilde{a} = \frac{n\pi}{2} \text{ for odd }n $$
+$$ B_n = \frac{(2n-1)\pi}{2\tilde{a}} \text{ for integers }n \in [1,\infty)$$
+$$ \phi(x) = \sum_{n=1}^{\infty} \frac{A s_n \cos\left(\frac{(2n-1)\pi}{2\tilde{a}} x\right)}{D\left( \left(\frac{(2n-1)\pi}{2\tilde{a}}\right)^2 + \frac{1}{L^2} \right)} .$$
+We can also solve for $s_n$, using the relationship that
+$$ s_n = \frac{2}{\tilde{a}}\int_{-\tilde{a}}^{\tilde{a}} s \psi_n(x) dx $$
+$$ s_n = \frac{2sA}{\tilde{a}}\int_{-\tilde{a}}^{\tilde{a}} \cos\left( \frac{(2n-1)\pi}{2\tilde{a}}x\right) $$
+$$ s_n = \frac{4sA}{(2n-1)\pi}\left[\sin\left(\frac{(2n-1)\pi}{2\tilde{a}}x\right)\right]_{-\tilde{a}}^{\tilde{a}} $$
+$$ s_n = \frac{4sA}{(2n-1)\pi}\left[\sin\left(\frac{(2n-1)\pi}{2}\right) - \sin\left(\frac{(1-2n)\pi}{2}\right)\right] $$
+$$ s_n = \frac{8sA}{(2n-1)\pi}(-1)^{n-1} $$
+The flux is then,
+$$ \phi(x) = \frac{8sA^2}{D\pi}\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{2n-1}\frac{\cos\left(\frac{(2n-1)\pi}{2\tilde{a}} x\right)}{\left(\frac{(2n-1)\pi}{2\tilde{a}}\right)^2 + \frac{1}{L^2}} .$$
+...
+
 
 
 
@@ -500,14 +556,80 @@ If we instead use eigenfunction expansions, we can express the flux as follows.
 
 \section*{Problem 10}
 
+\subsection*{\textit{a.}) Sphere}
+Given the general diffusion equation,
+$$ -D \nabla^2 \phi(\pos) + \Xs_a \phi(\pos) = \nu \Xs_f\phi(\pos), $$
+We can use the definition of the Laplacian in spherical polar coordinates 
+$$ \nabla^2 = \frac{1}{r^2}\frac{\p}{\p r}\left( r^2 \frac{\p}{\p r}\right) + \frac{1}{r^2 \sin^2\varphi}\frac{\p^2}{\p \theta^2} + \frac{1}{r^2 \sin\varphi} \frac{\p}{\p \varphi}\left(\sin\varphi \frac{\p}{\p \varphi}\right) $$ 
+to give the diffusion equation for spherical polar coordinates as
+$$ \frac{1}{r^2}\frac{\p}{\p r}\left( r^2 \frac{\p}{\p r} \phi(\pos)\right) + \frac{1}{r^2 \sin^2\varphi}\frac{\p^2}{\p \theta^2} \phi(\pos) + \frac{1}{r^2 \sin\varphi} \frac{\p}{\p \varphi}\left(\sin\varphi \frac{\p}{\p \varphi}\phi(\pos)\right) + B^2 \phi(\pos) = 0 ,$$
+where $B$ is the material buckling,
+$$ B \equiv \frac{\nu \Xs_f - \Xs_a}{D} .$$
+Since we have a sphere, dependence of $\phi$ on $\varphi$ and $\theta$ vanishes, so the equation reduces significantly to
+$$ \frac{1}{r^2}\frac{d}{dr} \left( r^2 \frac{d}{dr} \phi(r)\right) + B^2 \phi(r) = 0 .$$
+Where solutions to this equation are of the form 
+$$ \phi(r) = \frac{A_1}{r}\cos(Br) + \frac{A_2}{r}\sin(Br)  $$
+Since our flux must be symmetric, $\phi(r) = \phi(-r)$, and so we see that $A_1 = 0$. Letting $A = A_2$,
+$$ \phi(r) = \frac{A}{r}\sin(Br) .$$
+Now, if the spherical reactor has a radius $R$, then a boundary condition is
+$$ \phi(\tilde{R}) = 0 .$$
+This gives
+$$ 0 = \frac{A}{r}\sin(B\tilde{R}) $$
+and we see that 
+$$ B\tilde{R} = n\pi \text{ for }n = 1,2,3, ...$$
+$$ B_g = B = \frac{n\pi}{\tilde{R}} \text{ for }n = 1,2,3, ...$$
+We note however, that any values for $n$ other than $n=1$ will result in negative flux, which is unphysical. Then
+$$\boxed{ B_g = \frac{\pi}{\tilde{R}} }$$
+$$\boxed{ \phi(r) = \frac{A}{r}\sin\left(\frac{\pi}{\tilde{R}}r \right) }$$
 
+\subsection*{\textit{b.}) Infinite Cylinder}
+
+For cylindrical geometries, the diffusion equation takes the form:
+$$ \frac{1}{r}\frac{\p}{\p r}\left(r \frac{\p \phi(\pos)}{\p r}\right) + \frac{\p^2 \phi(\pos)}{\p z^2} + B^2\phi(\pos) = 0$$
+where again$ B^2 = \frac{\nu\Sigma_f - \Sigma_a}{D} $ near criticality. 
+Since our cylinder is infinite we again lose dependence on $z$ in our equations.
+$$ \frac{1}{r}\frac{\p}{\p r}\left(r \frac{\p \phi(r)}{\p r}\right) + B^2\phi(r) = 0$$
+
+Solutions to this equation are are zeroth order Bessel functions of first and second kind, $J_0(r)$ and $Y_0(r)$. 
+Then,
+$$ \phi(r) = A_1 J_0(B r) + A_2 Y_0(B r) $$
+Our boundary conditions demand that the flux is finite at $r = 0$, and so $A_2 = 0$. 
+Letting $A_1 = A$, we have
+$$ \phi(r) = A J_0(B r) .$$
+Our boundary conditions force the flux to go to zero at $\tilde{R}$,
+$$ \phi(\tilde{R}) = 0 ,$$
+and again, since the flux must be nonnegative, only the first zero of $J_0$ can satisfy this condition, which occurs at $B \tilde{R} = 2.4048$.
+Our flux is then
+$$ \phi(r) = A J_0(\frac{2.4048}{\tilde{R}} r) .$$
+$$\boxed{ B = \frac{2.4048}{\tilde{R}} }$$
+$$\boxed{ \phi(r) = A J_0(\frac{2.4048}{\tilde{R}} r) }$$
+
+\subsection*{\textit{c.}) Parallelpiped}
+
+For rectangular geometries, the diffusion equation is
+$$ \frac{\p^2}{\p x^2}\phi(x,y,z) + \frac{\p^2}{\p y^2}\phi(x,y,z) + \frac{\p^2}{\p z^2}\phi(x,y,z) + B^2\phi(x,y,z) = 0 $$.
+If we assume separability in each dimension, so that $\phi(x,y,z) = X(x)Y(y)Z(z)$, then
+$$ \frac{\p^2}{\p x^2}X(x)Y(y)Z(z) + \frac{\p^2}{\p y^2}X(x)Y(y)Z(z) + \frac{\p^2}{\p z^2}X(x)Y(y)Z(z) + B^2X(x)Y(y)Z(z) = 0 $$.
+$$ Y(y)Z(z)\frac{\p^2}{\p x^2}X(x) + X(x)Z(z)\frac{\p^2}{\p y^2}Y(y) + X(x)Y(y)\frac{\p^2}{\p z^2}Z(z) + B^2X(x)Y(y)Z(z) = 0 .$$
+and dividing by $\phi(x,y,z) = X(x)Y(y)Z(z)$ gives,
+$$ \frac{1}{X(x)}\frac{\p^2}{\p x^2}X(x) + \frac{1}{Y(y)}\frac{\p^2}{\p y^2}Y(y) + \frac{1}{Z(z)}\frac{\p^2}{\p z^2}Z(z) + B^2 = 0 .$$
+Where these three components in $x$, $y$, and $z$ can be shown to be independent, we can write this equation as three separate ODEs:
+
+\begin{multicols}{3}
+$$ \frac{1}{X(x)}\frac{\p^2}{\p x^2}X(x) + \alpha^2 = 0 $$
+$$ \frac{1}{Y(y)}\frac{\p^2}{\p y^2}Y(y) + \beta^2 = 0 $$
+$$ \frac{1}{Z(z)}\frac{\p^2}{\p z^2}Z(z) + \gamma^2 = 0 $$
+\end{multicols}
+where $\alpha^2 + \beta^2 + \gamma^2 = B^2$
+
+...
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 11}
 
-The "Kord Smith Challenge" was a challenge to simulate the local power in each fuel pin within a reactor assembly, using an axial decomposition of 100 regions and a radial decomposition of 10 regions, and where the statistical standard deviation for the power from each cell would be less than 1\%. Simulations must also be able to take into account 100 different nuclides, and must be completed in 1 hour on a single CPU. In 2009, Bill Martin and Jan Eduard Hoogenboom proposed a benchmark problem for reference in completing the challenge. 
+The ``Kord Smith Challenge'' was a challenge to simulate the local power in each fuel pin within a reactor assembly, using an axial decomposition of 100 regions and a radial decomposition of 10 regions, and where the statistical standard deviation for the power from each cell would be less than 1\%. Simulations must also be able to take into account 100 different nuclides, and must be completed in 1 hour on a single CPU. In 2009, Bill Martin and Jan Eduard Hoogenboom proposed a benchmark problem for reference in completing the challenge. 
 
 In 2010, D.J. Kelly, \textit{et al.} presented a solution to the Martin-Hoogenboom benchmark using the MC21 code. Despite solving the problem in the required granularity, the solution fell short of meeting many of the requirements set forth in the original challenge. Two of the major hurdles remaining at the time were the time scales needed (significantly longer than the single hour requirement) and large uncertainties (confidence intervals were much larger than prescribed). Memory concerns were also an issue.
 
