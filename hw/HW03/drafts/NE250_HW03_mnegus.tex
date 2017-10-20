@@ -579,7 +579,7 @@ and we see that
 $$ B\tilde{R} = n\pi \text{ for }n = 1,2,3, ...$$
 $$ B_g = B = \frac{n\pi}{\tilde{R}} \text{ for }n = 1,2,3, ...$$
 We note however, that any values for $n$ other than $n=1$ will result in negative flux, which is unphysical. Then
-$$\boxed{ B_g = \frac{\pi}{\tilde{R}} }$$
+$$\boxed{ B_g^2 = \left(\frac{\pi}{\tilde{R}}\right)^2 }$$
 $$\boxed{ \phi(r) = \frac{A}{r}\sin\left(\frac{\pi}{\tilde{R}}r \right) }$$
 
 \subsection*{\textit{b.}) Infinite Cylinder}
@@ -598,10 +598,9 @@ Letting $A_1 = A$, we have
 $$ \phi(r) = A J_0(B r) .$$
 Our boundary conditions force the flux to go to zero at $\tilde{R}$,
 $$ \phi(\tilde{R}) = 0 ,$$
-and again, since the flux must be nonnegative, only the first zero of $J_0$ can satisfy this condition, which occurs at $B \tilde{R} = 2.4048$.
-Our flux is then
+and again, since the flux must be nonnegative, only the first zero of $J_0$ can satisfy this condition, which occurs at $B \tilde{R} = 2.4048$. $B = B_g = \frac{2.4048}{\tilde{R}}$. Our flux is then
 $$ \phi(r) = A J_0(\frac{2.4048}{\tilde{R}} r) .$$
-$$\boxed{ B = \frac{2.4048}{\tilde{R}} }$$
+$$\boxed{ B_g^2 = \left(\frac{2.4048}{\tilde{R}}\right)^2 }$$
 $$\boxed{ \phi(r) = A J_0(\frac{2.4048}{\tilde{R}} r) }$$
 
 \subsection*{\textit{c.}) Parallelpiped}
@@ -620,11 +619,20 @@ $$ \frac{1}{X(x)}\frac{\p^2}{\p x^2}X(x) + \alpha^2 = 0 $$
 $$ \frac{1}{Y(y)}\frac{\p^2}{\p y^2}Y(y) + \beta^2 = 0 $$
 $$ \frac{1}{Z(z)}\frac{\p^2}{\p z^2}Z(z) + \gamma^2 = 0 $$
 \end{multicols}
-where $\alpha^2 + \beta^2 + \gamma^2 = B^2$
+where $\alpha^2 + \beta^2 + \gamma^2 = B^2 = B_g^2$. Solutions here are of the form
+$$ X(x) = A_{x1}\cos(\alpha x) + A_{x2}\sin(\alpha x). $$
+If we impose boundary conditions so that
+$$ X(\frac{\tilde{a}}{2}) = 0 $$
+and our flux is symmetrical, we find that $A_{x2} = 0$ and then, if $A_{x1} = A_x$
+$$ 0 = A_x \cos(\alpha\frac{\tilde{a}}{2}) $$
+$$ \alpha\frac{\tilde{a}}{2} = \frac{\pi}{2} $$
+$$ \alpha = \frac{\pi}{\tilde{a}} $$
+Then our flux is 
+$$ \phi(x) = A_x A_y A_z \cos\left(\frac{\pi x}{\tilde{a}}\right) \cos\left(\frac{\pi y}{\tilde{b}}\right) \cos\left(\frac{\pi z}{\tilde{c}}\right) $$
+$$\boxed{ \phi(x) = A \cos\left(\frac{\pi x}{\tilde{a}}\right) \cos\left(\frac{\pi y}{\tilde{b}}\right) \cos\left(\frac{\pi z}{\tilde{c}}\right) }$$
+$$\boxed{ B_g^2 = \left(\frac{\pi}{\tilde{a}}\right)^2 + \left(\frac{\pi}{\tilde{b}}\right)^2 + \left(\frac{\pi}{\tilde{c}}\right)^2 }$$
 
-...
-
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 11}
