@@ -56,13 +56,17 @@
 
 \newcommand{\rt}{(\pos,t)}
 \newcommand{\rE}{(\pos,E)}
+\newcommand{\rEprime}{(\pos,E')}
 \newcommand{\rEO}{(\pos,E,\Oh)}
 \newcommand{\rEt}{(\pos,E,t)}
 \newcommand{\rEtprime}{(\pos,E',t)}
+\newcommand{\rEOprime}{(\pos,E',\Oh')}
 \newcommand{\rOt}{(\pos,\Oh,t)}
 \newcommand{\rOtprime}{(\pos,\Oh',t)}
 \newcommand{\rEOt}{(\pos,E,\Oh,t)}
 \newcommand{\rEOtprime}{(\pos,E',\Oh',t)}
+\newcommand{\EO}{(E,\Oh)}
+\newcommand{\EOt}{(E,\Oh,t)}
 
 \newcommand{\halflife}{T_{1/2}}
 
@@ -72,6 +76,8 @@
 \newcommand{\punine}{^{239}\text{Pu}}
 \newcommand{\puone}{^{241}\text{Pu}}
 
+\newcommand{\greens}{G(\pos,\pos')}
+\newcommand{\oneDgreens}{G(x,x')}
 
 % Create a header w/ Name & Date
 \pagestyle{fancy}
@@ -275,12 +281,14 @@ $$\text{(See paper notes...)}$$
 \begin{dmath*}
 \Oov \frac{\p\psi}{\p t} + \Oh \cdot \nabla\psi + \Xs_t\psi = \intfp d\Oh'\intzi dE' \Xs_s(E',\Oh'\rightarrow E,\Oh)\psi(E',\Oh') + \frac{\chi(E)}{4\pi}\intzi dE'\nu(E')\Xs_f(E') \intfp d\Oh'\phi\rEOtprime + s\rEOt
 \end{dmath*}
-
+\-\\
+\begin{multicols}{2}
 \textbf{Initial condition:}
 $\psi(\pos,E,\Oh,0) = \psi_0\rEO$
 
 \textbf{Interface condition:}
 angular flux must be continuous at all points
+\end{multicols}
 
 \hhh{Other conditions}
 \tab \textbf{Fixed condition:} incoming flux is specified  
@@ -422,7 +430,7 @@ Like we did to derive the continuity equation, we can break down each term.
 Putting each of these 5 components back together the \textbf{current continuity equation (CCE)} is
 $$\Oov \frac{\p \cur}{\p t} + \nabla \cdot \intfp d\Oh \;\Oh\Oh \; \psi\rOt + \Xs_t \cur\rt = \Xs_{s1}\cur\rt + S_1\rt$$
 
-Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns–$\phi$ (1), $\cur$ (3), and the new tensor term (6). There is little point to continuing with this technique any longer.
+Now we have 2 moment equations (zeroth and first) so a total of 4 equations (neutron continuity and 3 tensor equations). There are now 10 unknowns: $\phi$ (1), $\cur$ (3), and the new tensor term (6). There is little point to continuing with this technique any longer.
 
 
 \hh{Angular Flux Approximation}
@@ -460,7 +468,7 @@ $$\Oov \frac{\p \cur}{\p t} + \frac{1}{3} \nabla \phi\rt + \Xs_{tr} \cur\rt = S_
 With the following conditions
 \begin{itemize}
     \item Steady state $(\ppt(X) = 0)$
-    \item Isotropic soure ($S_1 = 0$)
+    \item Isotropic source ($S_1 = 0$)
 \end{itemize}
 
 The current continuity equation becomes
@@ -503,19 +511,23 @@ If scattering is
     \item isotropic $\rightarrow \bar{\mu}_0 = 0, \lambda_t = \lambda_{tr}$
     \item forward peaked $\rightarrow \bar{\mu}_0 > 0, \lambda_t > \lambda_{tr}$
 \end{itemize}
+\-\\
 
-\textbf{Initial Conditions:} $\phi(\pos,0) = \phi(\pos) \; \forall \pos \in V$
+\begin{multicols}{2}
+\hhh{Initial Conditions:} 
+$\phi(\pos,0) = \phi(\pos) \; \forall \pos \in V$
 
 Basic requirements:\\
 - real and nongegative ($\phi \geq 0$)\\
 - bounded ($\phi > \infty$) \\
 
-\textbf{Interface conditions:} \\
--Zeroth and First moments must be continuous\\
+\hhh{Interface conditions:} 
+-Zeroth and first moments must be continuous\\
 \tab$\phi_1\rt = \phi_2\rt$\\
 \tab$\cur_1\rt = \cur_2\rt$\\
 
-\textbf{Vacuum BCs:}\\
+\columnbreak
+\hhh{Vacuum BCs:}
 %$\psi\rsOt = \Oh \hat{e}_s < 0$\\
 In the DE use partial current\\
 \tab $J_{-}\rt = \int_{2\pi^{-}} d\Oh \Oh \cdot \hat{e}_s \psi\rOt = 0$\\
@@ -529,6 +541,7 @@ $J_{-}(\pos_s,t) = J_{-}(x_s,t) = \frac{1}{4}\phi(x_s,t) + \frac{D}{2}\frac{d\ph
 The extrapolation distance, where $\phi = 0$ is
 $$\tilde{x}_s = x_s + 2D = x_s + \frac{2}{3}\lambda_{tr}$$
 and so replace $J_{-}(x_s) = 0$ with $ \phi(\tilde{x}_s) = 0$.
+\end{multicols}
 
 
 \hh{Helmholtz Form of the Diffusion Equation}
@@ -543,7 +556,7 @@ The solution to this equation is $\phi = \phi_H(\pos) + \phi_P(\pos)$, where the
 \hh{Criticality}
 
 For the equation
-$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \nu\Xs_f \phi, \phi(\pm\tilde{x}_s) = 0.$$
+$$\nabla \cdot D \nabla \phi + \Xs_a \phi = \nu\Xs_f \phi, \; \hspace{0.3cm}\phi(\pm\tilde{x}_s) = 0.$$
 There is no general solution unless we get it exactly right.
 
 Introduce $k$. For any $k$, there is always a solution. We use an iterative porcess to find $k$. You might consider $k$ as tuning the neutrons produced per fission.
@@ -597,6 +610,7 @@ a.) $\ell = 0.1s$\\
 b.) $\ell = 1 \times 10^{-4}$s\\
 \tab $n(1s)/n_0 = e^{(1.0005-1)(1\text{ s})/(1\times10^{-4})\text{ s}}$\\
 \tab $\boxed{ n(1s)/n_0 = 148.4 }$
+\newpage
 
 
 
@@ -611,15 +625,17 @@ We assumed that the angular flux is linearly anisotropic ($P_1$ expansion), and 
 \end{itemize}
 
 Fick's Law and the 1-speed Diffusion Equation gave us
-$$ \Oov \frac{\p \phi}{\p t} = S\rt = \Xs_a(\pos)\phi\rt + \nabla \cdot D(\pos) \nabla\phi\rt $$
+$$ \Oov \frac{\p \phi}{\p t} = S\rt - \Xs_a(\pos)\phi\rt + \nabla \cdot D(\pos) \nabla\phi\rt $$
 
-Start with the energy depend
-$$ \Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi - \Xs_t(\pos)\phi\rE - \nabla \cdot \cur\rEt$$
+Start by looking at the energy dependent $P_1$ equations (NCE,CCE but with energy dependence)
+$$ \Oov \frac{\p \phi}{\p t} = S\rEt + \intzi dE' \Xs_s(\pos,E' \rightarrow E)\phi\rEtprime - \Xs_t\rE\phi\rEt - \nabla \cdot \cur\rEt$$
+and
+$$ \Oov \frac{\p \cur}{\p t} = S_1\rEt + \intzi dE' \bar{\mu}_0\Xs_{s1}(\pos,E' \rightarrow E)\cur\rEtprime - \Xs_t\rE\cur\rEt - \frac{1}{3}\nabla \cdot \phi\rEt$$
 
 We apply asusmptions
 \begin{enumerate}
-    \item Slow currnet change
-    \item Isotropic source, $S=0$
+    \item Slow current change $\left(\frac{1}{|\cur\rt|}\frac{\p \cur\rt}{\p t} \ll v\Xs_t \ \therefore\ \frac{1}{v}\frac{\p \cur\rt}{\p t} = 0 \right)$
+    \item Isotropic source, $S_1\rEt=0$
     \item Isotropic scattering, $\Xs_{s1}(E' \rightarrow E) = 0$
 \end{enumerate}
 
@@ -748,8 +764,346 @@ We've been using $M = \frac{d^2}{dx^2} - \frac{1}{L_r^2}$, where $a_0=1$, $a_1=0
 
 If we use variation of parameters,\\
 \tab $ M\phi_{\text{homogeneous}} = 0 $ \\
-\tab $ M\phi_{\text{part}} = f(\pos) $ \\
-\tab $ \phi = \phi_{\text{homogeneous}} +\phi_{\text{part}}$
+\tab $ M\phi_{\text{particular}} = f(\pos) $ \\
+\tab $ \phi = \phi_{\text{homogeneous}} +\phi_{\text{particular}}$
+
+
+
+\h{Reactor Overview}
+
+\hh{BWRs}
+
+-cans surround assemblies; prevent boiling water from evacuating central channels\\
+-control rods inserted from bottom; more water $\Rightarrow$ better moderation $\Rightarrow$ more neutronic control \\
+
+\hh{TRISO Fuel}
+
+-directly placed in reactor (like gumball machine... pebbles move up or down depending on moderator/coolant) \\
+-can also be embedded in graphite compacts, assembled into core configuration
+
+
+
+\h{Diffusion Equation Solution Methods}
+
+\hh{Green's Functions}
+
+Say we have a unit source at $\pos'$. 
+$$ \nabla \cdot D \nabla \phi(\pos) +\Xs_a \phi(\pos) = -S(\pos) \forall \pos \in V$$
+...
+
+$$ \nabla \cdot D \nabla \greens + \Xs_a \greens = \delta(\pos-\pos') \forall \pos \in V $$
+...
+Let $HG = \delta$ and $H\phi = S$
+...
+
+$$ = \int_V dV \left( S(\pos') \greens - \delta(\pos-\pos')\phi(\pos)\right)$$
+
+and using the divergence theorem and our boundary conditions
+$$ \int_{\mathcal{S}} d\mathcal{S} \hat{e}_s \cdot D \left[ \nabla \phi \greens - ... \right] = 0 $$
+
+\begin{align*}
+\int_V dV S(\pos)\greens	&= \int_V dV \delta(\pos-\pos')\phi \\
+							&= \phi(\pos') 
+\end{align*}
+or 
+$$ \phi(\pos) = \int_V dV S(\pos')\greens $$
+Note: $\greens$ is a \textbf{kernel}.
+
+\hhh{Example: Plane source in an infinite medium}
+
+...
+
+$$\frac{d^2 \oneDgreens}{dx^2} - \frac{1}{L^2} \oneDgreens = -S(x)\delta(x), \text{ and} \lim_{x\rightarrow\pm\infty} \oneDgreens = 0$$
+
+Variation of constants: $\oneDgreens = \frac{L}{2D}H(x-x')e^{-|x-x'|/L} + \frac{L}{2D}H(x-x')e^{|x-x'|/L}$, where $H(x-x')$ is the heaviside function.
+
+Then 
+$$ \phi = \int_{}^{}dx' \oneDgreens \delta(x') S $$
+$$ \phi(x) = \frac{SL}{2D}e^{-|x|/L} $$
+
+\hh{Eigenfunction expansion method}
+We use this method to get the DE solution as a functional expansion of eigenvectors.
+
+\hhh{Eigenvalues}
+A special set of scalars associated with a linear system of equations. They are also known as characteristic roots. Each eigenvalue has a corresponding eigenvector. 
+
+$\mathbf{A} \in \mathbb{C}^n \times \mathbb{C}^n$, then $\mathbf{A}$ can be composed into eigenvectors and eigenvalues as long as $\mathbf{A}$ is square.
+
+Let $\mathbf{A} \in \mathbb{R}^{n \times n}.$ If there is a $\vec{x} \in \mathbb{R}^n \text{ s.t. } \mathbf{A}\vec{x} = \lambda\vec{x}$.
+
+...
+
+Solve for $\lambda$s and $\vec{x}$s that go w/ them. There are nontrivial solutions iff $\det(\mathbf{A} - \lambda\mathbb{1}) = 0$. $\mathbf{A}_{n\ times n}$ is guaranteed to have $n$ eigenvalues, some of which ay be repeated. This spectrum of $\mathbf{A}$ is 
+$$ \sigma(A) \equiv \left[ \lambda \in \mathbb{C} : \det(\mathbf{A}-\lambda\mathbb{1}) = 0 \right], \, \lambda \in \sigma(\mathbf{A}) $$
+
+\hhh{...}
+$$ \nabla^2 \phi(\pos) - \Xs_a \phi(\pos) = \frac{-S(\pos)}{D}, \, \forall \, \pos \in V $$
+where our boundary conditions 
+$$ \phi(\pos) = 0, \, \forall \, \pos \in \mathcal{S} $$
+
+Now, let $\psi$ be an eigenvector, and $n$ be the $n^{\text{th}}$ mode.
+
+
+...
+
+where $\nabla^2 = \mathbf{A}$ and $-B_n^2 = \lambda$.
+
+$$ ... - \frac{1}{L^2}\sum_{n=1}^N c_n \psi_n = \frac{-1}{D}\sum_{n=1}^{N} S_n \psi_n $$
+
+
+$$ \sum_{n=1}^N c_n \left(B + \frac{1}{L^2}\right) \psi_n = \frac{1}{D}\sum_{n=1}^N S_n \psi_n .$$
+
+Now we use the orthonormality of eigenvectors,
+$$ \int_V dV \psi_n \psi_m =	\begin{cases}	1, & n=m \\
+												0, & n \neq m
+								\end{cases}$$
+											
+to find $c_n$.
+$$ \int_V dV \sum_{n=1}^N c_n \left(B_n^2 + \frac{1}{L^2} \right) = \frac{1}{D} S_n $$
+$$ c_n \left(B_n^2 + \frac{1}{L^2}\right) = \frac{1}{D} S_n $$
+$$ c_n = \frac{S_n}{D}\left(B_n^2 + \frac{1}{L^2}\right)^{-1} $$
+
+$$ S_n = \int_V dV S(\pos) \psi_n $$
+$$ \phi(\pos) = \int_V dV \sum_{n=1}^N \frac{S(\pos)}{D}\left(B_n^2 + \frac{1}{L^2}\right)\psi_n \psi_n $$
+
+\hhh{1D Slab with a source}
+...
+with boundary conditions $\phi(\pm\tilde{\frac{a}{2}}) = 0$.
+
+$$ \frac{d^2\psi}{dx^2} - B^2\psi = 0, \; -\frac{a}{2} \leq x \leq \frac{a}{2} $$
+...
+and $\psi(\pm\frac{\tilde{a}}{2}) = A_1 \cos(\frac{B\tilde{a}}{2}) + A_2\sin(...) = 0 $.
+...
+
+...
+$$ \psi_n =	\begin{cases}	A_n\cos(\frac{n\pi}{\tilde{a}}x),	& n \text{ is odd} \\
+							A_n\sin(\frac{n\pi}{\tilde{a}}x), 	& n \text{ is even}						\end{cases}$$
+							
+The eigenvalue is $B_n = \frac{n\pi}{\tilde{a}}$ and the eigenvectors (or normal/harmonic modes are $\psi_n = \frac{n\pi}{\tilde{a}}$.
+
+If normalize the power ($A_n = 1$),
+$$ \phi(x) = \sum_{n=1}^N c_n \psi_n $$
+$$ S(x) = \sum_{n=1}^N \psi_n S_n $$
+$$ S_n = ... $$
+
+Altogether,
+$$ \frac{d^2}{dx^2} \sum_{n=1}^N c_n \psi_n - ... = -\frac{1}{D}\sum_{n=1}^N \psi_n S_n $$
+$$ ... $$
+
+$$ c_n = \frac{S_n}{D}\left(\frac{1}{L^2} + B_n^2\right)^{-1} $$
+$$ \phi(x) = \frac{1}{D}\sum_{n=1}^N S_n\left( \frac{1}{L^2} + B_n^2 \right)^{-1} \psi_n $$
+
+Now substitute the source into the flux expression we just found.
+
+$$ \phi(x) = \int_{-\frac{\tilde{a}}{2}}^{\frac{\tilde{a}}{2}} dx \left[ \frac{2}{\tilde{a}D} \sum_{n=1}^N \frac{\psi_n(x)\psi_n(x')}{\frac{1}{L^2} + B_n^2 }\right] S(x') $$
+
+Recall Green's function,
+$$ \phi(x) = \int_{-\frac{\tilde{a}}{2}}^{\frac{\tilde{a}}{2}} dx \,\oneDgreens S(x') $$
+and we see that 
+$$ \oneDgreens = \frac{2}{\tilde{a}D} \sum_{n=1}^N \frac{\psi_n(x)\psi_n(x')}{\frac{1}{L^2} + B_n^2 }$$
+
+
+\hh{Separation of Variables: Time Dependence in a Uniform Slab}
+
+$$ \Oov \frac{\p\phi(x,t)}{\p t} - D\frac{\p^2\phi(x,t)}{\p x^2} + \Xs_a \phi(x,t) = \nu\Xs_f(x,t)$$
+
+Our boundary conditions are 
+$$ \phi(\pm\frac{\tilde{a}}{2},t) = 0 \text{ (vacuum)}$$
+$$ \phi(x,0) = \phi_0(x) = \phi_0(-x) \text{ (symmetric)}$$
+
+
+...
+
+Now we have 2 ODEs
+$$ \frac{dT}{dt} = -\lambda T(t) $$
+$$ D\frac{d^2\psi}{dx^2} = ... $$
+
+...
+
+Use the eigenvalue approach, solve
+$$ \frac{d^2\psi_n}{dx^2} + B_n^2\psi_n(x)=0 $$
+$$ \psi_n(\pm\frac{\tilde{a}}{2}) = 0 $$
+
+Now, due to symmetry, $\psi_n = \cos(B_n x)$ are the eigenvectors (no odd sine functions).
+$$ B_n^2 = \left( \frac{n\pi}{\tilde{a}} \right)^2, \text{ where }n=\text{odd (the ``space eigenvalue''} $$
+
+$$ \lambda = v \Xs_a + vDB_n^2 - v\nu\Xs_f \equiv \lambda_n $$
+We can solve for $\lambda$, where $\lambda_n$ is the time eigenvalue of the equation.
+
+$$ \phi(x,t) = \sum_{\text{n=odd}} A_n e^{-\lambda_n t}\cos\left(\frac{n \pi x}{\tilde{a}}\right)$$
+
+...
+
+...
+
+$$ \phi(x,t) = \sum_{n=\text{odd}} \left[ ... \right]e^{-\lambda n t}\cos(B_n x)  $$
+
+At long times: \\
+$\lambda_1 > \lambda_2 > \lambda_3 ...$ \\
+$B_1 > B_2 > B_3 ...$ \\
+... this is the geometric buckling (a measure of the curvature of the shape of the dominant mode). 
+
+$$ B_1^2 = -\frac{1}{\psi_1}{d^2\psi_1}{...} $$
+
+
+
+\h{Criticality}
+
+\textbf{Geometric Buckling:}
+$$ B_g^2 \equiv \left(\frac{\pi}{\tilde{a}}\right)^2 $$
+
+...
+
+$$ \phi(x,t) = \sum_{n=\text{odd}} A_n e^{\lambda_n t} \cos\left(\frac{n\pi x}{\tilde{a}}\right) $$
+
+$$ \phi(x,t) = ... $$
+
+\textbf{Material Buckling}
+$$ B_m^2 \equiv \frac{\nu \Xs_f-\Xs_a}{D} $$
+
+When a reactor is critical, the geometric buckling and material buckling must match.
+\begin{align*}
+& B_m^2 = B_g \Rightarrow \lambda_1 = 0 \hspace{0.5cm} \text{(critical)} \\
+& B_m^2 > B_g \Rightarrow \lambda_1 < 0 \hspace{0.5cm} \text{(supercritical)} \\
+& B_m^2 < B_g \Rightarrow \lambda_1 > 0 \hspace{0.5cm} \text{(subcritical)} 
+\end{align*}
+
+This relates to the multiplication factor, $k$. Recall
+$$ k = \frac{\int_V dV \nu\Xs_f\phi}{...} = 1 \hspace{0.5cm} k_{\infty} \equiv \frac{\nu\Xs_f}{\Xs_a} \hspace{0.5cm} L^2 = \frac{D}{\Xs_a} $$
+...
+
+and so we have criticality when 
+$$ B^2 = \frac{k_{\infty}-1}{L^2} = B_m^2 $$
+
+
+
+\h{Integral Form of the Transport Equation}
+
+We are going to use the Method of Characteristics (MOC) formalism to derive an integral equation (as opposed to the previous integro-differential equation).
+
+Note: We cannot have a purely differential equation. This arises from the fact that while space and time are continuous,  energy and direction can be discontinuous in time.
+
+The transport eqaution is: linear, $1^{\text{st}}$ order, partial differential, integral
+
+\textbf{Steady State Transport Equation:}
+$$ \Oh\cdot\nabla\psi\rEO + \Xs_t \psi\rEO = q\rEO $$
+
+When ...
+$$ \Oh\cdot\nabla\psi = \mu \frac{\p\psi}{\p x} + \eta \frac{\p\psi}{\p y} + \xi \frac{\p\psi}{\p z} $$
+$$ \mu^2 + \eta^2 + \xi^2 = 1 $$
+where $\mu = \cos(x)$, $\eta = \cos(y)$, and $\xi = \cos(z)$.
+
+(figure)\\
+
+This can be treated like $n$ moving along "characteristic" line along $\Oh$
+$$ \pos = \pos_0 + s(\mu\hat{x} + \eta\hat{y} + \xi\hat{z}) $$
+\begin{align*}
+& x = x_0 + \mu s \\
+& y = y_0 + \mu s \\
+& z = z_0 + \mu s \\
+\end{align*}
+
+Use this to get the Cartesian streaming
+$$ \frac{\p \psi}{\p s} = \frac{\p \psi}{\p x} \frac{\p x}{\p s} + \frac{\p \psi}{\p y} \frac{\p y}{\p s} + \frac{\p \psi}{\p z} \frac{\p z}{\p s} $$
+and so indeed,
+$$ \frac{\p \psi}{\p s} = \Oh\cdot\nabla\psi $$
+
+Look at the Transport 
+$$ \frac{\p}{\p s} \psi(\pos_0 + \Oh_s,\Oh,E) + \Xs_t \psi(\pos_0 + \Oh_s,\Oh,E) = q(\pos_0 + \Oh_s,\Oh,E) $$
+
+This is a derivative along a characteristic curve. It's linear, $1^{\text{st}}$ order and an ODE (we can integrate it). Use an integrating factor.
+
+$$ \text{\# of MFP from }\pos\text{ at distance }s\text{ away} = \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] $$
+Note:
+\begin{align*}
+\frac{d}{ds} \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] = \Xs_t(\pos_0 + \Oh s'',E) \, \frac{d}{ds} \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\frac{d}{ds}\left[\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\psi((\pos_0 + \Oh s'',E)\right] = \exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\frac{d\psi}{ds} + \psi\Xs_t\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\frac{d}{ds}\left[\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right]\psi\right] &= (LHS TE)\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+		&= (RHS TE)\exp\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] \\
+\end{align*}
+\textbf{LHS:}
+\begin{align*}
+\int_{-\infty}^s ds' \frac{d}{ds'}\left[\exp\left[\int^{s'} ds'' \Xs_t(\pos + ...)\right]\right]\psi(\pos+\Oh s',\Oh,E)
+\end{align*}
+
+... (Repeat this with $\left[\int_S ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] = \mathcal{I}$)...
+
+
+And so we finally have:
+$$ \psi(\pos_0+\Oh s,\Oh,E) = \int_{-\infty}^s ds' \exp \left[-\int_{s'}^s ds'' \Xs_t(\pos_0 + \Oh s'',E)\right] q(\pos_0+\Oh s',\Oh,E) $$
+
+The integro-differential form expresses a local balance with local coupling.\\
+In the integral form, we are tracking particles from birth to observation; an accumulation process, so the coupling is global.
+
+Let $\rho' \equiv s - s', d\rho' = -ds'$ and $\rho''=s-s'', d\rho''=-ds''$. Then
+$$\phi\rEO = -\int_{\infty}^0 d\rho' \exp\left[ \Xs_t(\pos_0+\Oh s -\Oh s + \Oh s'',E) \right] q(\pos_0 + \Oh s - \Oh s -\Oh s',E,\Oh) $$
+$$ ... = \int_0^{\infty} ...$$
+
+
+$$\psi\rEO = \intzi d\rho' \exp\left[-\int_0^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,\Oh,E)\right]q(\pos-\rho''\Oh,\Oh,E) $$
+
+Let $Q'$ by the integrated fixed source, and $k$ is the integral operator.
+
+$$ k\psi = \text{n production from scattering and fission} $$
+$$ \psi_{t} = k\psi_{t-1} + Q' $$
+
+The total flux is
+
+$$ \psi = \sum_{j=0}^n \psi_j $$
+
+where  the ``uncollided flux'' is $\psi_0 = Q'$, the ``once collided flux'' is $\psi_1 = k\psi_0$, and the ``twice collided flux'' is $\psi_2 = k\psi_1$.
+
+\hhh{Isotropic Scattering}
+When we have isotropic scattering and sources, we can remove angular dependence.\\
+- Fission: $\frac{\chi(E)}{4\pi}\intzi dE' \nu \Xs_f\rEprime \intfp d\Oh' \psi\rEOprime $\\
+- Fixed Source: $S\rEO = \frac{S\rE}{4\pi}$\\
+- Scattering: $\intzi dE' \intfp d\Oh \frac{\Xs_s}{...}$\\
+
+The integrating factor over angle:\\
+$<$image$>$\\
+
+Note: $d\Oh = \frac{dA}{\rho''}$ and $d\rho \, 'dA = dV$
+
+...
+
+Remember, $\rho' = |\pos - \pos'|$, and $dv = d^3r'$
+
+If we say $\tau$ is the optical path length, 
+$$\int_{0}^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,E) \equiv \tau(\pos - \rho'\Oh \rightarrow \pos,E) .$$
+
+Our scalar flux is
+$$\phi\rE = \int_V d^3r \left[ \frac{\exp \left[ \tau (E,\pos'\rightarrow \pos) \right]}{4\pi|\pos-\pos\,'|^2} \left( S(\pos',E) + \chi(E)\intzi dE' \nu \Xs_f(E')\phi(\pos',E') + \intzi dE' \Xs_s(\pos',E'\rightarrow E)\phi(\pos',E')\right)\right]  $$
+
+The source term is the rate at which neutrons of energy E appear at location $\pos$. Integrating over all $\pos\,'$ gives the total number of neutrons.
+
+This is a Green's function for isotropic source at $\pos\,'$ in an absorbing medium.
+
+\hhh{Anisotropic Scattering}
+
+Use a producition kernel:
+$$ \Pi() \equiv \Xs_s() + \frac{\chi(E)}{4\pi}\nu\Xs_f(\pos,E') $$
+
+The collision source of neutorns is
+$$ k\psi \intfp d\Oh' \intzi dE' \Pi()\psi() $$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
 
 
