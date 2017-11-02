@@ -1087,23 +1087,92 @@ The collision source of neutorns is
 $$ k\psi \intfp d\Oh' \intzi dE' \Pi()\psi() $$
 
 
+\h{The Multigroup Transport Equation}
+
+Energy grid (actually choosing this is difficult)
+
+$E_G$ is the lowest energy edge \\
+$E_0$ is the highest energy edge \\
+
+An energy group $g$ is between $E_g$ and $E_{g-1}$.
+
+$$ \psi_g(\pos,\Oh) \equiv \int_{E_g}^{E_{g-1}} dE \psi\rEO $$
+
+Integrate the transport equation over energy so we can solve for $\psi_g$.
+
+Assume that the flux is separable in space \& energy
+
+$$ \psi\rEO \approx f(E)\psi_g (\pos,\Oh), \qquad E_g \leq $$
+
+Normalize: $ \int_g dE f(E) = 1 $\\
+*substitute in approximation and integrate\\
+
+Streaming:
+\begin{align*}
+\int_{E_g}^{E_{g-1}} dE \Oh \cdot \nabla \psi\rEO &= \int_{E_g}^{E_{g-1}} \Oh \cdot \nabla f(E) \psi_g(\pos,\Oh) \\
+		&= \Oh \cdot \nabla \psi_g(\pos,\Oh)
+\end{align*}
+
+External Source:\\
+$$ q_g(\pos,\Oh) \equiv \int_{E_g}^{E_{g-1}} dE q\rEO $$
 
 
+Fission:\\
+$$ \int_{E_g}^{E_{g-1}} dE \frac{\chi(E)}{4\pi} \intzi dE' \nu \Xs_f(E') \intfp d\Oh' \psi\rEOprime $$
+where
+$$ \chi_g \equiv \int_{E_g}^{E_{g-1}} dE \, \chi(E) $$
+$$ \intfp d\Oh' \psi_g(\pos',\Oh') = \phi_g(\pos) $$
+Then
+$$ \intzi dE' \nu \Xs_f(E') = \sum_{g'=1}^{G} \int_{E_g}^{E_{g-1}} dE' \nu \Xs_f(e) $$
+
+$$\nu\Xs_{f,g'} \equiv \int_{E_g}^{E_{g-1}} dE \, \nu \Xs_f(E')f(E') $$
+
+$$ q_{f,g} = \frac{\chi_g}{4\pi} \sum_{g'=1}^{G} \nu\Xs_{f,g'} \phi_{g'}(\pos) $$
 
 
+Scattering: \\
+(from group $g'$ into group $g$)
+$$ q_{s,g,g'}(\Oh) \equiv \int_{E_g}^{E_{g-1}} dE \int_{E_g'}^{E_{g'-1}} dE' \intfp d\Oh' \Xs_s(E' \rightarrow E, \Oh' \cdot \Oh)\psi\rEOprime $$
+where (general scattering cross section)
+$$ \Xs_{s,gg'}(\Oh' \cdot \Oh) \equiv \int_{E_g}^{E_{g-1}} dE \int_{E_g'}^{E_{g'-1}} dE' \Xs_s(E' \rightarrow E, \Oh' \cdot \Oh) f(E') $$
+Then
+$$ q_{s,g}(\Oh) = \sum_{g'=1}^G \intfp d\Oh' \Xs_{s,gg'}(\Oh' \cdot \Oh) \psi_{g'}(\pos,\Oh') $$
+
+Total Interaction: \\
+
+$$ \Xs_{t,g}(\pos) \equiv \int_{E_g}^{E_{g-1}} dE \Xs_t(E,\pos) f(E) $$
+$$ \text{term} = \Xs_{t,g} ... $$
+
+Combine to yield the full \textbf{multigroup transport equation}
+$$ \left[\Oh \cdot \nabla + \Xs_{t,g}(\pos)\right]\psi_g(\pos,\Oh) = q_{g}(\pos,\Oh) + \sum_{g'=1}^G \intfp d \Oh' \Xs_{s,gg'}(\pos,\Oh' \cdot \Oh) \psi_{g'}(\pos,\Oh') + \frac{\chi_g}{4\pi} \sum_{g'=1}^G \nu \Xs_{f,g'}(\pos) \pos_{g'}(\pos) $$
+and there are $g = 1, ... , G$ of these \textit{coupled} equations.
+
+Typically people use 2 groups, though tens of groups are becoming more common. Hundreds of groups get used in most advanced calculations on cutting-edge architectures.
 
 
+\hh{Group Constants}
 
+For these equations to be accurate, we need:
+\begin{itemize}
+\item detailed $E$-dependence of the cross sections
+\item details of weighting function, $f(E)$
+	\begin{itemize}
+	\item $f(E)$ is easy for smoothly varying cross sections
+	\item resonance regions are tougher (many energy bins, resonance self-shielding)
+	\end{itemize}
+\end{itemize}
 
+In general
+\begin{enumerate}
+\item start w/ ENDF data (1000s of $E$-groups), an infinite medium, and do a 1-D transport calculation $\rightarrow$ collapse the data to 100s of groups
+\item perform another tranpsort calculation at the assembly level, or unit cell $\rightarrow$ collapse in $E$ to a few or 10s of groups (also, we usually homogenize in space)
+\item perform a core-level calculation with diffusion theory
+\end{enumerate}
 
-
-
-
-
-
-
-
-
+Use fine energy index $j$, coarse energy index $h$; to collapse fine $\rightarrow$ coarse
+$$ \Xs_{x,h} \equiv \frac{\sum_{j \in h} \Xs_{x,j}\phi_j(\pos)}{\sum_{j \in h} \phi_j(\pos)} $$
+Homogenize in space
+$$ \Xs_{x,j}^{\text{homog}} \equiv \frac{\int_v dV \Xs_{x,j}(\pos)\phi_j(\pos)}{\int_v dV \phi_j(\pos)} $$
 \end{document}
 
 
