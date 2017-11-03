@@ -1,0 +1,91 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 10/29/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary {9} \hfill Mitch Negus\\
+		\hspace*{\fill} 10/29/2017\\ }}}
+\section*{\textsl{Strategies for a Low-Carbon Electricity Grid With Full Use of Nuclear, Wind and Solar Capacity to Minimize Total Costs} \\ \normalsize C. Forsberg}
+
+\tab With climate and clean air objectives in mind, decarbonization and emission reduction will undoubtedly continue to be a major factor in shaping the future of energy infrastructures. The article presents solar, wind, and nuclear as the three most likely carbon-free energy sources to dominate a low-carbon energy future. These three sources alone, however, do not provide the flexibility that consumers demand. All three introduce varying degrees of price collapse, as they are capital intensive and operationally inexpensive. When energy supply is high, these energies will bid low to recover capital costs. To avoid price collapse, the article explores five potential classes of systems to match the electric production and distribution to demand. These classes are electric devices (such as batteries), heated firebrick for industrial applications, reactor thermal heat storage, nuclear topped off peak electricity, and hybrid systems where a second product is produced when energy prices are low. In the article, the advantages, disadvantages, and distinct characteristics of each of these classes is discussed as they pertain to a low-carbon grid. For instance, electric battery type technologies must be operated for many cycles-per-year to reduce their levelized costs. While this makes them an appealing matching technology for solar, which has routine daily cycles, they are perhaps less lucrative for wind installations. Wind farms follow less routine, often weekly wind patterns where hybrid systems may be a more economic alternative. \\
+\tab In general I thought this article did successfully portray the economic situation facing low-carbon energies. My main criticisms arise due to the structure and readability of the study. While it is structured first with an abstract, executive summary and then a full in-depth discussion, many of the discussions, figures, and tables are repeated verbatim throughout the document. Additionally, I found that the clarity of the writing improves as a reader progresses through the document. I believe the article would be well served by reducing repitition and improving clarity, even if that requires a substantial reduction of the executive summary. Limiting the lengthy---and at times somewhat unclear---executive summary, in favor of a more concise document in total, would encourage me to read through the entire paper. On top of this, even with a reduction in legnth, high clarity is essential in the executive summary. This is where readers will start (and many will end), and it is the most important place to convey information effectively.
+
+
+\end{document}
+
+-Discusses potential of 5 classes of systems to match electric production to demand
+	-electrics (batteries)
+	-FIRES (firebrick, industrial heat applications)
+	-RATHS (includes thermal heat storage through salts)
+	-NUTOC (nuclear with topped off peak electricity)
+	-hybrids (electricity to grid and second product when prices low)
+-Current demand curve bell shaped (fossil fuel dominated)
+	-low electricity demand, only cheapest plants are used, prices low
+	-high electricity demand, more expensive plants brought online, prices high
+	-prices set by highest ``cost'' plant
+-Renewable/nuclear demand curve bimodal
+	-renewables provide very cheap power when generating
+		-producers bid down prices to continue sales
+	-power pricing increases dramatically when inactive
+-Significant use of renewables forces price collapse
+	-energy price in solar/wind dominated market is cheap when there is sun/wind
+	-price of energy increases when supply diminishes
+	-price collapse impacts most severe for causal energy (most synchronous)
+-Price collapsing forces other generators to compensate (at a loss if price does not increase to cover losses during collapsed price period)
+-Subsidies for price collapse do not solve problem -> pass it along (to taxpayers)
+-natural gas is economically effective because the overhead capital costs are low; driving factor is cost of fuel (so it is economically feasible to let the plant sit idle when demand is low)
+-cost constraints on weekly/seasonal storage arise from the fact that with many less cycles, levelized costs increase dramatically (need cheaper capital storage solution)
+
+Analysis of Electricity Matching System Classes
+-electrics are economically best for frequent charge/discharge cycles 
+	-day/night solar cycles, not week/month weather patterns
+	-many cycles per year required for low levelized costs
+-FIRES limits price collapse
+	-buy electricity for industrial process heat at low energy prices
+	-becomes extremely competitive if renewables reach cost of fossil fuels
+	-allows coupling of electric/industrial sector decarbonization
+-RATHs provides longer term (week/month/seasonal) storage alternative
+	-preferentially couple to nuclear plants
+		-many cycle recharge still better for maximizing levelized costs
+		-nuclear plants assure recharge (cloudy weather limits solar thermal)
+
+
+Commentary
+-Good example in discussion of storage device at \$300/kWh and operation time
+	-though it would be nice to have a comparison that is relatable (i.e. to current capabilities in batteries, electric cars, household energy consumption, etc.)
+

@@ -1,0 +1,71 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 11/3/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary {10} \hfill Mitch Negus\\
+		\hspace*{\fill} 11/3/2017\\ }}}
+\section*{\textsl{Plutonium Multirecycling in Standard PWRs Loaded with Evolutionary Fuels} \\ \normalsize G. Youinou and A. Vasile}
+
+\tab Outside of the United States, and particularly in France, used fuel reprocessing is commonplace. Considering this fact, this article attempts to evaluate a variety of different methods for recycling used nuclear fuel, specfically using multirecycling--a many-times through procedure. The methods for using the multirecycled fuel included mixed-oxide enriched uranium (MOX-UE) fuel assemblies, a \textit{combustible recyclable a ilot} (CORAIL) assembly, and briefly an advanced plutonium assembly (APA). For the first two multirecycling assembly types, the article provided an in-depth discussion of the associated reactor physics, reactivities, power distributions, and effects of fuel-to-moderator ratio adjustments. These were not discussed for the APA due to the lack of interest in this technology at the CEA.  \\
+\tab I think this paper's largest weakness would be it's introduction of it's methods. While they initially presented the study as a comparison of different mixings of U and Pu in a reactor assembly, I did not realize that they were comparing several different assemblies, one per section, until I was midway through reading the document. Simply stating this structure from the outset would have allowed a much clearer understanding of the main point of what the authors were trying to communicate in each section. 
+
+
+\end{document}
+
+-Multirecycling = many-times through cycle (Monorecycling = once through)
+-No fast reactors; Pu is accumulating
+-Even in MOX cycles, about 25\% of Pu is used
+-mutlirecycling needed to reach 75\% where Pu stockpiles stabilize
+-Pu content (Pu mass/U+Pu mass) must be less than 12\% or pos void coefficient
+-Number of recyclings to reach 12\% limit depends on burnup
+	-40 GWd/t yields three recyclings; 60 GWd/t yields only one
+-The outlined method considers 5 years from discharge to reprocessing; 2 years from reprocessing to reload
+-Pu239 absorbs more thermal neutrons than U238
+	-increasing moderator-to-fuel volume ratio increases Pu239 absorption (=Pu destruction) more than U238 absorption (=Pu production)
+	-ratio can be increased by enlarging lattice pitch, decreasing fuel rod diameter, lower density fuels, substituting fuel for water rods in assemblies
+-Performed study where substituted 36 water rods for fuel rods
+	-same burnup requires 2\% less Pu content
+	-keeping the core power constant requires increase in average rod temp
+	-fuel loading pattern needs to be repoptimized
+
+Advanced Plutonium Assembly concept (neat idea!)
+Wish they had presented discussion outline earlier... took me to the end of the paper to realize they were comparing assembly types in each section (as opposed to concurrently throughout the paper)
+	
+	
+	
