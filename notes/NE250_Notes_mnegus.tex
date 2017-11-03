@@ -1173,6 +1173,53 @@ Use fine energy index $j$, coarse energy index $h$; to collapse fine $\rightarro
 $$ \Xs_{x,h} \equiv \frac{\sum_{j \in h} \Xs_{x,j}\phi_j(\pos)}{\sum_{j \in h} \phi_j(\pos)} $$
 Homogenize in space
 $$ \Xs_{x,j}^{\text{homog}} \equiv \frac{\int_v dV \Xs_{x,j}(\pos)\phi_j(\pos)}{\int_v dV \phi_j(\pos)} $$
+
+
+\hhh{Legendre Expansion Techniques}
+
+\textbf{Legendre Addition Theorem:}
+$$ P_{\ell}(\Oh' \cdot \Oh) = \frac{1}{2\ell + 1} \sum_{m=-\ell}^{\ell} ... $$
+Flux moments (not scalar flux): \tab $\phi_{\ell}^m(\pos,E') = \intfp d\Oh'\, Y_{\ell m}(\Oh')\,\psi(\pos,\Oh',E')$
+
+$$ \psi\rEOprime = \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh)\phi_{\ell}^m\rEprime $$
+
+Now, we use this information in the scattering term of the transport equation. 
+\begin{dmath*}
+\left[\Oh \cdot \nabla + \Xs_t(\pos)\right]\psi\rEO = q\rEO + \frac{\chi(E)}{4\pi} \intzi dE' \, \nu\Xs_f(E') \intfp d\Oh' \psi\rEOprime + \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \intzi dE' \Xs_{s,\ell}(E' \rightarrow E)\phi_{\ell}^m(\pos,E')
+\end{dmath*}
+Next, integrate over energy,
+$$ q_{s,gg'} = \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \int_{E_g}^{E_{g-1}} dE \int_{E_g'}^{E_{g'-1}} dE' \Xs_{s,\ell}(E' \rightarrow E)\phi_{\ell}^m(\pos,E')$$
+Define the group scattering cross section moment
+$$ \Xs_{s,\ell,gg'} \approx \frac{\int_{E_g}^{E_{g-1}} dE \int_{E_g'}^{E_{g'-1}} dE' \Xs_{s,\ell}(E' \rightarrow E)\phi_{\ell}^m(\pos,E')}{\phi_{\ell,g'}^m(\pos)}$$
+
+Total Interaction:\\
+Returning to the total interaction term, let's consider the cross section as before
+$$ \Xs_{t,g} = \frac{\int_{E_g}^{E_{g-1}} dE \Xs_t(\pos,E) \psi\rEO}{\psi_g(\pos,\Oh)} .$$
+But, this is nondesirable  because $\Xs_{tg}$ is a function of angle $\Oh$. Instead, use the Legendre expansion and define $\Xs_t$ moments.
+$$ \int_{E_g}^{E_{g-1}} dE \, \Xs_t\rE  \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \phi_{\ell}^m \rE = \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \int_{E_g}^{E_{g-1}} dE  \Xs_t\rE \phi_{\ell}^m \rE $$
+where
+$$ \Xs_{t,\ell,g}(\pos) = \frac{\int_{E_g}^{E_{g-1}} dE  \Xs_t\rE \phi_{\ell}^m \rE}{\phi_{\ell,g}^m (\pos)} $$
+$$ \text{term} = \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \Xs_{t,\ell,g}(\pos)\phi_{\ell,g'}^m(\pos) $$
+
+Fission:\\
+$$ \nu \Xs_{f,g'} = \frac{\int_{E_g'}^{E_{g'-1}} dE' \nu \, \Xs_f\rEprime \, \phi\rEprime }{\phi_{g'}(\pos)} $$
+
+Using all of this in the transport equation:
+(add $\Xs_{t,g}\psi_g$ to both sides and move expanded total term to the right-hand side of the equation)
+\begin{dmath*}
+\left[\Oh \cdot \nabla + \Xs_{t,g}(\pos)\right]\psi_g(\pos,\Oh) = \frac{\chi_g}{4\pi} \sum_{g'=1}^G \nu \Xs_{f,g'}(\pos) \, \phi_{g'}(\pos) + q_g(\pos,\Oh) + \sum_{\ell=0}^m \sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\Oh') \sum_{g=1}^G \left( \Xs_{\ell,gg'} + \left( \Xs_{t,g}(\pos) - \Xs_{t,\ell,g}(\pos) \right) \delta_{gg'} \right) \phi_{\ell,g'}^m(\pos)
+\end{dmath*}
+This looks like the first version we found, except for the scattering term. If we weight the total interaction term with the scalar flux ($P_0$),
+$$ \Xs_{t,g}(\pos) = \Xs_{tg,0}(\pos) = \frac{\int_{E_g}^{E_{g-1}} dE \, \Xs_t \rE \, \phi\rE}{\phi_g(\pos)} $$
+then this is consistent with the $P_N$ approximation (and this is the $P_0$ approximation in it).
+
+Instead, we could also use the observation that we truncate expansions ($\ell = L$). We choose $\Xs_{t,g}(\pos)$ to make the $\ell = L+1$ component small.
+$$ \sum_{m=-(L+1)}^{L+1} Y_{(L+1)m}^*(\Oh) \sum_{g'=1}^G \left[ \Xs_{s,(L+1),gg'} + \left( \Xs_tg(\pos) - \Xs_{t,(L+1),g}(\pos) \right)\delta_{gg'}\right) \phi_{(L+1),g'}^m(\pos) \approx 0 $$
+For reactors, and for most groups, in-scattering $\approx$ out-scattering. In this case,
+$$ \sum_{g=1}^G \Xs_{s,(L+1),gg'} ... \approx \sum_{g'=1}^G \Xs_{s,(L+1),gg'} ... $$
+$$ \Xs_{1}(\pos) = ... $$
+This is the extended transport approximation.
+
 \end{document}
 
 
