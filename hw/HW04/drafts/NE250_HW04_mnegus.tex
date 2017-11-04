@@ -98,6 +98,24 @@ We are attempting to prove
 
 \subsection*{\textit{b.})}
 
+If we now integrate the streaming operator over $-1 \leq \mu \leq 1$, we have
+$$ \int_{-1}^{1} d\mu \frac{\mu}{r^2}\frac{\p(r^2\psi)}{\p r} + \frac{\p}{\p \mu}\left[\frac{(1-\mu^2)\psi}{r}\right] $$
+$$ \int_{-1}^{1} d\mu \frac{\mu}{r^2}\frac{\p(r^2\psi)}{\p r} + \int_{-1}^{1} d\mu  \frac{\p}{\p \mu}\left[\frac{(1-\mu^2)\psi}{r}\right] $$
+$$ \frac{1}{r^2} \int_{-1}^{1} d\mu \, \mu \frac{\p(r^2\psi)}{\p r} + \left[ \frac{(1-\mu^2)\psi}{r}\right]_{-1}^{1} $$
+$$ \frac{1}{r^2} \frac{\p }{\p r} \left( r^2 \int_{-1}^{1} d\mu \, \mu \, \psi \right) .$$
+If we note that $\cur = \intfp d\Oh \, \Oh \, \psi = \int_{-1}^{1} d\mu \, \mu \, \psi$ then,
+$$\boxed{ \frac{1}{r^2} \frac{\p }{\p r} \left( r^2 \cur \right) }.$$
+
+\subsection*{\textit{c.})}
+
+Integrating this expression for the streaming operator over a spherical shell $(r_1 \leq r \leq r_2)$, we have
+
+$$ \int_{r_1}^{r_2} 4 \pi r^2 \frac{1}{r^2} \frac{\p }{\p r} \left( r^2 \cur \right) dr $$
+$$ 4 \pi \int_{r_1}^{r_2} \frac{\p }{\p r} \left( r^2 \cur \right) dr $$
+$$ 4 \pi \left[ r^2 \cur \right]_{r_1}^{r_2} $$
+$$\boxed{ 4 \pi \left[ r_2^2 \cur(r_2) - r_1^2 \cur(r_1) \right] }.$$
+
+
 
 
 
