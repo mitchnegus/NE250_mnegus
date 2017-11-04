@@ -117,12 +117,28 @@ $$\boxed{ 4 \pi \left[ r_2^2 \cur(r_2) - r_1^2 \cur(r_1) \right] }.$$
 
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 2}
 
+The streaming operator can first be defined as 
+$$ \Oh \cdot \nabla \equiv \frac{d}{ds} .$$
+We can then expand this for cylindrical geometries as we did for spherical geometries. In addition to being dependent on position, $\pos = (\rho,\theta,z)$, we note that now the angular flux depends on both angular variables describing the velocity, $\xi$, the cosine of the polar angle, and $\omega$ the azimuthal angle. 
+$$ \frac{d\psi}{ds} = \frac{d\psi}{d\rho}\frac{d\rho}{ds} + \frac{d\psi}{d\theta}\frac{d\theta}{ds} + \frac{d\psi}{dz}\frac{dz}{ds} + \frac{d\psi}{d\xi}\frac{d\xi}{ds} + \frac{d\psi}{d\omega}\frac{d\omega}{ds} .$$
+In the one dimensional case, $\frac{d\psi}{d\theta} = 0$ and $\frac{d\psi}{dz} = 0$. Furthermore, because our geometry is cylindrical, $\frac{d\xi}{ds} = 0$ (the particle's direction with respect to $\hat{z}$ remains constant),  so our equation for $\frac{d\psi}{ds}$ simplifies to
+$$ \frac{d\psi}{ds} = \frac{d\psi}{d\rho}\frac{d\rho}{ds} + \frac{d\psi}{d\omega}\frac{d\omega}{ds} .$$
+By analyzing the geometry further, we can determine from figure 1-16 in Lewis \& Miller figure that
+$$ \frac{d\rho}{ds} = \mu \quad \text{and} \quad \frac{d\omega}{ds} = -\frac{\eta}{\rho}.$$
+Finally, our streaming operator becomes
+$$ \frac{d\psi}{ds} = \mu \frac{d\psi}{d\rho} -\frac{\eta}{\rho}\frac{d\psi}{d\omega} .$$
+With manipulation (and specifically noting that $\mu = \frac{\p \eta}{\p \omega}$), we can reach the streaming operator in conservation form.
+\begin{align*}
+\left[ \Oh \cdot \nabla \right] \psi	&=  \mu \frac{\p \psi}{\p \rho} -\frac{\eta}{\rho}\frac{\p \psi}{\p \omega}\\
+										&=  \frac{\mu \rho}{\rho} \frac{\p \psi}{\p \rho} + \frac{\mu\psi}{\rho} -\frac{\eta}{\rho}\frac{\p \psi}{\p \omega} - \frac{\mu\psi}{\rho} \\
+										&= \frac{\mu}{\rho} \left(\rho \frac{\p \psi}{\p \rho} + \psi \right) - \frac{1}{\rho} \left( \eta\frac{\p \psi}{\p \omega} + \mu\psi \right)\\
+										&= \frac{\mu}{\rho} \left(\rho \frac{\p \psi}{\p \rho} + \frac{\p \rho}{\p \rho} \psi \right) - \frac{1}{\rho} \left( \eta\frac{\p \psi}{\p \omega} + \frac{\p \eta}{\p \omega} \psi \right)
+\end{align*}
+$$\boxed{ \left[ \Oh \cdot \nabla \right] \psi = \frac{\mu}{\rho} \frac{\p}{\p \rho}\left( \rho\psi \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \eta\psi \right) }.$$
 
 
 
@@ -223,7 +239,7 @@ where $B^2 = \frac{\Xs_f - \Xs_a}{D}.$
 
 \end{document}
 
-
+For problem 2, used Applied Reactor Physics, by Alain Hébert
 
 
 
