@@ -121,16 +121,18 @@ $$\boxed{ 4 \pi \left[ r_2^2 \cur(r_2) - r_1^2 \cur(r_1) \right] }.$$
 
 \section*{Problem 2}
 
+\subsection*{\textit{a.})}
+
 The streaming operator can first be defined as 
-$$ \Oh \cdot \nabla \equiv \frac{d}{ds} .$$
+$$ \Oh \cdot \nabla \equiv \frac{\p}{\p s} .$$
 We can then expand this for cylindrical geometries as we did for spherical geometries. In addition to being dependent on position, $\pos = (\rho,\theta,z)$, we note that now the angular flux depends on both angular variables describing the velocity, $\xi$, the cosine of the polar angle, and $\omega$ the azimuthal angle. 
-$$ \frac{d\psi}{ds} = \frac{d\psi}{d\rho}\frac{d\rho}{ds} + \frac{d\psi}{d\theta}\frac{d\theta}{ds} + \frac{d\psi}{dz}\frac{dz}{ds} + \frac{d\psi}{d\xi}\frac{d\xi}{ds} + \frac{d\psi}{d\omega}\frac{d\omega}{ds} .$$
-In the one dimensional case, $\frac{d\psi}{d\theta} = 0$ and $\frac{d\psi}{dz} = 0$. Furthermore, because our geometry is cylindrical, $\frac{d\xi}{ds} = 0$ (the particle's direction with respect to $\hat{z}$ remains constant),  so our equation for $\frac{d\psi}{ds}$ simplifies to
-$$ \frac{d\psi}{ds} = \frac{d\psi}{d\rho}\frac{d\rho}{ds} + \frac{d\psi}{d\omega}\frac{d\omega}{ds} .$$
+$$ \frac{\p \psi}{\p s} = \frac{\p \psi}{\p \rho}\frac{\p \rho}{\p s} + \frac{\p \psi}{\p \theta}\frac{\p \theta}{\p s} + \frac{\p \psi}{\p z}\frac{\p z}{\p s} + \frac{\p \psi}{\p \xi}\frac{\p \xi}{\p s} + \frac{\p \psi}{\p \omega}\frac{\p \omega}{\p s} .$$
+In the one dimensional case, $\frac{\p \psi}{\p \theta} = 0$ and $\frac{\p \psi}{\p z} = 0$. Furthermore, because our geometry is cylindrical, $\frac{\p \xi}{\p s} = 0$ (the particle's direction with respect to $\hat{z}$ remains constant),  so our equation for $\frac{\p \psi}{\p s}$ simplifies to
+$$ \frac{\p \psi}{\p s} = \frac{\p \psi}{\p \rho}\frac{\p \rho}{\p s} + \frac{\p \psi}{\p \omega}\frac{\p \omega}{\p s} .$$
 By analyzing the geometry further, we can determine from figure 1-16 in Lewis \& Miller figure that
-$$ \frac{d\rho}{ds} = \mu \quad \text{and} \quad \frac{d\omega}{ds} = -\frac{\eta}{\rho}.$$
+$$ \frac{\p \rho}{\p s} = \mu \quad \text{and} \quad \frac{\p \omega}{\p s} = -\frac{\eta}{\rho}.$$
 Finally, our streaming operator becomes
-$$ \frac{d\psi}{ds} = \mu \frac{d\psi}{d\rho} -\frac{\eta}{\rho}\frac{d\psi}{d\omega} .$$
+$$ \frac{\p \psi}{\p s} = \mu \frac{\p \psi}{\p \rho} -\frac{\eta}{\rho}\frac{\p \psi}{\p \omega} .$$
 With manipulation (and specifically noting that $\mu = \frac{\p \eta}{\p \omega}$), we can reach the streaming operator in conservation form.
 \begin{align*}
 \left[ \Oh \cdot \nabla \right] \psi	&=  \mu \frac{\p \psi}{\p \rho} -\frac{\eta}{\rho}\frac{\p \psi}{\p \omega}\\
@@ -139,6 +141,40 @@ With manipulation (and specifically noting that $\mu = \frac{\p \eta}{\p \omega}
 										&= \frac{\mu}{\rho} \left(\rho \frac{\p \psi}{\p \rho} + \frac{\p \rho}{\p \rho} \psi \right) - \frac{1}{\rho} \left( \eta\frac{\p \psi}{\p \omega} + \frac{\p \eta}{\p \omega} \psi \right)
 \end{align*}
 $$\boxed{ \left[ \Oh \cdot \nabla \right] \psi = \frac{\mu}{\rho} \frac{\p}{\p \rho}\left( \rho\psi \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \eta\psi \right) }.$$
+
+\subsection*{\textit{b.})}
+
+We can use this streaming operator in the transport equation to describe one dimensional cylindrical geometries. For simplicity, we will consider that the transport equation is describing a non-multiplying system. In one-dimensional cylindrical coordinate systems, dependence on position, $\pos$, now only depends on $\rho$, and velocity direction $\Oh$, depends on $\omega$ and $\xi$.
+$$ \frac{1}{v}\frac{\p}{\p t}\psi(\rho,\omega,\xi,E,t) + \left[\frac{\mu}{\rho} \frac{\p}{\p \rho}\left( \rho\psi(\rho,\omega,\xi,E,t) \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \eta\psi(\rho,\omega,\xi,E,t) \right)\right] + \Xs_t(\rho,E) \psi(\rho,\omega,\xi,E,t) = s(\rho,\omega,\xi,E,t) $$
+Integrating this equation over all angles ($0 \leq \omega \leq 2\pi$ and $-1 \leq \xi \leq 1$)
+\begin{align*}
+\int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \frac{1}{v}\frac{\p}{\p t}\psi(\rho,\omega,\xi,E,t) + \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \left[ \frac{\mu}{\rho} \frac{\p}{\p \rho}\left( \rho\psi(\rho,\omega,\xi,E,t) \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \eta\psi(\rho,\omega,\xi,E,t) \right)\right] + \\
++ \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \,\Xs_t(\rho,E) \psi(\rho,\omega,\xi,E,t) = \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, s(\rho,\omega,\xi,E,t)
+\end{align*}
+If we let $\int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, s(\rho,\omega,\xi,E,t) = S(\rho,E,t)$, then
+$$ \frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \left[ \frac{\mu}{\rho} \frac{\p}{\p \rho}\left( \rho\psi(\rho,\omega,\xi,E,t) \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \eta\psi(\rho,\omega,\xi,E,t) \right)\right] + \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t) $$
+Again, consulting our geometry, we find $\mu = \sqrt{1-\xi^2}\cos\omega$ and $\eta = \sqrt{1-\xi^2}\sin\omega$.
+\begin{align*}
+\frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \left[ \frac{\sqrt{1-\xi^2}\cos\omega}{\rho} \frac{\p}{\p \rho}\left( \rho\psi(\rho,\omega,\xi,E,t) \right) - \frac{1}{\rho} \frac{\p}{\p \omega}\left( \sqrt{1-\xi^2}\sin\omega \psi(\rho,\omega,\xi,E,t) \right)\right] + \\
++ \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t)
+\end{align*}
+\begin{align*}
+\frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \left[ \frac{\sqrt{1-\xi^2}\cos\omega}{\rho} \frac{\p}{\p \rho}\left( \rho\psi(\rho,\omega,\xi,E,t) \right)\right] + \\
+- \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \left[ \frac{1}{\rho} \frac{\p}{\p \omega}\left( \sqrt{1-\xi^2}\sin\omega \psi(\rho,\omega,\xi,E,t) \right)\right] + \\
++ \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t)
+\end{align*}
+\begin{align*}
+\frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \frac{1}{\rho}\frac{\p}{\p \rho}\left(\rho \int_0^{2\pi} d\omega \int_{-1}^{1} d\xi \, \sqrt{1-\xi^2}\cos\omega \; \psi(\rho,\omega,\xi,E,t) \right) + \\
+-\frac{1}{\rho} \int_{-1}^{1} d\xi \int_0^{2\pi} d\omega \, \frac{\p}{\p \omega}\left( \sqrt{1-\xi^2}\sin\omega \; \psi(\rho,\omega,\xi,E,t) \right) + \\
++ \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t)
+\end{align*}
+\begin{align*}
+\frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \frac{1}{\rho}\frac{\p}{\p \rho}\left(\rho \int_0^{2\pi} d\omega \cos\omega \int_{-1}^{1} d\xi \, \sqrt{1-\xi^2} \psi(\rho,\omega,\xi,E,t) \right) + \\
+-\frac{1}{\rho} \int_{-1}^{1} d\xi \sqrt{1-\xi^2} \left[ \sin\omega \; \psi(\rho,\omega,\xi,E,t) \right]_0^{2\pi} + \\
++ \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t)
+\end{align*}
+$$ \frac{1}{v}\frac{\p}{\p t}\phi(\rho,E,t) + \frac{1}{\rho}\frac{\p}{\p \rho}\left(\rho \int_0^{2\pi} d\omega \cos\omega \int_{-1}^{1} d\xi \, \sqrt{1-\xi^2} \psi(\rho,\omega,\xi,E,t) \right) + \Xs_t(\rho,E) \phi(\rho,E,t) = S(\rho,E,t) $$
+$$...$$
 
 
 
