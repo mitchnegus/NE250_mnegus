@@ -182,6 +182,33 @@ $$...$$
 
 \section*{Problem 3}
 
+The transport equation in one dimension is
+$$ \mu \cdot \frac{\p}{\p x}\psi(x,\mu,E) + \Xs_t \psi(x,\mu,E) = q(x,\mu,E) $$
+If we look along a characteristic ``curve'' in one dimension, we can say
+$$ \frac{\p \psi}{\p s} = \mu \frac{\p \psi}{\p x} $$
+and
+$$ \frac{\p}{\p s} \psi(x_0+\mu s,\mu,E) + \Xs_t \psi(x_0+\mu s,\mu,E) = q(x_0+\mu s,\mu,E) $$
+Since our derivation of the integral form of the transport equation (in class) did not explicitly require the fact that our problem was three-dimensional, we can use the same method for the one-dimensional case. We arrive at the following:
+$$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t(x-\rho''\mu,E)\right] q(x-\rho'\mu,\mu,E) $$
+where now the exponential represents the attenuation of neutrons as they move from $x-\rho' \mu$ to $x$, and the source term represents the production of neutrons at $x-\rho'\mu$ into $(\mu,E)$.
+
+Since the cross section is uniform in the slab $\Xs_t(x-\rho''\mu,E) = \Xs_t$, and
+$$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t\right] q(x-\rho'\mu,\mu,E) $$
+$$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\Xs_t \int_0^{\rho'} d\rho''\right] q(x-\rho'\mu,\mu,E) $$
+$$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] q(x-\rho'\mu,\mu,E) $$
+The uncollided flux will consist entirely of neutrons with energy $E_0$ (if the neutron source beam is monoenergetic, neutrons must collide to have energy other than $E_0$), and direction $\mu = 1$ (if the neutrons are traveling in some other direction, they must have scattered into that direction)
+$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] q(x-\rho',1,E_0) $$
+Since we are ignoring fission, we note that the source term is simply the beam source, $q = s$.
+
+The boundary conditions for this problem are
+\begin{enumerate}
+\item $$ J_+(0) = \int_0^1 \intzi \psi(0,\mu,E) d\mu dE = I $$
+\item $$ J_-\left(\frac{a}{\tilde{\mu}}\right) = \int_{-1}^0 \intzi \psi\left(\frac{a}{\tilde{\mu}},\mu,E\right) d\mu \, dE = 0 $$
+\end{enumerate}
+
+Using our first boundary condition, we can treat the source $s$ as if it is a monodirectional point source appearing at the slab boundary, $x=0$. 
+$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] s(x-\rho',1,E_0)\delta(x-\rho') $$
+$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = I e^{-\Xs_t x} $$
 
 
 
@@ -196,6 +223,28 @@ $$...$$
 
 \section*{Problem 5}
 
+The integral form of the transport equation is
+$$ \psi(\pos,\Oh,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t(\pos-\rho''\Oh,E)\right] q(\pos-\rho'\Oh,\Oh,E) $$
+For isotropic sources (scattering and fission are not present in a purely absorbing medium), the source term becomes
+$$ q(\pos-\rho'\Oh,\Oh,E) = \frac{S(\pos-\rho'\Oh,E)}{4\pi} $$
+Where the source is a point source, 
+$$ q(\pos-\rho'\Oh,\Oh,E) = \frac{S(E)}{4\pi}\delta(\pos-\rho'\Oh) $$
+Using this in the integral form of the TE, and noting that $\Xs_t(E) = \Xs_t$,
+$$ \psi(\pos,\Oh,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t \right] \frac{S(E)}{4\pi}\delta(\pos-\rho'\Oh) $$
+$$ \psi(\pos,\Oh,E) = \intzi d\rho' e^{-\Xs_t \rho'} \frac{S(E)}{4\pi}\delta(\pos-\rho'\Oh) $$
+We can integrate this expression over angle to find the scalar flux.
+$$ \phi(\pos,E) = \intfp d\Oh \intzi d\rho' e^{-\Xs_t \rho'} \frac{S(E)}{4\pi}\delta(\pos-\rho'\Oh) $$
+When doing this integration, we can note that
+$$ d\Oh = \frac{dA}{\rho'\,^2} $$
+$$ d\rho' \, dA = dV $$
+$$ \intfp d\Oh \intzi d\rho' = \int_V \frac{dV}{\rho'\, ^2} $$
+and $\rho' = |\pos - \pos\,'|$, so that
+$$ \phi(\pos,E) = \int_V \frac{dV}{\rho'\, ^2} e^{-\Xs_t \rho'} \frac{S(E)}{4\pi}\delta(\pos-\rho'\Oh) $$
+$$ \phi(\pos,E) = \int_V \frac{d^3 \pos\,'}{4\pi |\pos-\pos\,'|^2} e^{-\Xs_t |\pos - \pos\,'|}S(E)\delta(\pos\,') $$
+The delta function in this equation selects only the value for when $\pos\,' = 0$. 
+$$ \phi(\pos,E) = \frac{1}{4\pi |\pos|^2} e^{-\Xs_t |\pos|}S(E) $$
+Letting $r = |\pos|$,
+$$\boxed{ \phi(r,E) = \frac{S(E)}{4\pi r^2} e^{-\Xs_t r} }.$$
 
 
 
