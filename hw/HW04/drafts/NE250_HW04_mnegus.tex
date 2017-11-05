@@ -304,13 +304,46 @@ $$ \phi_{r}(R) = A J_0(B R) = C I_0(\frac{R}{L}) - C \frac{I_0(\frac{R+\tilde{a}
 The one-dimensional, single energy diffusion equation in each of the material regions are as follows:
 
 \textbf{Multiplying Core:}
-$$ \frac{d\phi(x)}{dx} - B^2\phi(x) = 0 $$
+$$ \frac{d^2\phi(x)}{dx^2} + B^2\phi(x) = 0 , \qquad 0 < x < a $$
 where $B^2 = \frac{\Xs_f - \Xs_a}{D}.$ 
 
 \textbf{Uniform Source Reflector:}
-\textbf{Multiplying Core:}
-$$ \frac{d\phi(x)}{dx} - B^2\phi(x) = 0 $$
-where $B^2 = \frac{\Xs_f - \Xs_a}{D}.$ 
+$$ \frac{d^2\phi(x)}{dx^2} - \frac{1}{L^2}\phi(x) = \frac{-S_0}{D}, \qquad x > a $$
+where $L^2 = \frac{D}{\Xs_a}$.
+
+Boundary Conditions:
+\begin{enumerate}
+\item $ J_+(0) = 0 $
+\item $ \phi_c(a) = \phi_r(a) $
+\item $ \cur_c(a) = \cur_r(a) $
+\item $ \phi(x) < \infty $
+\end{enumerate}
+
+In the multiplying core, solutions to the differential equation are
+$$ \phi(x) = A_1\sin(Bx) + A_2\cos(Bx) $$
+We can relate $J_+$ to the flux using the relation
+$$ J_+(0) = 0 = \frac{\phi(0)}{4} - \frac{D}{2}\frac{d\phi}{dx}\bigg|_{x=0} $$
+$$ 0 = \frac{A_2}{4} - \frac{D}{2}\left[A_1 B \cos(Bx) - A_2 B \sin(Bx)\right]_{x=0} $$
+$$ 0 = \frac{A_2}{4} - \frac{A_1 B D}{2} $$
+$$ A_2 = 2 A_1 B D $$
+Letting $A_1 = A$,
+$$ \phi_c(x) = A\sin(Bx) + 2ABD\cos(Bx) $$
+In the uniform reflector, the homogeneous solution will be
+$$ \phi_h(x) = C_1 e^{x/L} + C_2 e^{-x/L} ,$$
+the particular solution will be
+$$ \phi_p(x) = \frac{S_0L^2}{D} ,$$
+and thus the general solution in the reflector will be
+$$ \phi_r(x) = C_1 e^{x/L} + C_2 e^{-x/L} + \frac{S_0L^2}{D} $$
+Noting that $\phi(x) < \infty$ for all $x$, we see that this is violated in the above equation as $x \rightarrow \infty$ if $C_1 \neq 0$. Letting $C_2 = C$, 
+$$ \phi_r(x) = C e^{-x/L} + \frac{S_0L^2}{D} $$
+Using our interface condition, we can see that 
+$$ \phi_c(a) = \phi_r(a) $$
+$$ A\sin(Ba) + 2ABD\cos(Ba) = C e^{-a/L} + \frac{S_0L^2}{D} $$ 
+$$ C = AD \frac{\sin(Ba) + 2BD\cos(Ba) - S_0L^2}{De^{-a/L}} $$
+In total, the flux in this system is
+$$\boxed{ \phi(x) = \begin{cases} 	A \left( \sin(Bx) + 2 BD \cos(Bx) \right), & 0<x<a \\
+							AD\left( \frac{\sin(Ba) + 2BD\cos(Ba) - S_0L^2}{De^{-a/L}}\right) e^{-x/L} + \frac{S_0L^2}{D}, & x > a \end{cases} }$$
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
