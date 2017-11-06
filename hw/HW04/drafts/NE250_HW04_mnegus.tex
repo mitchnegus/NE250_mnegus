@@ -192,23 +192,39 @@ Since our derivation of the integral form of the transport equation (in class) d
 $$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t(x-\rho''\mu,E)\right] q(x-\rho'\mu,\mu,E) $$
 where now the exponential represents the attenuation of neutrons as they move from $x-\rho' \mu$ to $x$, and the source term represents the production of neutrons at $x-\rho'\mu$ into $(\mu,E)$.
 
-Since the cross section is uniform in the slab $\Xs_t(x-\rho''\mu,E) = \Xs_t$, and
+Since the cross section is uniform in the slab $\Xs_t(x-\rho''\mu,E) = \Xs_t$,
 $$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\int_0^{\rho'} d\rho'' \, \Xs_t\right] q(x-\rho'\mu,\mu,E) $$
 $$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\Xs_t \int_0^{\rho'} d\rho''\right] q(x-\rho'\mu,\mu,E) $$
 $$ \psi(x,\mu,E) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] q(x-\rho'\mu,\mu,E) $$
-The uncollided flux will consist entirely of neutrons with energy $E_0$ (if the neutron source beam is monoenergetic, neutrons must collide to have energy other than $E_0$), and direction $\mu = 1$ (if the neutrons are traveling in some other direction, they must have scattered into that direction)
-$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] q(x-\rho',1,E_0) $$
-Since we are ignoring fission, we note that the source term is simply the beam source, $q = s$.
+We can change coordinates to be integrating over $x$, by noting that $\mu = \cos\theta = x/\rho$. Then $\rho = x/\mu$ and $d\rho = dx$.
+$$ \psi_0(x,\mu,E) = \intzi dx' \exp \left[ -\Xs_t x'/\mu \right] q(x-x',\mu,E) $$
+
+Since we are ignoring fission, we note that the source term is simply the beam source, $q(x-x',\mu,E) = s(x-x',\mu,E)$. If we assume that the beam source can be treated like a plane source at the left boundary, then including the fact that the beam is monoenergetic lets the complete source be written as $s(\mu)\delta(E-E_0)\delta(x-x')$
+
+We can now write the equation for the uncollided flux, using the explicitly defined external source
+$$ \psi_0(x,\mu,E) = \intzi dx' \exp \left[ -\Xs_t x'/\mu \right] s(\mu)\delta(E-E_0)\delta(x-x') $$
+$$ \psi_0(x,\mu,E) = s(\mu) e^{-\Xs_t x/\mu} $$
 
 The boundary conditions for this problem are
 \begin{enumerate}
-\item $$ J_+(0) = \int_0^1 \intzi \psi(0,\mu,E) d\mu dE = I $$
-\item $$ J_-\left(\frac{a}{\tilde{\mu}}\right) = \int_{-1}^0 \intzi \psi\left(\frac{a}{\tilde{\mu}},\mu,E\right) d\mu \, dE = 0 $$
+\item $$ J_{0+}(0) = \int_0^1 d\mu \intzi dE\,  \psi_0(0,\mu,E) = I $$
+\item $$ J_{0-}\left(\frac{a}{\tilde{\mu}}\right) = \int_{-1}^0 \intzi \psi_0\left(\frac{a}{\tilde{\mu}},\mu,E\right) d\mu \, dE = 0 $$
 \end{enumerate}
 
-Using our first boundary condition, we can treat the source $s$ as if it is a monodirectional point source appearing at the slab boundary, $x=0$. 
-$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = \intzi d\rho' \exp \left[ -\Xs_t \rho'\right] s(x-\rho',1,E_0)\delta(x-\rho') $$
-$$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = I e^{-\Xs_t x} $$
+Using our first boundary condition, 
+$$ I = \int_0^1 d\mu \intzi dE\, \psi_0(0,\mu,E_0) $$
+$$ I = \int_0^1 d\mu \intzi dE\, \left[ \intzi dx' \exp \left[ -\Xs_t x'/\mu \right] s(\mu)\delta(E-E_0)\delta(x-x')\right]_{x=0} $$
+The delta function for $x$ picks the value of the integrand at which $x'=x$, and the equation can be simplified to
+$$ I = \int_0^1 d\mu \intzi dE\, \left[ \exp \left[ -\Xs_t x/\mu \right] s(\mu)\delta(E-E_0)\right]_{x=0} $$
+$$ I = \int_0^1 d\mu \intzi dE\, s(\mu)\delta(E-E_0) $$
+The delta function for $E$ now picks the value of the integrand at which $E = E_0$, 
+$$ I = \int_0^1 s(\mu) d\mu $$
+If we consider the source beam as monodirectional directly incident on the slab, then for all uncollided neutrons $\mu = 1$.
+$$ I = \int_0^1 s(1) d\mu $$
+$$ I = s(1) $$
+Then, the flux is
+$$ \psi_0(x,\mu,E) = s(1) e^{-\Xs_t x/(1)} $$
+$$\boxed{ \psi_0(x,\mu,E) = I e^{-\Xs_t x} }.$$
 
 
 
@@ -216,6 +232,41 @@ $$ \psi_0(x,\mu,E) = \psi_0(x,1,E_0) = I e^{-\Xs_t x} $$
 
 \section*{Problem 4}
 
+We know that the once collided flux is given by $\psi_1 = K\psi_0$ where $K$ is the integral operator. To determine $K$ and find the source term for first collisions, we start by looking at the fully expanded form of the integral transport equation.
+\begin{align*}
+\psi(\pos,\Oh,E) = \int_0^{\infty} d\rho' \exp \left[-\int_0^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,E)\right] \bigg[ \frac{\chi(E)}{4\pi}\intfp d\Oh' \intzi dE' \nu\Xs_f(\pos-\rho'\Oh',E') \psi(\pos-\rho'\Oh',\Oh',E') + \\
++ \intfp d\Oh' \intzi dE' \Xs_s(\pos-\rho'\Oh',\Oh' \rightarrow \Oh, E' \rightarrow E)\psi(\pos-\rho'\Oh',\Oh',E') + Q(\pos-\rho'\Oh,\Oh,E)\bigg]
+\end{align*}
+For the once collided flux, the external source $Q$ is zero, and the angular flux used to calculate the scattering and fission terms is the uncollided flux.
+\begin{align*}
+\psi_1(\pos,\Oh,E) = \int_0^{\infty} d\rho' \exp \left[-\int_0^{\rho'} d\rho'' \Xs_t(\pos-\rho''\Oh,E)\right] \bigg[ \frac{\chi(E)}{4\pi}\intfp d\Oh' \intzi dE' \nu\Xs_f(\pos-\rho'\Oh',E') \psi_0(\pos-\rho'\Oh',\Oh',E') + \\
++ \intfp d\Oh' \intzi dE' \Xs_s(\pos-\rho'\Oh',\Oh' \rightarrow \Oh, E' \rightarrow E)\psi_0(\pos-\rho'\Oh',\Oh',E') \bigg]
+\end{align*}
+We can now see that the first collision source is everything within the second set of brackets.
+\begin{align*}
+q_1(\pos-\rho'\Oh,\Oh,E) &= \frac{\chi(E)}{4\pi}\intfp d\Oh' \intzi dE' \nu\Xs_f(\pos-\rho'\Oh',E') \psi_0(\pos-\rho'\Oh',\Oh',E') + \\
+& + \intfp d\Oh' \intzi dE' \Xs_s(\pos-\rho'\Oh',\Oh' \rightarrow \Oh, E' \rightarrow E)\psi_0(\pos-\rho'\Oh',\Oh',E')
+\end{align*}
+Since we are still dealing with a one dimensional geometry, this \textbf{first collision source} can be simplified to
+\begin{align*}
+q_1(x-x',\mu,E) &= \frac{\chi(E)}{4\pi}\int_{-1}^{1} d\mu' \intzi dE' \nu\Xs_f(x-x',E') \psi_0(x-x',\mu',E') + \\
+& + \int_{-1}^{1} d\mu' \intzi dE' \Xs_s(x-x',\mu' \rightarrow \mu, E' \rightarrow E)\psi_0(x-x',\mu',E').
+\end{align*}
+This source can then be inserted back into the full transport equation (in one dimension).
+\begin{align*}
+\psi_1(x,\mu,E) = \int_0^{\infty} dx' \exp \left[-\int_0^{x'/\mu} dx'' \Xs_t(x-x'',E)\right] \bigg[\frac{\chi(E)}{4\pi}\int_{-1}^{1} d\mu' \intzi dE' \nu\Xs_f(x-x',E') \psi_0(x-x',\mu',E') + \\
++ \int_{-1}^{1} d\mu' \intzi dE' \Xs_s(x-x',\mu' \rightarrow \mu, E' \rightarrow E)\psi_0(x-x',\mu',E')\bigg]
+\end{align*}
+Finally, since $\Xs_t$ is constant, the \textbf{first-collided flux} can be written as
+\begin{align*}
+\psi_1(x,\mu,E) = \int_0^{\infty} dx' \exp \left[-\Xs_t x'/\mu\right] \bigg[\frac{\chi(E)}{4\pi}\int_{-1}^{1} d\mu' \intzi dE' \nu\Xs_f(x-x',E') \psi_0(x-x',\mu',E') + \\
++ \int_{-1}^{1} d\mu' \intzi dE' \Xs_s(x-x',\mu' \rightarrow \mu, E' \rightarrow E)\psi_0(x-x',\mu',E')\bigg]
+\end{align*}
+with boundary conditions
+\begin{enumerate}
+\item $$ J_{1+}(0) = \int_0^1 d\mu \intzi dE\,  \psi_1(0,\mu,E) = 0 $$
+\item $$ J_{1-}\left(\frac{a}{\tilde{\mu}}\right) = \int_{-1}^0 \intzi \psi_1\left(\frac{a}{\tilde{\mu}},\mu,E\right) d\mu \, dE = 0 $$
+\end{enumerate}
 
 
 
