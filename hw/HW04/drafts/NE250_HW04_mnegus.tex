@@ -303,6 +303,46 @@ $$\boxed{ \phi(r,E) = \frac{S(E)}{4\pi r^2} e^{-\Xs_t r} }.$$
 
 \section*{Problem 6}
 
+In one group diffusion theory, a bare slab reactor is described by the diffusion equation
+$$ -D \frac{d^2\phi}{dx^2} + \Xs_a \phi(x) = \Xs_f(x) \phi(x) $$
+or equivalently
+$$ \frac{d^2\phi}{dx^2} + [B(x)]^2\phi(x) = 0 $$
+where $[B(x)]^2 = \frac{\Xs_f(x) - \Xs_a}{D}$. 
+We also know that the power distribution must be flat, so
+$$ P(x) = const. = E_f \Xs_f(x) \phi(x) $$
+If we let $C$ be some constant, then
+$$ C = \Xs_f(x)\phi(x) $$
+$$ \Xs_f(x) = \frac{C}{\phi(x)} $$
+Using this in our equation for $B(x)$ and then substituting this back into the diffusion equation to have only an equation in terms of flux gives
+$$ \frac{d^2\phi}{dx^2} + \left(\frac{C/\phi(x) - \Xs_a}{D}\right)\phi(x) = 0 $$
+$$ \frac{d^2\phi}{dx^2} + \left(\frac{C - \Xs_a\phi(x)}{D}\right) = 0 $$
+$$ \frac{d^2\phi}{dx^2} - \frac{\Xs_a\phi(x)}{D} + \frac{C}{D} = 0 $$
+Letting $L = \sqrt{D/\Xs_a}$, the solution to this inhomogeneous ordinary differential equation is
+$$ \phi(x) = A_1 e^{x/L} + A_2 e^{-x/L} + \frac{C}{\Xs_a} $$
+Since our reactor is a slab, lets say it's width is $2\ell$, and it is centered at the origin. Then, since it is a bare slab, the boundary conditions are
+$$ \phi(\pm\tilde{\ell}) = 0 $$
+Using these boundary conditions, we find
+$$ \phi(\tilde{\ell}) = 0 = A_1 e^{\tilde{\ell}/L} + A_2 e^{-\tilde{\ell}/L} + \frac{C}{\Xs_a} $$
+and 
+$$ \phi(-\tilde{\ell}) = 0 = A_1 e^{-\tilde{\ell}/L} + A_2 e^{\tilde{\ell}/L} + \frac{C}{\Xs_a} $$
+and so $A_1 = A_2$. If we let $A = 2A_1 = 2A_2$, then
+$$ \phi(x) = A \cosh\left(\frac{x}{L}\right) + \frac{C}{\Xs_a} $$
+Using the boundary conditions again,
+$$ \phi(\tilde{\ell}) = 0 = A \cosh\left(\frac{\tilde{\ell}}{L}\right) + \frac{C}{\Xs_a} $$
+$$ -\frac{C}{\Xs_a} = A \cosh\left(\frac{\tilde{\ell}}{L}\right) $$
+$$ C = - A \Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right) $$
+The flux solution is finally 
+$$ \phi(x) = A \cosh\left(\frac{x}{L}\right) - \frac{A \Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right)}{\Xs_a} $$
+$$ \phi(x) = A \left(\cosh\left(\frac{x}{L}\right) - \cosh\left(\frac{\tilde{\ell}}{L}\right)\right) $$
+Now, we established earlier that $C = \Xs_f(x) \phi(x)$. Using this fact, we can say
+$$ \Xs_f(x) = \frac{C}{\phi(x)} $$
+$$ \Xs_f(x) = \frac{C}{A \left(\cosh\left(\frac{x}{L}\right) - \cosh\left(\frac{\tilde{\ell}}{L}\right)\right)} $$
+and where $ C = - A \Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right) $
+$$ \Xs_f(x) = \frac{- A \Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right)}{A \left(\cosh\left(\frac{x}{L}\right) - \cosh\left(\frac{\tilde{\ell}}{L}\right)\right)} $$
+$$ \Xs_f(x) = \frac{\Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right)}{\cosh\left(\frac{\tilde{\ell}}{L}\right) - \cosh\left(\frac{x}{L}\right)} $$
+By definition, $\Xs_f(x) = N_{\text{fuel}}(x)\xs_f$. Then
+$$ N_{\text{fuel}}(x)\xs_f = \frac{\Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right)}{\cosh\left(\frac{\tilde{\ell}}{L}\right) - \cosh\left(\frac{x}{L}\right)} $$
+$$\boxed{ N_{\text{fuel}}(x) = \frac{\Xs_a\cosh\left(\frac{\tilde{\ell}}{L}\right)}{\xs_f \left( \cosh\left(\frac{\tilde{\ell}}{L}\right) - \cosh\left(\frac{x}{L}\right)\right)} }.$$
 
 
 
@@ -312,7 +352,7 @@ $$\boxed{ \phi(r,E) = \frac{S(E)}{4\pi r^2} e^{-\Xs_t r} }.$$
 
 For cylindrical geometries, the diffusion equation takes the form:
 $$ \frac{1}{r}\frac{\p}{\p r}\left(r \frac{\p \phi(\pos)}{\p r}\right) + \frac{\p^2 \phi(\pos)}{\p z^2} + B^2\phi(\pos) = 0$$
-where $B^2 = \frac{\nu\Sigma_f - \Sigma_a}{D} $ near criticality. 
+where $B^2 = \frac{\nu\Xs_f - \Xs_a}{D} $ near criticality. 
 Since our cylinder is infinite we lose dependence on $z$ in our equations.
 $$ \frac{1}{r}\frac{\p}{\p r}\left(r \frac{\p \phi(r)}{\p r}\right) + B^2\phi(r) = 0$$
 Solutions to this equation are are zeroth order Bessel functions of first and second kind, $J_0(r)$ and $Y_0(r)$. 
@@ -326,7 +366,7 @@ $$ \phi(\tilde{R}_b) = 0 ,$$
 and since the flux must be nonnegative, only the first zero of $J_0$ can satisfy this condition. This occurs at $B \tilde{R}_b = 2.4048$. $B = B_g = \frac{2.4048}{\tilde{R}_b}$. The criticality condition for the bare core is then 
 $$ \left(\frac{\nu\Xs_f - \Xs_a}{D}\right)^2 = \left(\frac{2.4048}{\tilde{R}_b}\right)^2 $$
 and the critical radius is
-$$ \tilde{R}_b = \frac{2.4048 D}{\nu\Sigma_f - \Sigma_a} .$$
+$$ \tilde{R}_b = \frac{2.4048 D}{\nu\Xs_f - \Xs_a} .$$
 
 For a reflected core, our initial equation and the form of the solutions stay the same within the core region. 
 With a finite flux at $r=0$, $A_2 = 0$ and if $A_1 = A$, then in the core 
