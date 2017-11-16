@@ -1299,11 +1299,70 @@ $$ E(x) = \frac{1}{N} \sum_{i=1}^N x_i $$
 \hhh{Example: Surface/Current tally}
 We have our estimator,
 $$ x_i = \sum_j w_{ij} $$
+
 The current is 
 $$ \int_A dA \int_{\Oh} d\Oh \int_E dE \hat{n}\cdot \cur\rEO \approx \frac{1}{N} \sum_{i=1}^N x_i = \frac{1}{N} \sum_{i=1}^N \sum_j w_{ij}$$
 
 The surface energy current is
 $$ \int_A dA \int_{\Oh} d\Oh \int_E dE \, \hat{n}\cdot E\,\cur\rEO \approx \sum_{i=1}^N \sum_j E_{ij} w_{ij} $$
+
+The flux/fluence is
+$$ \bar{\phi}_V = \frac{1}{V} \int_V dV \int_E dE \int_t dt \phi\rEt $$
+where $ \phi \equiv vN$ and $v dt = ds$. Then
+$$ \bar{\phi}_V = \frac{1}{V} \int_s ds \int_E dE \phi\rEt $$ 
+
+Collision; score at collision 
+$$ \phi_V \approx \frac{1}{VN} \sum_{i=1}^N x_i = \frac{1}{VN} \sum_{i=1}^N w_i $$
+
+Track length ($T_{\ell} = \text{track length in volume}$)
+$$ \phi_V \approx = \frac{1}{VN} \sum_{i=1}^N w_i T_{\ell,ij} $$
+ 
+The surface flux is ...
+
+\hh{Statistics}
+
+The true mean $\mu$ of any PDF is the expected value, $E(x)$, where
+$$ \mu = E(x) = \int x \, f(x) \, dx $$
+Since we often can't find/don't know this value, we estimate the true mean from the sample mean, $\bar{x}$, where
+$$ \bar{x} = \frac{1}{N}\sum_{i=1}^N x_i $$
+and 
+$$ \lim_{n\rightarrow\infty} \bar{x} = \mu .$$
+The variance of a PDF is a measure of the spread in that PDF. The true variance is
+\begin{align*}
+\sigma^2 = E[(x-\mu)^2] &= \int (x-\mu)^2 f(x) dx \\
+						&= \int x^2 f(x) dx - 2\mu \int x \, f(x) \, dx + \mu^2 \int f(x) \, dx
+\end{align*}
+and the sample variance is 
+\begin{align*}
+S_x^2	&= \frac{1}{N-1}\sum_{i=1}^N (x_i - \bar{x})^2 \\
+		&= \frac{1}{N-1}\left[ \sum_{i=1}^N x_i^2 - 2\bar{x})^2 \sum_{i=1}^N x_i + \bar{x})^2 \sum_{i=1}^N 1 \right] \\
+		&\approx \overline{x^2} - \bar{x}^2
+\end{align*}
+
+\hhh{The Central Limit Theorem}
+For $N$ independent random variables, $x_i$, sampled from identical distributions, their mean allows a normal distribution (IID). From this, we can define confidence intervals.
+
+First, we note $S_{\bar{x}} = \sqrt{\frac{S_x^2}{N}}$.
+
+Our confidence intervals are 
+$$ \bar{x} - S_{\bar{x}} < E(x) < \bar{x} + S_{\bar{x}} (68\%)$$
+$$ \bar{x} - 2S_{\bar{x}} < E(x) < \bar{x} + 2S_{\bar{x}} (95\%)$$
+
+The standard deviation is a measure of the error in the result. 
+\begin{align*}
+S_{\bar{x}}^2	&= E[(\bar{x}-\mu)^2] \\
+				&= E[(\frac{1}{N^2} \sum_{i=1}^N x_i - \mu)] \\
+				&= \frac{1}{N^2}E\left[ \sum_{i=1}^N \sum_{j=1}^N (x_i - \mu)(x_j - \mu) \right] \\
+				&= \frac{1}{N^2} \sum_{i=1}^N \sum_{j=1}^N E\left[ (x_i - \mu)(x_j - \mu)\right] \\
+				&= \frac{1}{N^2} \sum_{i=1}^N S_x^2 \\
+				&= \frac{N S_x^2}{N^2} \\
+				&= \frac{S_x^2}{N} \\
+				&= S_{\bar{x}}^2 \\
+\end{align*}
+
+
+
+
 \end{document}
 
 
