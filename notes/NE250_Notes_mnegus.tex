@@ -1220,6 +1220,90 @@ $$ \sum_{g=1}^G \Xs_{s,(L+1),gg'} ... \approx \sum_{g'=1}^G \Xs_{s,(L+1),gg'} ..
 $$ \Xs_{1}(\pos) = ... $$
 This is the extended transport approximation.
 
+
+\h{Monte Carlo}
+
+\hh{Sampling}
+
+Use \underline{uniformly distributed random variables} ($\xi$ between 0 and 1) to choose a value for a variable according to its PDF. 
+
+$$ F(x) = \xi \rightarrow x = F^{-1}(\xi) $$
+
+\hh{Basic}
+\begin{itemize}
+\item direct discrete sampling (which reaction)
+\item direct continuous sampling (\# of MFPs)
+\item rejection sampling (Klein-Nishina formula)
+\end{itemize}
+
+\hh{Advanced}
+\begin{itemize}
+\item histogram
+\item piecewise linear
+\item alias sampling
+\item advanced continuous PDFs
+\end{itemize}
+
+
+\hhh{Example: Distance to a collision}
+Solve using direct inversion. 
+$$ \Xs_t = \sum_{j=1}^{J} N_j\xs_t^j $$
+Here the PDF is the 
+$$ (\text{probability of interaction per unit distance}) \times (\text{probability of traveling distance }s\text{without interacting}) $$
+or
+$$ f(s) = \Xs_t e^{-\Xs_t s} $$
+
+To find the CDF we integrate from 0 to $s$:
+$$ F(s) = \int_0^s f(s')\, ds' $$
+In our case, the CDF is
+$$ F(s) = \int_0^s \Xs_t e^{-\Xs_t s'}\, ds' $$
+$$ F(s) = -\left[ e^{-\Xs_t s'}\right]_0^s $$
+$$ F(s) = 1-e^{-\Xs_t s} $$
+To \textit{sample} we do direct inversion. If $F(s) = \xi$, then $\xi = 1-e^{-\Xs_t s}$. Solving for $s$,
+$$ e^{-\Xs_t s} = 1-\xi $$
+$$ -\Xs_t s = \ln(1-\xi) $$
+$$ s = \frac{-\ln(1-\xi)}{\Xs_t} $$
+After determining which reaction occurs, we determine which isotope and which collision type were involved. Then 
+$$ \xs_t = \xs_{el} + \xs_{inel} + \xs_{capture} + \xs_{f} + ... $$
+
+The probability of a reaction $i$ is
+$$ \rho_i = \frac{\xs_i}{\xs_t} $$
+At this point, we have a set of discrete probabilities. We can sample these probabilities
+\begin{itemize}
+\item \textbf{Directly:}
+	\begin{itemize}
+	\item get $\xi$
+	\item find $k$ s.t. $F_{k-1} \leq \xi F_k$
+	\item return $i = ik$
+	\end{itemize}
+\item (speed this up with an \textit{alias table})
+\end{itemize}
+
+\hhh{Scoring}
+Each history, $i$, is a series of interaction sites. 
+\begin{itemize}
+\item \underline{Estimators} convert histories into scores. Histories have different scores (in general).
+\item \underline{Tallies} accumulate sets of scores $\{ x_i \}$ to form a PDF
+\end{itemize}
+We want to find the \underline{expected value} of underlying PDFs, and we normalize the tallies to the number of source particles, $N$.
+$$ E(x) = \frac{1}{N} \sum_{i=1}^N x_i $$
+
+
+\hh{Types of Estimators}
+\begin{enumerate}
+\item \textbf{Point Estimator:} surface crossings, collisions (current tally, surface flux tally)
+\item \textbf{Track Length Estimator:} track length through a cell (volume flux tally)
+\item \textbf{Energy Balance Estimator:} energy loss in a cell (pulse height tally)
+\end{enumerate}
+
+\hhh{Example: Surface/Current tally}
+We have our estimator,
+$$ x_i = \sum_j w_{ij} $$
+The current is 
+$$ \int_A dA \int_{\Oh} d\Oh \int_E dE \hat{n}\cdot \cur\rEO \approx \frac{1}{N} \sum_{i=1}^N x_i = \frac{1}{N} \sum_{i=1}^N \sum_j w_{ij}$$
+
+The surface energy current is
+$$ \int_A dA \int_{\Oh} d\Oh \int_E dE \, \hat{n}\cdot E\,\cur\rEO \approx \sum_{i=1}^N \sum_j E_{ij} w_{ij} $$
 \end{document}
 
 
