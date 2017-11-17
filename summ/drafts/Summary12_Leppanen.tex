@@ -1,0 +1,69 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 11/17/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary 12} \hfill Mitch Negus\\
+		\hspace*{\fill} 11/17/2017\\ }}
+\section*{\textsl{Performance of Woodcock delta-tracking in lattice physics applications using the Serpent Monte Carlo reactor physics burnup calculation code} \\ \normalsize J. Lepp\"{a}nen}
+
+\tab ...
+
+
+\end{document}
+
+-Woodcock Delta tracking
+	-assign majorant cross section
+	-use XS_maj w/ a rejection sampling alogorithm
+	-less comp. intensive than recaculating neutron path length in each material
+	-algorithm becomes materially invariant; acceptance probability depends on material
+-some limitations to delta-tracking
+	-reaction rate integrals difficult to calculate
+	-typical track-length estimator invalid
+	-collision flux estimator inefficient
+	-heavy absorbers (high difference in XS locally)
+	-many more virtual collisions take place than necessary (most are wasted)
+-implemented a cutoff alue to determine "how much" delta tracking to use
+	-jumps/discontinuities in plots suggest there are good places to put cutoff value to optimize
+	-depends on geometry
+-delta tracking w/ optimal cutoff produces speed-up of 2-13 times
+	-~2 for BWR/PWR
+	-~13 for HTGR
+
+-What is the savings of this algorithm (order?)
+	
