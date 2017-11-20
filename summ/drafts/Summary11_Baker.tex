@@ -1,0 +1,77 @@
+\documentclass{report}
+% PACKAGES %
+\usepackage[english]{} % Sets the language
+\usepackage[margin=2cm]{geometry} % Sets the margin size
+\usepackage{fancyhdr} % Allows creation of headers
+\usepackage{xcolor} % Allows the use of color in text
+\usepackage{float} % Allows figures and tables to be floats
+\usepackage{appendix}
+\usepackage{amsmath} % Enhanced math package prepared by the American Mathematical Society
+	\DeclareMathOperator{\sech}{sech} % Include sech
+\usepackage{amssymb} % AMS symbols package
+\usepackage{mathrsfs}% More math symbols
+\usepackage{bm} % Allows you to use \bm{} to make any symbol bold
+\usepackage{bbold} % Allows more bold characters
+\usepackage{verbatim} % Allows you to include code snippets
+\usepackage{setspace} % Allows you to change the spacing between lines at different points in the document
+\usepackage{parskip} % Allows you alter the spacing between paragraphs
+\usepackage{multicol} % Allows text division into multiple columns
+\usepackage{units} % Allows fractions to be expressed diagonally instead of vertically
+\usepackage{booktabs,multirow,multirow} % Gives extra table functionality
+\usepackage{hyperref} % Allows hyperlinks in the document
+\usepackage{rotating} % Allows tables to be rotated
+\usepackage{graphicx} % Enhanced package for including graphics/figures
+	% Set path to figure image files
+	%\graphicspath{ } }
+\usepackage{listings} % for including text files
+	\lstset{basicstyle=\ttfamily\scriptsize,
+        		  keywordstyle=\color{blue}\ttfamily,
+        	  	  stringstyle=\color{red}\ttfamily,
+          	  commentstyle=\color{gray}\ttfamily,
+          	 }		
+\newcommand{\tab}{\-\hspace{1cm}}
+
+% Create a header w/ Name & Date
+\pagestyle{fancy}
+\rhead{\textbf{Mitch Negus} \; 11/9/2017}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\bf {\large {NE250 Summary 11} \hfill Mitch Negus\\
+		\hspace*{\fill} 11/9/2017\\ }}
+\section*{\textsl{An $S_n$ Algorithm for the Massively Parallel CM-200 Computer} \\ \normalsize R. Baker and K. Koch}
+
+\tab The computational power required for simulating complex nuclear systems has been a limiting factor on their feasibility since their discovery. This article from Los Alamos National Laboratory discusses work using the CM-200 computer system and parallelizing neutron transport calculations on its unique architecture. This architecture requires that each processor executes the same  set of instructions, rather than works independently. To accomodate this, the paper discusses how they use a diagonal plane through the mesh, projected onto a 2D array, to allow simultaneous processing. Though this method alone does not provide remarkable parallel computational efficiency (PCE)---only about $\frac{1}{3}$---it can be executed using a pipelining approach to increase PCE to well over 75\%. The article presents tests of the algorithm on an experimentally verified test reactor, consisting of a spherical uranium core, surrounded by a beryllium reflector. \\
+\tab I was particularly intrigued by the pipelining discussion provided in the article. The solution presented seemed to be a clever way to make use of the otherwise wasted computation executed on the system. I also found it interesting that the computation efficiency improved in the simulations when the authors introduced the fake $X$ layer, rather than apply a mask to only calculate values for the mesh that were required. This almost counterintuitive approach of ``wasting'' calculations (but still saving time that otherwise would be spent preventing the calculation) is an interesting  phenomenon, and something to consider when writing code in the future. Finally, I would also be curious to note how the computational power available at the time of this article (1998) compares to today. The authors describe the CM-200's 2048 processors as substantial, though by today's standards that is fairly common (I submit small jobs on Titan with more processors), so I'm curious how a computer with 2048 processors compared with leadership class faciliies at the time. (Answer from \textsl{Wikipedia}: The largest supercomputer in 1997 was ASCI Red at at LANL; it had 9298 separate processors)
+
+
+\end{document}
+
+-2048 processors is small today (how did that compare at the time)
+-CIMD architecture requires all operations to be the same per step
+	- why is this (assuming circuit logic makes this a simple/fast design?)	
+-2D diagonal line sweep, O(N/2); 3D diagonal plane sweep O(N^2/3)
+-3D plane projected onto YZ plane for parallelization
+	- it is one-to-one (not necessarily onto)
+-for inactive X, the mapping from YZ plane to XYZ space gives an invalid X
+	- fake cell layer
+	- can still execute procedure and solve in required geometry
+	- more computationally efficient than WHERE mask
+-parallel computation efficiency (PCE) of only ~1/3
+	- used a pipelining approach to parallelize more efficiently
+	- 2 methods
+		- ``Successive angles, successive quadrants''
+			- (-) angle m, (+) angle m, (-) angle (m+1), (+) angle (m+1)
+		- ``Simultaneous angle, successive quadrants''
+-tested algorithm against experimental spherical reflected core
+	-uranium core
+	-beryllium reflector
+-homogenized boundary cells to reconcile spherical geometry w/ cubic mesh
+-used diamond difference w/ and w/o set-to-zero (STZ) fix up
+	- fix-up is significantly more expensive computationally
+	- results in load imbalances and poor parallelization
+-128x128x128 mesh shows good scalability 
+	- speedup ratio of 1.88 for 512-->1024 proc's; theoretical limit is 2
+-is the comparison of a single CRAY processor to CM-200 processor reasonable/valid?
+	
