@@ -158,13 +158,58 @@ $$\boxed{ F(x) = 1 -e^{-\lambda x} }$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Problem 3}
-\subsection*{\textit{a.})}
+
+\subsection*{\textit{a.})} 
+\textit{True}. A normalized PDF is required so that the inverted CDF, from which we draw our sample, has a domain of 0 to 1. Then, selecting random numbers in this same interval will give us values of the PDF/CDF's independent variable distributed like the original PDF.
+
 \subsection*{\textit{b.})}
+\begin{multicols}{2}
+\textbf{Deterministic Strengths} \\
+\begin{enumerate}
+\item Fast execution (all steps contribute to a meaningful solution)
+\item No statistical uncertainties, solutions are exact (within truncation limits)
+\item Solutions are global over the problem space
+\end{enumerate}
+
+\textbf{Monte Carlo Weaknesses} \\
+\begin{enumerate}
+\item Slow/inefficient (calculations for particles that do not contribute to the tally are essentially wasted)
+\item Results contain statistical uncertainties
+\item Solutions are only local (wherever tallies are collected)
+\end{enumerate}
+
+\columnbreak
+
+\textbf{Monte Carlo Strengths} \\
+\begin{enumerate}
+\item Continuous (in space, energy, angle, etc.)
+\item Easy to parallelize
+\item No truncation error, solutions are exact (within uncertainties)
+\end{enumerate}
+
+\textbf{Deterministic Weaknesses} \\
+\begin{enumerate}
+\item Difficult to parallelize
+\item Discretization (energy, angle, space, etc.) limits accuracy
+\item Solutions contain truncation error (expansions are truncated)
+\end{enumerate}
+
+\end{multicols}
+
 \subsection*{\textit{c.})}
+The relative error of an analog Monte Carlo algorithm is $R = S_{\bar{x}}/{\bar{x}}$. Since $S_{\bar{x}} = S/\sqrt{N}$, it becomes apparent that $R \propto 1/\sqrt{N}$.
+
 \subsection*{\textit{d.})}
+The central limit theorem allows us to state, \underline{specifically for independently and identically distributed random variables}, that for many samples of $N$ measurements, the sample means will be distributed according to a normal distribution, with variance $\sigma^2/N$ (where $\sigma^2$ is the true variance of the original variable distribution).
+
 \subsection*{\textit{e.})}
+In a Monte Carlo algorithm, the tracking of particles through a geometry region requires the particle's mean free path in that region. At a boundary, the mean free path must be updated for proper transport through the new material. 
+
 \subsection*{\textit{f.})}
+The collision estimator is more likely to be accurate in cases where there are many collisions (such as a large and/or dense geometry region), and many statistics can be tallied. In the case that the geometry is optically thin, there will be few collisions in the region, and so a collision estimator will yield poor statistics. Then, a track length estimator will be preferable.
+
 \subsection*{\textit{g.})}
+The Consistent Adjoint Driven Importance Sampling method is termed "consistent" because it applies the appropriate weighting (to the nominal weight) for every particle that is born, according to the importance map defined by the adjoint source.
 
 
 
@@ -172,12 +217,13 @@ $$\boxed{ F(x) = 1 -e^{-\lambda x} }$$
 
 \section*{Problem 4}
 
+(See Jupyter notebook, attached)
 
 
 
 
 \includepdf[pages=-]{NE250_HW06_mnegus-prob2.pdf}
-%\includepdf[pages=-]{NE250_HW05_mnegus-prob{...}.pdf}
+\includepdf[pages=-]{NE250_HW06_mnegus-prob4.pdf}
 
 
 \end{document}
