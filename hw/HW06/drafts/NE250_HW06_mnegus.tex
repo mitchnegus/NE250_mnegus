@@ -206,7 +206,7 @@ The central limit theorem allows us to state, \underline{specifically for indepe
 In a Monte Carlo algorithm, the tracking of particles through a geometry region requires the particle's mean free path in that region. At a boundary, the mean free path must be updated for proper transport through the new material. 
 
 \subsection*{\textit{f.})}
-The collision estimator is more likely to be accurate in cases where there are many collisions (such as a large and/or dense geometry region), and many statistics can be tallied. In the case that the geometry is optically thin, there will be few collisions in the region, and so a collision estimator will yield poor statistics. Then, a track length estimator will be preferable.
+The collision estimator is more likely to be accurate in cases where there are many collisions (such as a large and/or dense geometry region), and the majority of particles passing through the region of interest collide there. In the case that the geometry is optically thin, there will be few collisions in the region, and so a collision estimator will yield poor statistics. Then, a track length estimator will be preferable.
 
 \subsection*{\textit{g.})}
 The Consistent Adjoint Driven Importance Sampling method is termed "consistent" because it applies the appropriate weighting (to the nominal weight) for every particle that is born, according to the importance map defined by the adjoint source.
